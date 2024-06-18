@@ -1,19 +1,15 @@
-import { TypeOrmModule } from "@nestjs/typeorm";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('user') // 'user' es para indicar lo que va en la petición http, que en este caso se eligió user
+@Entity('user') // Nombre de la tabla en la base de datos
 export class User {
 
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @Column({ type : 'varchar', unique : true, length : 25, nullable : false}) // nullable es para permitir que el valor de la columna sea nulo o no
+    @Column({ type: 'varchar', unique: true, length: 25, nullable: false })
     username: string; 
 
-    @Column({type : 'varchar', unique : true, nullable : false})
+    @Column({ type: 'varchar', nullable: false })
     password: string;
-
-    @Column({type : "datetime", default: () => 'CURRENT_TIMESTAMP'} )
-    calendar: Date
     
 }

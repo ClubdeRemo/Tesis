@@ -23,7 +23,7 @@ export class UserController {
   }
 
   @Patch(':id')  // ParseIntPipe esta bien? o se contradice con lo que hay en updateUserDto?
-  update(@Param('id') id: ParseIntPipe, @Body() updateUserDto: UpdateUserDto) {      //los pipes son utilizados para transformar y validar los datos que entran a tu aplicación.
+  async update(@Param('id') id: ParseIntPipe, @Body() updateUserDto: UpdateUserDto) {      //los pipes son utilizados para transformar y validar los datos que entran a tu aplicación.
     return this.userService.update(+id, updateUserDto);                              //ParseIntPipe, se utiliza para convertir un parámetro de cadena en un número entero. 
   }
 
@@ -36,7 +36,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {                          //Y aca puedo usar 'string' o 'numbrer'
+  async remove(@Param('id') id: string) {                          //Y aca puedo usar 'string' o 'numbrer'
     return this.userService.remove(+id);
   }
 }

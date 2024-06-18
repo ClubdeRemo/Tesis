@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProdutModule } from './produt/produt.module';
+import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -16,10 +17,11 @@ import { UserModule } from './user/user.module';
       password: 'root', 
       database: 'firstApi', 
       entities: [__dirname + '/**/*.entity{.ts,.js}'], 
-      synchronize: true, // Sincroniza las entidades con la base de datos (solo para desarrollo)
+      //synchronize: true, // Sincroniza las entidades con la base de datos (solo para desarrollo) // CAUSA PROBLEMAS CON LAS ENTIDADES
       }),
-      ProdutModule,
-    UserModule
+      ProductModule,
+    UserModule,
+    AuthModule
     ],
 
   controllers: [AppController],

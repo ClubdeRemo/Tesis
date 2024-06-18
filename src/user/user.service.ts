@@ -61,6 +61,21 @@ export class UserService {
     }
   }
 
+  public async findByUsername(username:string){
+    var registros: any
+    try{
+      registros = await this.UserRepository.findOne({where: {username:username}});
+      return registros;
+    }
+    catch(error){
+      return new BadRequestException(error);
+    }
+  }
+
+  async validatePassword(user: User, password: string): Promise<boolean> {
+    return await bcrypt.compare(password, user.password); // Compara la contraseña ingresada con la contraseña almacenada en hash en la base de datos
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       await this.UserRepository.createQueryBuilder()

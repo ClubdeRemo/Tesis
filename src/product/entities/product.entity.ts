@@ -2,7 +2,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('product') 
-export class Procuct {
+export class Product {
 
     @PrimaryGeneratedColumn('increment')
     id: number;
