@@ -1,0 +1,28 @@
+<div class="welcome-container">
+    <img src="ACR.png" alt="Imagen de encabezado">
+    <h2 class="h2-index">¡Bienvenidos!</h2>
+</div>        
+<div id="map"></div>        
+<div class="top-bar">
+    <!-- <a [routerLink]="users/form"><span class="top-bar-text-index">Ingresar</span></a> -->
+    <span class="top-bar-text-index" (click)="siguiente()">Ingresar</span>
+    <span class="top-bar-text-index">Reservar</span>
+    <span class="top-bar-text-index">Reportes</span>
+    <span class="top-bar-text-index">Historia</span>    
+</div>        
+<div class="video-container">
+    <video autoplay loop muted playsinline>
+        <source src="Video-remando.mp4" type="video/mp4">
+    </video>
+</div>    
+<footer class="footer">
+    <div class="top-bar-index">
+        <p>&copy; 2024 Mi Sitio Web. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+
+    <!-- Errores y soluciones:
+    error de rehidratación Index es el unico que debe contener header y body
+    error en las imagenes, era porque cree una carpeta public y el angular.json habia guardado esa ruta para archivos de este tipo
+    por lo que assets debia apuntar en esa direccion para funcionar     -->
