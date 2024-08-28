@@ -12,9 +12,9 @@ export class AppController {
     res.sendFile(join(__dirname, '..', 'public', 'index.html'));
   }
   
-  @Get('Public/CrearSocio.html')
+  @Get('Public/users-form.tml')
   getCrearSocio(@Res() res: Response) {
-    res.sendFile(join(__dirname, '..', 'public', 'CrearSocio.html'));
+    res.sendFile(join(__dirname, '..', 'public', 'users-form.html'));
 
   }
 }
