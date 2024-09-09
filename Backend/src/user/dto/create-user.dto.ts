@@ -1,9 +1,9 @@
 export class CreateUserDto {
-username : string;
-lastName : string;
-email: string;
-password : string;
-birthdate: Date;
-dni: number;
+Nombre : string;
+Apellido : string;
+Email: string;
+Contraseña : string;
+FechaDeNacimiento: Date;
+Dni: number;
 
 }

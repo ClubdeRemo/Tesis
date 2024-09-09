@@ -17,26 +17,26 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: ParseIntPipe) {
-    return this.userService.findOne(+id);             // el + en el id lo convierte de string a numero
+  @Get(':Id')
+  async findOne(@Param('Id') Id: ParseIntPipe) {
+    return this.userService.findOne(+Id);             // el + en el id lo convierte de string a numero
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: ParseIntPipe, @Body() updateUserDto: UpdateUserDto) {      //los pipes son utilizados para transformar y validar los datos que entran a tu aplicación.
-    return this.userService.update(+id, updateUserDto);                              //ParseIntPipe, se utiliza para convertir un parámetro de cadena en un número entero. 
+  @Patch(':Id')
+  async update(@Param('Id') Id: ParseIntPipe, @Body() updateUserDto: UpdateUserDto) {      //los pipes son utilizados para transformar y validar los datos que entran a tu aplicación.
+    return this.userService.update(+Id, updateUserDto);                              //ParseIntPipe, se utiliza para convertir un parámetro de cadena en un número entero. 
   }
 
-  @Put(':id')
+  @Put(':Id')
   async updateUser(
-    @Param('id') id: number,                                  
+    @Param('Id') Id: number,                                  
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    return this.userService.update(id, updateUserDto);
+    return this.userService.update(Id, updateUserDto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {                       
-    return this.userService.remove(+id);
+  @Delete(':Id')
+  async remove(@Param('Id') Id: string) {                       
+    return this.userService.remove(+Id);
   }
 }

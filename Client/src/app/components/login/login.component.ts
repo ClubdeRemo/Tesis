@@ -11,7 +11,7 @@ import { User } from '../../interfaces/User';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  usuarioForm: FormGroup;
+/*  usuarioForm: FormGroup;
 
   constructor(private fb: FormBuilder, private usersService: UsersService) {
     this.usuarioForm = this.fb.group({
@@ -36,5 +36,5 @@ export class LoginComponent {
       });
     }
   }
-
+ */
 }

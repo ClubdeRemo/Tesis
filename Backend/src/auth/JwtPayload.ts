@@ -1,5 +1,5 @@
 export interface JwtPayload {
-    id: number;
-    username: string; 
-    password: string;
+    Id: number;
+    Nombre: string; 
+    Contraseña: string;
 }

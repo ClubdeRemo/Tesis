@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+/* import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('userXproduct') // Nombre de la tabla en la base de datos
 export class UserXproduct {
@@ -15,4 +15,4 @@ export class UserXproduct {
     @Column({ type: 'varchar', nullable: false })
     cart: string;
     
-}
+} */

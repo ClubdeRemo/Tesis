@@ -1,30 +1,29 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('user') // Nombre de la tabla en la base de datos
+@Entity('User') // Nombre de la tabla en la base de datos
 export class User {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    Id: number;
 
     @Column({ type: 'varchar', nullable: false })
-    username: string; 
+    Nombre: string; 
 
     @Column({ type: 'varchar', nullable: false })
-    lastName: string; 
+    Apellido: string; 
 
     @Column({ type: 'varchar', nullable: false, unique: true })
-    email: string;
+    Email: string;
 
     @Column({ type: 'varchar', nullable: false })
-    password: string;
+    Contraseña: string;
 
     @Column({type: 'datetime', nullable: false})
-    birthdate: Date;
+    FechaDeNacimiento: Date;
 
     @Column({ type: 'float', nullable: false, unique: true })
-    dni: number;
-
-    // Domicilio
-    // Numero de contacto
+    Dni: number;
     
+    @Column({ type: 'float', nullable: true })
+    IdEstadoSocio: number;
 }

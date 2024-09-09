@@ -9,7 +9,7 @@ export const routes: Routes = [
     {path: '',component: TableroComponent},
     {path: 'login',component: LoginComponent},
     {path: 'users/form',component: UsersFormComponent},
-    { path: '**', redirectTo: '/tablero' } // Ruta de fallback
+    { path: '**', redirectTo: '' } // Ruta de fallback
 
 ];
 @NgModule({

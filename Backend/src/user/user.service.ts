@@ -11,20 +11,20 @@ import { promises } from 'dns';
 export class UserService {
 
   @InjectRepository(User) //Inyectamos la entidad de usuario
-  private UserRepository: Repository<User>
+  private UserRepository: Repository<User> //TypeORM utiliza repositorios para interactuar con la base de datos
 
   public async create(createUserDto: CreateUserDto) {
-    const saltRounds = 2;
+    const saltRounds = 10;
     try {
-      const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
+      const hashedPassword = await bcrypt.hash(createUserDto.Contraseña, saltRounds);
       var NewDto : CreateUserDto;
       NewDto = {
-        username: createUserDto.username,
-        lastName: createUserDto.lastName,
-        email: createUserDto.email,
-        password: hashedPassword,
-        birthdate: createUserDto.birthdate,
-        dni: createUserDto.dni
+        Nombre: createUserDto.Nombre,
+        Apellido: createUserDto.Apellido,
+        Email: createUserDto.Email,
+        Contraseña: hashedPassword,
+        FechaDeNacimiento: createUserDto.FechaDeNacimiento,
+        Dni: createUserDto.Dni
       }
 
     await this.UserRepository.save(NewDto);
@@ -39,8 +39,8 @@ export class UserService {
     }
   }
 
-  async ComparePassword(password: string, hashedPassword: string): Promise <boolean> {   // Usaremos esta funcion para comparar contraseña con la hasheada, pero no es necesaria
-    return await bcrypt.compare(password, hashedPassword);
+  async ComparePassword(Contraseña: string, hashedPassword: string): Promise <boolean> {   // Usaremos esta funcion para comparar contraseña con la hasheada, pero no es necesaria
+    return await bcrypt.compare(Contraseña, hashedPassword);
   }
 
   public async findAll() {
@@ -54,10 +54,10 @@ export class UserService {
     }
   }
 
-  public async findOne(id: number) {
+  public async findOne(Id: number) {
     var registros: any
     try{
-      registros = await this.UserRepository.findOne({where: {id:id}});    //where va entre llaves porque findOne espera un objeto como argumento, y where es una clave dentro de ese objeto que define la condición de búsqueda.
+      registros = await this.UserRepository.findOne({where: {Id:Id}});    //where va entre llaves porque findOne espera un objeto como argumento, y where es una clave dentro de ese objeto que define la condición de búsqueda.
       return registros ;
     }
     catch(error){
@@ -65,10 +65,10 @@ export class UserService {
     }
   }
 
-  public async findByUsername(username:string){
+  public async findByUsername(Nombre:string){
     var registros: any
     try{
-      registros = await this.UserRepository.findOne({where: {username:username}});
+      registros = await this.UserRepository.findOne({where: {Nombre:Nombre}});
       return registros;
     }
     catch(error){
@@ -76,18 +76,18 @@ export class UserService {
     }
   }
 
-  async validatePassword(user: User, password: string): Promise<boolean> {
-    return await bcrypt.compare(password, user.password); // Compara la contraseña ingresada con la contraseña almacenada en hash en la base de datos
+  async validatePassword(user: User, Contraseña: string): Promise<boolean> {
+    return await bcrypt.compare(Contraseña, user.Contraseña); // Compara la contraseña ingresada con la contraseña almacenada en hash en la base de datos
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(Id: number, updateUserDto: UpdateUserDto) {
     try {
-      await this.UserRepository.createQueryBuilder()
+      await this.UserRepository.createQueryBuilder() //El método createQueryBuilder() permite construir consultas SQL de manera programática.
       .update(User)
-      .set({username:updateUserDto.username,
-            password: updateUserDto.password
+      .set({Nombre:updateUserDto.Nombre,
+            Contraseña: updateUserDto.Contraseña
       })
-      .where("id = :id", { id : id})
+      .where("Id = :Id", { Id : Id})
       .execute();
       return{
         statusCode:200,
@@ -99,9 +99,9 @@ export class UserService {
     }
   }
 
-  async remove(id: number) {
+  async remove(Id: number) {
     try { 
-      await this.UserRepository.delete(id);
+      await this.UserRepository.delete(Id);
       return{
         statusCode: 200,
         msg: 'Se eliminó correctamente'

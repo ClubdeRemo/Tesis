@@ -5,32 +5,31 @@
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>Crear Usuario</h2>
-    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="userform" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="username">Nombre:</label>
-            <input type="text" id="username" name="user" placeholder="Introduzca su nombre" required>
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduzca su nombre" required>
         </div>
         <div class="form-group">
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Introduzca su apellido" required>
+            <label for="Apellido">Apellido:</label>
+            <input type="text" id="Apellido" formControlName="Apellido" placeholder="Introduzca su apellido" required>
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Introduzca su email" required>
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" formControlName="Email" placeholder="Introduzca su email" required>
         </div>
         <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña" placeholder="********" required>
+            <label for="Contraseña">Contraseña:</label>
+            <input type="password" id="Contraseña" formControlName="Contraseña" placeholder="********" required>
         </div>
         <div class="form-group">
-            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" placeholder="dd/mm/yyyy" required>
+            <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy" required>
         </div>
         <div class="form-group">
-            <label for="dni">DNI:</label>
-            <input type="text" id="dni" name="dni" placeholder="Introduzca su DNI" required>
-        </div> <!-- Domicilio -->
-        <!-- Numero de contacto --> 
+            <label for="Dni">DNI:</label>
+            <input type="text" id="Dni" formControlName="Dni" placeholder="Introduzca su DNI" required>
+        </div>
         <button type="submit" class="btn btn-primary">Crear Socio</button>
     </form>
 </div>
