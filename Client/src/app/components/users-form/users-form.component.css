@@ -76,3 +76,8 @@ h2 {
 .btn:hover {
     background-color: #c55a1e;
 }
+
+small {
+    color: red;
+    font-size: 12px;
+}
