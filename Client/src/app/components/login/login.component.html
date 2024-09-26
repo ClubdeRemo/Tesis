@@ -5,16 +5,16 @@
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <p class="notice">Recuerda que para crear una cuenta debes acercarte al club.</p>
     <h2>Iniciar Sesión</h2>
-    <!-- <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()"> -->
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()"> 
         <div class="form-group">
             <label for="Nombre">Nombre:</label>
             <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduce tu nombre" required>
         </div>
         <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
+            <label for="Contraseña">Contraseña:</label>
             <input type="password" id="Contraseña" formControlName="Contraseña" placeholder="********" required>
         </div>
         <a href="recuperar-contraseña.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
         <button type="submit" class="btn">Iniciar Sesión</button>
-    <!-- </form> -->
+    </form>
 </div>

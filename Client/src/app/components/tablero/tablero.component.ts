@@ -1,25 +1,39 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, NavbarComponent],
   templateUrl: './tablero.component.html',
   styleUrl: './tablero.component.css'
 })
 export class TableroComponent implements OnInit {
-  constructor(private router: Router) { }
-  ngOnInit(): void {
-  }
 
-  @ViewChild('video') videoElement!: ElementRef<HTMLVideoElement>; //HTMLVideoElement: Es el tipo nativo del DOM que Angular utiliza para manipular un elemento <video>. Este tipo incluye propiedades como muted, play(), pause(), etc.
+  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+  @ViewChild('video') videoElement!: ElementRef<HTMLVideoElement>;
+
+  ngOnInit(): void {
+    // Código de inicialización si es necesario
+  }
 
   ngAfterViewInit(): void {
-    if (this.videoElement) {
-      this.videoElement.nativeElement.muted = true;
+    // Elimina la invocación automática de 'siguiente()'
+    // Si necesitas hacer algo con el Navbar, hazlo condicionalmente en eventos de usuario
+    if (this.navbar) {
+      console.log('NavbarComponent cargado correctamente');
+      // La invocación de `siguiente` será bajo ciertas condiciones o eventos de usuario
+    } else {
+      console.warn('NavbarComponent no está disponible');
     }
   }
-  siguiente(){this.router.navigate(['login']);}
+  
+  // Aquí podrías tener un método que invoque el siguiente cuando sea necesario, por ejemplo:
+  triggerNavbarNext(): void {
+    if (this.navbar) {
+      this.navbar.siguiente();
+    }
+  }
 }

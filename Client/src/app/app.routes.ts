@@ -6,11 +6,12 @@ import { LoginComponent } from './components/login/login.component';
 import { GestionSociosComponent } from './components/gestion-socios/gestion-socios.component';
 
 export const routes: Routes = [
-    {path: '',component: TableroComponent},
+    { path: '', redirectTo: '/tablero', pathMatch: 'full' },
+    { path: 'tablero', component: TableroComponent },  
     {path: 'login',component: LoginComponent},
     {path: 'users/form',component: UsersFormComponent},
     {path: 'socios',component: GestionSociosComponent},
-    {path: '**', redirectTo: '' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
+    {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];
 @NgModule({

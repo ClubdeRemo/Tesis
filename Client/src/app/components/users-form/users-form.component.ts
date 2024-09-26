@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormsModule, Validators, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { User } from '../../interfaces/User';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-users-form',
   standalone: true,
   imports: [ CommonModule,
     ReactiveFormsModule,
-    FormsModule],
+    FormsModule,
+    MatIconModule],
   templateUrl: './users-form.component.html',
   styleUrl: './users-form.component.css',
   providers: [UsersService]
@@ -40,7 +42,7 @@ export class UsersFormComponent implements OnInit {
           return { fechaPosterior: true };
         }
         return null; // Si no hay error
-      };
+      }
     }
 
 onSubmit(): void {
@@ -51,7 +53,6 @@ onSubmit(): void {
     } else {
       console.log('Formulario inválido');
       this.userform.markAllAsTouched();
-      this.userform.reset()
     }
   }
 }

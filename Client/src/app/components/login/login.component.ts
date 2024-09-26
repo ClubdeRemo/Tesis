@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { UsersService } from '../../services/users.service';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../interfaces/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,30 +12,19 @@ import { User } from '../../interfaces/User';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-/*  usuarioForm: FormGroup;
+  usuarioForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService) {
+  constructor(private fb: FormBuilder, private usersService: UsersService, private router: Router) {
+    // Inicialización del formulario usando FormBuilder
     this.usuarioForm = this.fb.group({
-      username: [''],
-      password: ['']
+      Nombre: ['', Validators.required],
+      Contraseña: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit() {
-    if (this.usuarioForm.valid) {
-      const userData: User = this.usuarioForm.value;
-      this.usersService.createUser(userData).subscribe({
-        next: (response: User) => {
-          console.log('Ingreso exitoso:', response);
-        },
-        error: (error: any) => {
-          console.error('Error al intentar ingresar:', error);
-        },
-        complete: () => {
-          console.log('Operación completada.');
-        }
-      });
-    }
+    this.usuarioForm.valid
   }
- */
+  
+
 }
