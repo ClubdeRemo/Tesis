@@ -9,7 +9,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { User } from '../../interfaces/User';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
-
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-gestion-socios',
@@ -21,13 +21,15 @@ import { UsersService } from '../../services/users.service';
     MatCardModule,
     FormsModule,
     MatPaginatorModule,
-    MatTableModule,],
+    MatTableModule,
+    FooterComponent
+  ],
   templateUrl: './gestion-socios.component.html',
   styleUrl: './gestion-socios.component.css'
 })
 export class GestionSociosComponent implements OnInit {
   
-  displayedColumns: string[] = ['Id','Nombre','Apellido','Email','Contraseña','FechaDeNacimiento','Dni'];
+  displayedColumns: string[] = ['Id','Nombre','Apellido','Email','FechaDeNacimiento','Dni'];
   dataSource: MatTableDataSource<User>
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
