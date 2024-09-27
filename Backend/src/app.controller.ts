@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 import { join } from 'path';
@@ -5,6 +6,9 @@ import { Response } from 'express';
 
 @Controller()
 export class AppController {
+  getHello(): any {
+    throw new Error('Method not implemented.');
+  }
   constructor(private readonly appService: AppService) {}
 
   @Get()
