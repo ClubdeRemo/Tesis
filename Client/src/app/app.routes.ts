@@ -4,6 +4,8 @@ import { TableroComponent } from './components/tablero/tablero.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { GestionSociosComponent } from './components/gestion-socios/gestion-socios.component';
+import { HistoriaComponent } from './components/historia/historia.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/tablero', pathMatch: 'full' },
@@ -11,6 +13,8 @@ export const routes: Routes = [
     {path: 'login',component: LoginComponent},
     {path: 'users/form',component: UsersFormComponent},
     {path: 'socios',component: GestionSociosComponent},
+    {path: 'historia',component: HistoriaComponent},
+    {path: 'reportes',component: ReportesComponent},
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

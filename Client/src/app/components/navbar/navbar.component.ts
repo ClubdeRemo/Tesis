@@ -13,8 +13,19 @@ export class NavbarComponent {
   constructor(private router: Router) { }
   ngOnInit(): void {
   }
-  onLogin(): void {
-    // Aquí redirigimos al usuario al componente Login
+  onLogin1(): void {
+    this.router.navigate(['/login']);
+  }
+  onLogin2(): void {
+    this.router.navigate(['/historia']);
+  }
+  onLogin3(): void {
+    this.router.navigate(['/reportes']);
+  }
+  onLogin4(): void {
+    this.router.navigate(['/login']);
+  }
+  volver(): void {
     this.router.navigate(['/login']);
   }
   siguiente(): void {

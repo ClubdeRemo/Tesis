@@ -1,0 +1,21 @@
+.reportes-container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 5%;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+.mensaje-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+.mensaje-card h3 {
+    margin-top: 0;
+}
+.mensaje-card small {
+    color: #888;
+}

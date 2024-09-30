@@ -1,11 +1,19 @@
 <app-navbar></app-navbar>
+
+<div class="welcome-container">
+    <img src="ACR.png" alt="Imagen de encabezado">
+    <h2 class="h2-index">¡Bienvenidos!</h2>
+</div>        
+<div id="map"></div>        
 <div class="video-container">
-    <video autoplay loop muted playsinline>
+    <video #video autoplay loop muted playsinline (loadedmetadata)="muteVideo()">
         <source src="Video-remando.mp4" type="video/mp4">
     </video>
 </div>    
 
 <app-footer></app-footer>
+
+
 
     <!-- Errores y soluciones:
     error de rehidratación Index es el unico que debe contener header y body

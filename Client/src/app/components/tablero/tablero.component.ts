@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoginComponent } from '../login/login.component';
@@ -16,7 +16,12 @@ export class TableroComponent implements OnInit {
   @ViewChild('video') videoElement!: ElementRef<HTMLVideoElement>;
 
   ngOnInit(): void {
-    // Código de inicialización si es necesario
+  }
+
+  muteVideo(): void {
+    if (this.videoElement && this.videoElement.nativeElement) {
+      this.videoElement.nativeElement.muted = true;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -29,6 +34,7 @@ export class TableroComponent implements OnInit {
       console.warn('NavbarComponent no está disponible');
     }
   }
+
   
   // Aquí podrías tener un método que invoque el siguiente cuando sea necesario, por ejemplo:
   triggerNavbarNext(): void {

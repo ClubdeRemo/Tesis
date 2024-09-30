@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<div class="reportes-container">
+    <h2>Mensajes de los Administradores</h2>
+    <div *ngFor="let mensaje of mensajes" class="mensaje-card">
+        <h3>{{ mensaje.titulo }}</h3>
+        <p>{{ mensaje.contenido }}</p>
+        <small>Enviado por: {{ mensaje.autor }}</small>
+    </div>
+</div>
+
+<app-footer></app-footer>

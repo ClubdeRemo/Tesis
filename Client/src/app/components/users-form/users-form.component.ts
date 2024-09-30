@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class UsersFormComponent implements OnInit {
     userform: FormGroup | any;
+    showPassword: boolean = false;
+
     constructor(private router: Router,
       private usersService: UsersService, private formBuilder: FormBuilder
     ) { }
@@ -44,6 +46,11 @@ export class UsersFormComponent implements OnInit {
         return null; // Si no hay error
       }
     }
+
+    togglePasswordVisibility(): void {
+      this.showPassword = !this.showPassword;
+    }
+  
 
 onSubmit(): void {
     if (this.userform.valid) {

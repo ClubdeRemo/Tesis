@@ -1,0 +1,8 @@
+.historia{
+    color: #000000;
+    text-align: center; /* Centra el texto horizontalmente */
+    margin: 50px auto; /* Agrega márgenes arriba y abajo (20px) y lo centra horizontalmente */
+    max-width: 80%; /* Define un ancho máximo para el contenido */
+    padding: 20px; /* Agrega un espacio interno alrededor del texto */
+    line-height: 1.6; /* Mejora la legibilidad del texto */
+}

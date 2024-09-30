@@ -38,7 +38,14 @@
         <!-- Contraseña -->
         <div class="form-group">
             <label for="Contraseña">Contraseña:</label>
-            <input type="password" id="Contraseña" formControlName="Contraseña" placeholder="">
+            <div class="password-wrapper">
+                <input [type]="showPassword ? 'text' : 'password'" id="Contraseña" formControlName="Contraseña" placeholder="Introduce tu contraseña">
+                <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+                    <span class="material-icons">
+                        {{ showPassword ? 'visibility_off' : 'visibility' }}
+                    </span>
+                </button>
+            </div>
             <div *ngIf="userform.get('Contraseña')?.invalid && userform.get('Contraseña')?.touched">
                 <small *ngIf="userform.get('Contraseña')?.errors?.['required']">La contraseña es requerida.</small>
                 <small *ngIf="userform.get('Contraseña')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
