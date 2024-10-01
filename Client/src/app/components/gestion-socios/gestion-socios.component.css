@@ -1,0 +1,40 @@
+.custom-card {
+    background-color: #bfbfbf; /* Fondo de la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}  
+.custom-title {
+    color: #c55a1e; /* Color del título */
+    font-weight: bold;
+    text-align: center;
+    font-size: 24px;
+    padding: 16px 0;
+}  
+.table-container {
+    margin-top: 20px;
+}  
+.custom-table {
+    width: 100%;
+    border-collapse: collapse; /* Eliminar espacios entre celdas */
+}
+.custom-header {
+    background-color: #c55a1e; /* Color de fondo del encabezado */
+    color: rgb(0, 0, 0); /* Color del texto */
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}  
+.custom-cell {
+    color: #333; /* Color del texto de las celdas */
+    padding: 10px;
+}  
+.custom-row:hover {
+    background-color: #e3f2fd; /* Efecto hover sobre las filas */
+}  
+.custom-paginator {
+    background-color: #f9f9f9; /* Fondo del paginador */
+    margin-top: 20px;
+}
+

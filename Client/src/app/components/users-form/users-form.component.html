@@ -70,6 +70,7 @@
             <div *ngIf="userform.get('Dni')?.invalid && userform.get('Dni')?.touched">
                 <small *ngIf="userform.get('Dni')?.errors?.['required']">El DNI es requerido.</small>
                 <small *ngIf="userform.get('Dni')?.errors?.['pattern']">El DNI debe contener solo números.</small>
+                <small *ngIf="userform.get('Dni')?.errors?.['minlength']">El DNI debe contener al menos 8 números.</small>
             </div>
         </div>
 

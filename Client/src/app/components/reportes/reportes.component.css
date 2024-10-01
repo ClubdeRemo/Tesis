@@ -3,7 +3,7 @@
     margin: 0 auto;
     margin-top: 5%;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #4C5773;
     border-radius: 10px;
 }
 .mensaje-card {
@@ -19,3 +19,23 @@
 .mensaje-card small {
     color: #888;
 }
+.cardInput {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.2%;
+    max-width: 90%;
+    margin: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.input{
+    padding: 5%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+button {
+    align-self: flex-end;
+}  

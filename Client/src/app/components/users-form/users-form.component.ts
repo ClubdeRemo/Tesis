@@ -32,7 +32,7 @@ export class UsersFormComponent implements OnInit {
         Email: new FormControl('', [Validators.required, Validators.email]),
         Contraseña: new FormControl('', [Validators.required, Validators.minLength(6)]), 
         FechaDeNacimiento: new FormControl('', [Validators.required, this.fechaNoPosterior()]), 
-        Dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
+        Dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'),Validators.minLength(8)])
       });
     }
     fechaNoPosterior() {

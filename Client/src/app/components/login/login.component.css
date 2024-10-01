@@ -17,11 +17,10 @@ body {
     z-index: 1000;
     display: flex; /* Utilizar Flexbox */
     justify-content: flex-end; /* Alinear los elementos al lado derecho */
-    
 }
 
 .top-bar span {
-    margin-right: 30px; /* Agrega espacio a la derecha de cada <span> */
+    margin-right: 30px;
 }
 
 .top-bar-text {
@@ -30,7 +29,7 @@ body {
 
 .container {
     max-width: 600px;
-    margin: 80px auto 50px auto; /* Adjusted to accommodate the fixed top bar */
+    margin: 80px auto 50px auto;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -42,10 +41,10 @@ body {
 .header-image {
     max-width: 40%;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
-h2 {
+h3 {
     margin-bottom: 20px;
 }
 
@@ -78,8 +77,22 @@ h2 {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 15px; /* Espacio inferior entre botón y el enlace */
 }
 
 .btn:hover {
-    background-color: #c55a1e;
+    background-color: #b8501a;
+}
+
+.forgot-password {
+    padding: 20px;
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }

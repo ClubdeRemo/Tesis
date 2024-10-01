@@ -8,8 +8,8 @@ import { HistoriaComponent } from './components/historia/historia.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/tablero', pathMatch: 'full' },
-    { path: 'tablero', component: TableroComponent },  
+    {path: '', redirectTo: '/tablero', pathMatch: 'full' },
+    {path: 'tablero', component: TableroComponent },  
     {path: 'login',component: LoginComponent},
     {path: 'users/form',component: UsersFormComponent},
     {path: 'socios',component: GestionSociosComponent},

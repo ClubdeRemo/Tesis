@@ -1,7 +1,16 @@
 <app-navbar></app-navbar>
 
 <div class="reportes-container">
-    <h2>Mensajes de los Administradores</h2>
+    <h2> Tablón  informativo</h2>
+    <div>
+        <form [formGroup]="msj" (ngSubmit)="enviarMsj()">
+            <div class="cardInput">
+                <textarea type="text" id="miInput" formControlName="miInput" placeholder="Nuevo mensaje" class="input"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="msj.invalid">Enviar</button>
+        </form>
+    </div>
+    
     <div *ngFor="let mensaje of mensajes" class="mensaje-card">
         <h3>{{ mensaje.titulo }}</h3>
         <p>{{ mensaje.contenido }}</p>
