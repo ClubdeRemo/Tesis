@@ -4,6 +4,15 @@
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>Crear Usuario</h2>
+
+    <!-- Modal de usuario creado con éxito -->
+    <div class="modal" *ngIf="isModalVisible">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <p>¡Usuario creado con éxito!</p>
+        </div>
+    </div>
+
     <form [formGroup]="userform" (ngSubmit)="onSubmit()">
         <!-- Nombre -->
         <div class="form-group">
@@ -52,7 +61,7 @@
             </div>
         </div>
 
-<!-- Fecha de Nacimiento -->
+        <!-- Fecha de Nacimiento -->
         <div class="form-group">
             <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
             <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy">
@@ -61,7 +70,6 @@
                 <small *ngIf="userform.get('FechaDeNacimiento')?.errors?.['fechaPosterior']">La fecha no puede ser posterior a la actual.</small>
             </div>
         </div>
-
 
         <!-- DNI -->
         <div class="form-group">
