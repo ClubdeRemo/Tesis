@@ -1,0 +1,40 @@
+<div class="payment-container">
+    <!-- Sección de DNI -->
+    <div class="dni-section">
+      <label for="dni">DNI:</label>
+      <input type="text" id="dni" [(ngModel)]="dni" placeholder="Ingrese DNI" />
+      <button (click)="searchUser()" class="search-button" title="Buscar Usuario">
+        🔍
+      </button>
+    </div>
+  
+    <!-- Información del Usuario -->
+    <div class="user-info" *ngIf="user">
+      <p><strong>Nombre:</strong> {{ user.name }}</p>
+      <p><strong>Apellido:</strong> {{ user.lastname }}</p>
+      <!-- Agrega más información del usuario según sea necesario -->
+    </div>
+  
+    <!-- Sección de Frecuencia de Pago -->
+    <div class="payment-section">
+      <label for="paymentFrequency">Pago:</label>
+      <select id="paymentFrequency" [(ngModel)]="paymentFrequency">
+        <option value="mensual">Mensual</option>
+        <option value="anual">Anual</option>
+      </select>
+    </div>
+  
+    <!-- Sección de Método de Pago -->
+    <div class="payment-method-section">
+      <label for="paymentMethod">Método de Pago:</label>
+      <select id="paymentMethod" [(ngModel)]="paymentMethod">
+        <option value="efectivo">Efectivo</option>
+        <option value="transferencia">Transferencia</option>
+      </select>
+      <span class="current-date">{{ currentDate }}</span>
+    </div>
+  
+    <!-- Botón para Enviar el Pago -->
+    <button (click)="submitPayment()" class="submit-button">Registrar Pago</button>
+  </div>
+  
