@@ -46,3 +46,34 @@
   }
   
 
+  .card-header {
+    display: flex;
+    justify-content: space-between; /* Espacia el título y el botón */
+    align-items: center; /* Centra verticalmente */
+    padding: 16px; /* Espaciado alrededor del contenido */
+}
+
+.add-button {
+    background-color: #c55a1e; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border-radius: 50%; /* Hacer el botón circular */
+    width: 50px; /* Ancho del botón */
+    height: 50px; /* Alto del botón */
+    font-size: 24px; /* Tamaño de fuente del símbolo "+" */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, transform 0.2s; /* Efecto de transición para el fondo y el tamaño */
+    display: flex; /* Flex para centrar el contenido */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de profundidad */
+}
+
+.add-button:hover {
+    background-color: #e36c3c; /* Color de fondo al pasar el ratón */
+    transform: scale(1.1); /* Aumentar el tamaño al pasar el ratón */
+}
+
+.add-button:focus {
+    outline: none; /* Elimina el contorno de enfoque */
+}

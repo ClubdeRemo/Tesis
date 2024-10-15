@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('User') // Nombre de la tabla en la base de datos

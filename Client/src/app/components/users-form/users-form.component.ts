@@ -20,6 +20,7 @@ import { User } from '../../interfaces/User';
 export class UsersFormComponent implements OnInit {
   userform: FormGroup | any;
   showPassword: boolean = false;
+  isModalVisible: boolean = false; // Control de visibilidad del modal
 
   constructor(
     private router: Router,
@@ -54,15 +55,38 @@ export class UsersFormComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
+  // Función para mostrar la modal
+  showModal(): void {
+    this.isModalVisible = true;
+
+    // Cerrar automáticamente después de 3 segundos
+    setTimeout(() => {
+      this.closeModal();
+    }, 3000);
+  }
+
+  // Función para cerrar la modal
+  closeModal(): void {
+    this.isModalVisible = false;
+  }
+
   onSubmit(): void {
     if (this.userform.valid) {
       console.log('Formulario válido:', this.userform.value);
-      this.usersService.enviarDatos(this.userform.value);
-      this.userform.reset();
+      
+      // Manejo de Promesa en lugar de Observable
+      this.usersService.enviarDatos(this.userform.value)
+        .then(() => {
+          this.showModal(); // Mostrar modal cuando la respuesta es exitosa
+          this.userform.reset();
+        })
+        .catch((err: any) => {
+          console.error('Error al enviar los datos:', err);
+        });
+      
     } else {
       console.log('Formulario inválido');
       this.userform.markAllAsTouched();
     }
   }
 }
-
