@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 import { GestionSociosComponent } from './components/gestion-socios/gestion-socios.component';
 import { HistoriaComponent } from './components/historia/historia.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
+import { MenuAdminComponent } from './components/menu-admin/menu-admin.component';
+import { RegistrarPagoComponent } from './components/registrar-pago/registrar-pago.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/tablero', pathMatch: 'full' },
@@ -15,6 +17,8 @@ export const routes: Routes = [
     {path: 'socios',component: GestionSociosComponent},
     {path: 'historia',component: HistoriaComponent},
     {path: 'reportes',component: ReportesComponent},
+    {path: 'menu/admin',component: MenuAdminComponent},
+    {path: 'registrar/pago',component: RegistrarPagoComponent},
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

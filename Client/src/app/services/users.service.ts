@@ -31,6 +31,15 @@ export class UsersService {
       throw error;
     }
 }
+async obtenerPorDni(dni: string): Promise<any | null> {
+  try {
+    const response = await lastValueFrom (this.http.get<any>(`${this.apiUrl}/dni/${dni}`));
+    return response; // Retorna el usuario encontrado
+  } catch (error) {
+    console.error('Error al obtener usuario por DNI:', error);
+    return null; // Retorna null si hay un error
+  }
+}
 }
 
 /* Cuando usas un servicio en un componente, como UsersService, lo que haces es invocar métodos del servicio para realizar 

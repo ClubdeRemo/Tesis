@@ -4,8 +4,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Mensajes {
 
     @PrimaryGeneratedColumn('increment')
-    Id: number;
+    IdMensaje: number;
 
     @Column({ type: 'varchar', nullable: false })
-    Mensaje: string; 
+    Mensaje: string;
+    
+    @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+    Fecha: Date;
 }

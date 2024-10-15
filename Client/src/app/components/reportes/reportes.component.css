@@ -1,10 +1,32 @@
 .reportes-container {
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 5%;
     padding: 20px;
     background-color: #4C5773;
     border-radius: 10px;
+}
+.container {
+    max-width: 45%;
+    margin: 80px auto 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.header-image {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+h2{
+    color: #4C5773;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    
 }
 .mensaje-card {
     background-color: #fff;
@@ -25,7 +47,8 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 0.2%;
-    max-width: 90%;
+    max-width: 100%;
+    max-height: 30%;
     margin: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -35,7 +58,102 @@
     border: 1px solid #ccc;
     width: 100%;
     box-sizing: border-box;
+    resize: vertical;
 }
-button {
-    align-self: flex-end;
-}  
+.centrador {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 10vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #c55a1e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.custom-card {
+    padding: 20px;
+    border-radius: 12px; /* Bordes redondeados para la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    background-color: #f7f7f7; /* Color de fondo suave */
+    margin: 20px auto; /* Centra la tarjeta en la página */
+}
+.custom-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.table-container {
+    overflow-x: auto; /* Habilita el desplazamiento horizontal si la tabla es demasiado ancha */
+    max-width: 100%; /* Limita el ancho máximo al 100% */
+}
+.custom-table {
+    width: 100%;
+    table-layout: auto ; /* Fija el ancho de las columnas */
+    border-spacing: 0 10px; /* Añade espacio entre las filas */
+}
+.custom-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    background-color: #e0e0e0; /* Color de fondo para la cabecera */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.mensaje-column {
+    width: 70%;
+}
+.fecha-column {
+    width: 30%;
+    text-align: center;
+}
+.custom-cell {
+    padding: 12px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+.mat-header-row, .mat-row {
+    display: table-row; /* Asegura que las filas se comporten como filas de tabla */
+
+}
+.mat-header-cell, .mat-cell {
+    padding: 12px;
+    text-align: left;
+}
+.aviso{
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .custom-table {
+        display: block; /* Cambia la tabla a un bloque */
+        width: 100%; /* Asegúrate de que use todo el ancho */
+    }
+
+    .custom-cell {
+        display: block; /* Asegúrate de que las celdas sean bloques */
+        width: 20%; /* Usa todo el ancho disponible */
+        height: auto;
+        font-size: 75%;
+    }
+
+    .mensaje-column{
+        width: auto; /* Permite que el ancho sea automático en pantallas pequeñas */
+        
+    }
+    .fecha-column {
+        width: auto; /* Permite que el ancho sea automático en pantallas pequeñas */
+        
+        
+    }
+}

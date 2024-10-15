@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { BotesModule } from './botes/botes.module';
+import { ReportesModule } from './reportes/reportes.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { BotesModule } from './botes/botes.module';
       }),
     UserModule,
     AuthModule,
-    BotesModule
+    BotesModule,
+    ReportesModule
     ],
 
   controllers: [AppController],

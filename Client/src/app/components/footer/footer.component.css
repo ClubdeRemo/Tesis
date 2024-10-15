@@ -1,9 +1,6 @@
-main {
-    flex: 1; /* El contenido principal ocupa todo el espacio disponible */
-}
 
 footer.footer {
-    position: relative;
+    position: relative; /* relative si queda pegado a la pantalla*/
     width: 100%;
     background-color: #c55a1e;
     color: #fff;

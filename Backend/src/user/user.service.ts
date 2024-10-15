@@ -64,6 +64,16 @@ export class UserService {
       return new BadRequestException(error);
     }
   }
+  public async findOneByDni(Dni: number) {
+    var registros: any
+    try{
+      registros = await this.UserRepository.findOne({where: {Dni:Dni}});    //where va entre llaves porque findOne espera un objeto como argumento, y where es una clave dentro de ese objeto que define la condición de búsqueda.
+      return registros ;
+    }
+    catch(error){
+      return new BadRequestException(error);
+    }
+  }
 
   public async findByUsername(Nombre:string){
     var registros: any

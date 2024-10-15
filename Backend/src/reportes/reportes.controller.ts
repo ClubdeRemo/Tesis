@@ -8,6 +8,18 @@ export class ReportesController {
 
     @Post()
     async create(@Body() MensajeDto: MensajeDto) {
-        return this.reportesService.create(MensajeDto);
+        // Asigna la fecha actual si no está presente en el DTO
+        const mensajeConFecha = {
+            ...MensajeDto,
+            Fecha: new Date(),  // Fecha actual
+        };
+    
+        return this.reportesService.create(mensajeConFecha);
+    }
+    
+
+    @Get()
+    async findAll() {
+        return this.reportesService.findAll();
     }
 }

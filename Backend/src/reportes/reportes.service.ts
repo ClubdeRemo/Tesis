@@ -14,7 +14,8 @@ export class ReportesService {
         try {
             var NewDto : MensajeDto;
             NewDto = {
-            Mensaje: MensajeDto.Mensaje
+            Mensaje: MensajeDto.Mensaje,
+            Fecha: MensajeDto.Fecha
         }
     
         await this.MensajeRepository.save(NewDto);
@@ -25,6 +26,21 @@ export class ReportesService {
 
         }
         catch (error){
+            return new BadRequestException(error);
+        }
+    }
+
+    public async findAll() {
+        var registros: any
+        try{
+            registros = await this.MensajeRepository.find({
+                order: {
+                  Fecha: 'DESC', // Ordena por la fecha más reciente
+                },
+            });
+            return registros ;
+        }
+        catch(error){
             return new BadRequestException(error);
         }
     }

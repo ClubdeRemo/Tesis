@@ -22,9 +22,6 @@ export class NavbarComponent {
   onLogin3(): void {
     this.router.navigate(['/reportes']);
   }
-  onLogin4(): void {
-    this.router.navigate(['/login']);
-  }
   volver(): void {
     this.router.navigate(['/login']);
   }

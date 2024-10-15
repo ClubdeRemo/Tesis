@@ -18,12 +18,6 @@ export class TableroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  muteVideo(): void {
-    if (this.videoElement && this.videoElement.nativeElement) {
-      this.videoElement.nativeElement.muted = true;
-    }
-  }
-
   ngAfterViewInit(): void {
     // Elimina la invocación automática de 'siguiente()'
     // Si necesitas hacer algo con el Navbar, hazlo condicionalmente en eventos de usuario

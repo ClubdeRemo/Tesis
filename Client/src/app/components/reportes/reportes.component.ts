@@ -1,41 +1,94 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FooterComponent } from "../footer/footer.component";
 import { NavbarComponent } from "../navbar/navbar.component";
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { ReportesService } from '../../services/reportes.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [FooterComponent, NavbarComponent, CommonModule, ReactiveFormsModule],
+  imports: [FooterComponent, 
+    NavbarComponent, 
+    CommonModule, 
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTableModule
+  ],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.css'
 })
+
 export class ReportesComponent implements OnInit {
   msj: FormGroup;
-  constructor(private fb: FormBuilder, private reportesService: ReportesService) {
+  dataSource: MatTableDataSource<any>;
+  displayedColumns: string[] = ['Mensaje', 'Fecha']; // Añade la columna Fecha
+
+
+  constructor(
+    private fb: FormBuilder, 
+    private reportesService: ReportesService
+  ) {
+    this.dataSource = new MatTableDataSource<any>([]);
     this.msj = this.fb.group({
-      miInput: ['', Validators.required]
+      Mensaje: ['', [Validators.maxLength(1000), Validators.required, maxWordLengthValidator(50)]],
+      Fecha: ['']
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    try {
+      // Llama al servicio para obtener los datos desde la base de datos
+      const data: [] = await this.reportesService.obtenerDatos();
+      this.dataSource = new MatTableDataSource<any>(data);  // Pasa los datos a la tabla
+    } catch (error) {
+      console.error('Error al cargar los datos:', error);
+    }
   }
 
-  enviarMsj() {
-    if (this.msj.valid) {console.log('Mensaje válido:', this.msj.value);
-      this.reportesService.enviarDatos(this.msj.value);
-      this.msj.reset();
+  async enviarMsj() {
+    if (this.msj.valid) {
+      console.log('Mensaje válido:', this.msj.value);
+      
+      try {
+        // Espera a que se envíe el mensaje antes de cargar los nuevos datos
+        await this.reportesService.enviarDatos(this.msj.value);
+        this.msj.reset();  // Resetear el formulario después de enviar el mensaje
+        await this.cargarMensajes();  // Recargar los mensajes
+      } catch (error) {
+        console.error('Error al enviar el mensaje:', error);
+      }
     } else {
       console.log('Mensaje inválido');
       this.msj.markAllAsTouched();
     }
   }
 
-  mensajes = [
-    { titulo: 'Actualización de políticas', contenido: 'Se ha actualizado la política de privacidad del club.', autor: 'Admin 1' },
-    { titulo: 'Reunión general', contenido: 'La próxima reunión será el 15 de octubre en la sala principal.', autor: 'Admin 2' },
-    { titulo: 'Nuevo reglamento', contenido: 'Se ha aprobado el nuevo reglamento interno.', autor: 'Admin 3' }
-  ];
+  async cargarMensajes() {
+    try {
+      const data = await this.reportesService.obtenerDatos();
+      this.dataSource = new MatTableDataSource(data);  // Recargar los datos de la tabla
+    } catch (error) {
+      console.error('Error al cargar los mensajes:', error);
+    }
+  }
+  
+}
+
+export function maxWordLengthValidator(maxLength: number): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    // Verifica si control.value es null o undefined y lo convierte a string vacío si lo es
+    const value = control.value ? control.value.toString() : '';
+
+    const words: string[] = value.split(/\s+/); // Aseguramos que `words` es un arreglo de strings
+
+    // Verifica si hay alguna palabra con más de 'maxLength' caracteres
+    const hasLongWord = words.some((word: string) => word.length > maxLength);
+
+    // Retorna un error si se encuentra una palabra muy larga
+    return hasLongWord ? { 'maxWordLength': { value: control.value } } : null;
+  };
 }

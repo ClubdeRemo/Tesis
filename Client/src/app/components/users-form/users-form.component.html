@@ -4,6 +4,15 @@
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>Crear Usuario</h2>
+
+    <!-- Modal de usuario creado con éxito -->
+    <div class="modal" *ngIf="isModalVisible">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <p>¡Usuario creado con éxito!</p>
+        </div>
+    </div>
+
     <form [formGroup]="userform" (ngSubmit)="onSubmit()">
         <!-- Nombre -->
         <div class="form-group">
@@ -52,7 +61,7 @@
             </div>
         </div>
 
-<!-- Fecha de Nacimiento -->
+        <!-- Fecha de Nacimiento -->
         <div class="form-group">
             <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
             <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy">
@@ -62,15 +71,13 @@
             </div>
         </div>
 
-
         <!-- DNI -->
         <div class="form-group">
             <label for="Dni">DNI:</label>
             <input type="text" id="Dni" formControlName="Dni" placeholder="Introduzca su DNI">
             <div *ngIf="userform.get('Dni')?.invalid && userform.get('Dni')?.touched">
                 <small *ngIf="userform.get('Dni')?.errors?.['required']">El DNI es requerido.</small>
-                <small *ngIf="userform.get('Dni')?.errors?.['pattern']">El DNI debe contener solo números.</small>
-                <small *ngIf="userform.get('Dni')?.errors?.['minlength']">El DNI debe contener al menos 8 números.</small>
+                <small *ngIf="userform.get('Dni')?.errors?.['pattern']">El DNI debe contener solo números y 8 caracteres.</small>
             </div>
         </div>
 
