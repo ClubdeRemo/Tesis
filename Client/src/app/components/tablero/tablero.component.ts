@@ -2,10 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button'; // Si necesitas botones también
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, MatCardModule],
   templateUrl: './tablero.component.html',
   styleUrl: './tablero.component.css'
 })
@@ -23,3 +25,8 @@ export class TableroComponent implements OnInit {
   }
   siguiente(){this.router.navigate(['login']);}
 }
+
+
+
+
+
