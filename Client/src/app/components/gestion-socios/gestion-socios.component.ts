@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon'; // Importa el módulo de íconos
+import { MatIconModule } from '@angular/material/icon'; 
+import { UsersFormComponent } from '../users-form/users-form.component';
 
 @Component({
   selector: 'app-gestion-socios',
@@ -28,19 +29,20 @@ import { MatIconModule } from '@angular/material/icon'; // Importa el módulo de
     FooterComponent,
     CommonModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    UsersFormComponent
   ],
   templateUrl: './gestion-socios.component.html',
-  styleUrls: ['./gestion-socios.component.css'] // Corrige aquí: 'styleUrl' debe ser 'styleUrls'
+  styleUrls: ['./gestion-socios.component.css'] 
 })
 export class GestionSociosComponent implements OnInit {
   
-  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido', 'Email', 'FechaDeNacimiento', 'Dni'];
+  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido', 'Email', 'FechaDeNacimiento', 'Dni', 'Acciones'];
   dataSource: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
 
-  constructor(private usersService: UsersService) {
+  constructor(private router: Router, private usersService: UsersService) {
     this.dataSource = new MatTableDataSource<User>([]); // Inicializamos la tabla vacía
   }
 
@@ -65,12 +67,24 @@ export class GestionSociosComponent implements OnInit {
     this.dataSource.filter = filtroValor.trim().toLowerCase();
   }
 
-  // Método para manejar la acción de agregar un nuevo socio
-  onAddSocio() {
-    // Aquí puedes abrir un formulario para agregar un nuevo socio
-    console.log('Agregar nuevo socio');
-    // Puedes navegar a un componente de formulario o abrir un diálogo modal
-    // Ejemplo de navegación:
-    // this.router.navigate(['/ruta-del-formulario']);
+  async eliminarSocio(Id: string) {
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar a este socio?");
+    if (confirmacion) {
+      try {
+        const resultado = await this.usersService.eliminarSocio(Id);
+        if (resultado) {
+          alert("Socio eliminado correctamente.");
+          // Actualizar los datos en la tabla
+          const datosActualizados = await this.usersService.obtenerDatos(); 
+          this.dataSource.data = datosActualizados; 
+        } else {
+          alert("Hubo un error al intentar eliminar al socio.");
+        }
+      } catch (error) {
+        console.error("Error al eliminar socio:", error);
+        alert("Hubo un error al intentar eliminar al socio.");
+      }
+    }
   }
+  
 }

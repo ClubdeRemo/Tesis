@@ -1,8 +1,44 @@
-.historia{
-    color: #000000;
-    text-align: center; /* Centra el texto horizontalmente */
-    margin: 50px auto; /* Agrega márgenes arriba y abajo (20px) y lo centra horizontalmente */
-    max-width: 80%; /* Define un ancho máximo para el contenido */
-    padding: 20px; /* Agrega un espacio interno alrededor del texto */
-    line-height: 1.6; /* Mejora la legibilidad del texto */
+.historia {
+    color: #333333; /* Color de texto más suave para una mejor lectura */
+    text-align: center; /* Centrado horizontal del texto */
+    margin: 50px auto; /* Márgenes para separación con otros elementos */
+    max-width: 80%; /* Limita el ancho del contenido */
+    padding: 40px; /* Espacio generoso alrededor del contenido */
+    background-color: #f4f4f4; /* Fondo suave para hacer el contenido destacar */
+    border-radius: 10px; /* Bordes redondeados para un diseño moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
+    line-height: 1.8; /* Espaciado entre líneas para mayor legibilidad */
+    font-family: 'Arial', sans-serif; /* Fuente limpia y profesional */
+    border: 1px solid #ddd; /* Borde sutil para definir el contorno */
+}
+
+.historia h5 {
+    font-size: 1.2rem; /* Tamaño de fuente ajustado para un mejor equilibrio */
+    font-weight: normal; /* Peso de fuente para mayor claridad */
+    color: #555; /* Color de texto más suave que el del contorno */
+}
+
+@media (max-width: 768px) {
+    .historia {
+        max-width: 95%; /* Aumenta el ancho en pantallas pequeñas */
+        padding: 20px; /* Menor padding para pantallas más pequeñas */
+    }
+
+    .historia h5 {
+        font-size: 1rem; /* Ajuste de tamaño de texto para móviles */
+    }
+}
+
+
+.historia-imagen {
+    margin-top: 50px; /* Espacio entre el párrafo y la imagen */
+    text-align: center; /* Centra la imagen */
+}
+
+.imagen-historia {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% */
+    max-width: 500px; /* Define un ancho máximo para la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
 }

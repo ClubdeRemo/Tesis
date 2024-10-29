@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/User';
-import { lastValueFrom } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,9 @@ export class UsersService {
 
 
   constructor(private http: HttpClient) {}
-
+  obtenerSocioPorId(id: string): Observable<User | null> {
+    return this.http.get<User | null>(`${this.apiUrl}/${id}`);
+  }
   async obtenerDatos() : Promise<User[]>{
     try {
       const datos = await lastValueFrom(this.http.get<User[]>(`${this.apiUrl}`));
@@ -39,6 +41,35 @@ async obtenerPorDni(dni: string): Promise<any | null> {
     console.error('Error al obtener usuario por DNI:', error);
     return null; // Retorna null si hay un error
   }
+}
+async eliminarSocio(Id: string): Promise<any | null> {
+  try{
+    const respuesta = await lastValueFrom(this.http.delete<User>(`${this.apiUrl}/Id/${Id}`));
+    return respuesta;
+  }
+  catch (error){
+    console.error('Error al eliminar usuario', error);
+    return null; // Retorna null si hay un error
+  }
+}
+
+async actualizarUsuario(id: string, userData: User): Promise<User> {
+  try {
+    // Envía la solicitud PUT y espera la respuesta
+    await lastValueFrom(this.http.patch(`${this.apiUrl}/${id}`, userData));
+    // Devuelve el usuario actualizado
+    return await lastValueFrom(this.http.get<User>(`${this.apiUrl}/${id}`));
+  } catch (error) {
+    console.error('Error al actualizar el usuario:', error);
+    throw error;
+  }
+}
+async obtenerUsuarioPorId(id: string): Promise<User> {
+  const response = await this.http.get<User>(`/api/users/${id}`).toPromise();
+  if (!response) {
+    throw new Error('Usuario no encontrado'); // Lanza un error si no se encuentra el usuario
+  }
+  return response;
 }
 }
 
