@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../../services/users.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '../../interfaces/User';
-import { Router } from '@angular/router';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from "../footer/footer.component";
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,19 +13,29 @@ import { FooterComponent } from "../footer/footer.component";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  usuarioForm: FormGroup;
+  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService, private router: Router) {
-    // Inicialización del formulario usando FormBuilder
-    this.usuarioForm = this.fb.group({
+  constructor(private router: Router,private fb: FormBuilder, private authService: AuthService) {
+    this.loginForm = this.fb.group({
+      Id: ['', Validators.required],
       Nombre: ['', Validators.required],
-      Contraseña: ['', [Validators.required, Validators.minLength(6)]]
+      Contraseña: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    this.usuarioForm.valid
+    if (this.loginForm.valid) {
+      this.authService.signIn(this.loginForm.value).subscribe(
+        response => {
+          const token = response.access_token;
+          localStorage.setItem('token', token);
+          console.log('Login exitoso');
+          this.router.navigate(['/menu/admin'])
+        },
+        error => {
+          console.error('Error de autenticación:', error);
+        }
+      );
+    }
   }
-  
-
 }

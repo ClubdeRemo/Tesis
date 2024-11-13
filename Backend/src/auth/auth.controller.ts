@@ -17,6 +17,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
+
   @Post('signin')
   async signIn(@Body() signInDto: SignInDto) {
     const { Id, Nombre, Contraseña } = signInDto;

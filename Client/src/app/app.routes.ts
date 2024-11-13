@@ -21,6 +21,7 @@ export const routes: Routes = [
     {path: 'menu/admin',component: MenuAdminComponent},
     {path: 'registrar/pago',component: RegistrarPagoComponent},
     {path: 'modificar',component: ModificarComponent},
+    {path: 'modificar/:id', component: ModificarComponent },
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

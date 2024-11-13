@@ -3,7 +3,11 @@
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <p class="notice">Recuerda que para crear una cuenta debes acercarte al club.</p>
     <h3>Iniciar Sesión</h3>
-    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()"> 
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+        <div class="form-group">
+            <label for="Id">N°Socio:</label>
+            <input type="text" id="Id" formControlName="Id" placeholder="N°Socio" required>
+        </div>
         <div class="form-group">
             <label for="Nombre">Nombre:</label>
             <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduce tu nombre" required>

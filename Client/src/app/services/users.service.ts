@@ -53,24 +53,10 @@ async eliminarSocio(Id: string): Promise<any | null> {
   }
 }
 
-async actualizarUsuario(id: string, userData: User): Promise<User> {
-  try {
-    // Envía la solicitud PUT y espera la respuesta
-    await lastValueFrom(this.http.patch(`${this.apiUrl}/${id}`, userData));
-    // Devuelve el usuario actualizado
-    return await lastValueFrom(this.http.get<User>(`${this.apiUrl}/${id}`));
-  } catch (error) {
-    console.error('Error al actualizar el usuario:', error);
-    throw error;
-  }
+actualizarUsuario(id: string, datos: any): Observable<any> {
+  return this.http.put(`http://localhost:3000/user/modificar/${id}`, datos); // Asegúrate de que la URL y el método sean correctos
 }
-async obtenerUsuarioPorId(id: string): Promise<User> {
-  const response = await this.http.get<User>(`/api/users/${id}`).toPromise();
-  if (!response) {
-    throw new Error('Usuario no encontrado'); // Lanza un error si no se encuentra el usuario
-  }
-  return response;
-}
+
 }
 
 /* Cuando usas un servicio en un componente, como UsersService, lo que haces es invocar métodos del servicio para realizar 

@@ -15,8 +15,8 @@
 
     <form [formGroup]="userform" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="Id">Id:</label>
-            <input type="text" id="Id" formControlName="Id" placeholder="Id" [disabled]="false"> <!-- El input de ID siempre está habilitado -->
+            <label for="Id">N°Socio:</label>
+            <input type="text" id="Id" formControlName="Id" placeholder="N°Socio" >
             <div *ngIf="userform.get('Id')?.invalid && userform.get('Id')?.touched">
             </div>
         </div>
@@ -27,7 +27,7 @@
         <!-- Nombre -->
         <div class="form-group">
             <label for="Nombre">Nombre:</label>
-            <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduzca su nombre" [disabled]="!isEditing">
+            <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduzca su nombre" >
             <div *ngIf="userform.get('Nombre')?.invalid && userform.get('Nombre')?.touched">
                 <small *ngIf="userform.get('Nombre')?.errors?.['required']">El nombre es requerido.</small>
                 <small *ngIf="userform.get('Nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</small>
@@ -37,7 +37,7 @@
         <!-- Apellido -->
         <div class="form-group">
             <label for="Apellido">Apellido:</label>
-            <input type="text" id="Apellido" formControlName="Apellido" placeholder="Introduzca su apellido" [disabled]="!isEditing">
+            <input type="text" id="Apellido" formControlName="Apellido" placeholder="Introduzca su apellido" >
             <div *ngIf="userform.get('Apellido')?.invalid && userform.get('Apellido')?.touched">
                 <small *ngIf="userform.get('Apellido')?.errors?.['required']">El apellido es requerido.</small>
                 <small *ngIf="userform.get('Apellido')?.errors?.['minlength']">El apellido debe tener al menos 3 caracteres.</small>
@@ -47,7 +47,7 @@
         <!-- Email -->
         <div class="form-group">
             <label for="Email">Email:</label>
-            <input type="email" id="Email" formControlName="Email" placeholder="Introduzca su email" [disabled]="!isEditing">
+            <input type="email" id="Email" formControlName="Email" placeholder="Introduzca su email" >
             <div *ngIf="userform.get('Email')?.invalid && userform.get('Email')?.touched">
                 <small *ngIf="userform.get('Email')?.errors?.['required']">El email es requerido.</small>
                 <small *ngIf="userform.get('Email')?.errors?.['email']">Debe ser un email válido.</small>
@@ -57,7 +57,7 @@
         <!-- Fecha de Nacimiento -->
         <div class="form-group">
             <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy" [disabled]="!isEditing">
+            <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy" >
             <div *ngIf="userform.get('FechaDeNacimiento')?.invalid && userform.get('FechaDeNacimiento')?.touched">
                 <small *ngIf="userform.get('FechaDeNacimiento')?.errors?.['required']">La fecha de nacimiento es requerida.</small>
                 <small *ngIf="userform.get('FechaDeNacimiento')?.errors?.['fechaPosterior']">La fecha no puede ser posterior a la actual.</small>
@@ -67,7 +67,7 @@
         <!-- DNI -->
         <div class="form-group">
             <label for="Dni">DNI:</label>
-            <input type="text" id="Dni" formControlName="Dni" placeholder="Introduzca su DNI" [disabled]="!isEditing">
+            <input type="text" id="Dni" formControlName="Dni" placeholder="Introduzca su DNI" >
             <div *ngIf="userform.get('Dni')?.invalid && userform.get('Dni')?.touched">
                 <small *ngIf="userform.get('Dni')?.errors?.['required']">El DNI es requerido.</small>
                 <small *ngIf="userform.get('Dni')?.errors?.['pattern']">El DNI debe contener solo números y 8 caracteres.</small>

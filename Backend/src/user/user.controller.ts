@@ -33,9 +33,9 @@ export class UserController {
     return this.userService.update(+Id, updateUserDto);                              //ParseIntPipe, se utiliza para convertir un parámetro de cadena en un número entero. 
   }
 
-  @Put(':Id')
+  @Put('modificar/:Id')
   async updateUser(
-    @Param('Id') Id: number,                                  
+    @Param('Id') Id: number,    
     @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.userService.update(Id, updateUserDto);

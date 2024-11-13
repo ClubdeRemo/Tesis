@@ -24,7 +24,8 @@ export class UserService {
         Email: createUserDto.Email,
         Contraseña: hashedPassword,
         FechaDeNacimiento: createUserDto.FechaDeNacimiento,
-        Dni: createUserDto.Dni
+        Dni: createUserDto.Dni,
+        Categorias: createUserDto.Categorias
       }
 
     await this.UserRepository.save(NewDto);
@@ -94,8 +95,14 @@ export class UserService {
     try {
       await this.UserRepository.createQueryBuilder() //El método createQueryBuilder() permite construir consultas SQL de manera programática.
       .update(User)
-      .set({Nombre:updateUserDto.Nombre,
-            Contraseña: updateUserDto.Contraseña
+      .set({
+        Nombre: updateUserDto.Nombre,
+        Apellido: updateUserDto.Apellido,        
+        Email: updateUserDto.Email,              
+        FechaDeNacimiento: updateUserDto.FechaDeNacimiento, 
+        Dni: updateUserDto.Dni,                  
+        Contraseña: updateUserDto.Contraseña,
+        Categorias: updateUserDto.Categorias
       })
       .where("Id = :Id", { Id : Id})
       .execute();

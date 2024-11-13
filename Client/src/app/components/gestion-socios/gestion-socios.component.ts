@@ -13,6 +13,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon'; 
 import { UsersFormComponent } from '../users-form/users-form.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-gestion-socios',
@@ -26,11 +27,9 @@ import { UsersFormComponent } from '../users-form/users-form.component';
     FormsModule,
     MatPaginatorModule,
     MatTableModule,
-    FooterComponent,
     CommonModule,
     RouterModule,
     MatIconModule,
-    UsersFormComponent
   ],
   templateUrl: './gestion-socios.component.html',
   styleUrls: ['./gestion-socios.component.css'] 
@@ -86,5 +85,29 @@ export class GestionSociosComponent implements OnInit {
       }
     }
   }
+
+  async modificar(Id: string): Promise<void> {
+    if (!Id) {
+      console.error('Error: El ID es undefined o null');
+      return;
+    }
   
-}
+    try {
+      const usuario = await lastValueFrom(this.usersService.obtenerSocioPorId(Id));
+      console.log('Usuario obtenido:', usuario);
+  
+      if (usuario) {
+        // Navegar al componente de modificación con parámetros adicionales
+        this.router.navigate(['/modificar', Id], {
+          queryParams: { autocompletar: true },
+        });
+      } else {
+        console.error('Error: No se encontró el usuario con el ID proporcionado');
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  }
+  
+  
+}  

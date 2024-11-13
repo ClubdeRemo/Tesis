@@ -37,10 +37,18 @@ export class ModificarComponent {
     });
 }
 ngOnInit(): void {
+  // Captura el ID de la ruta al cargar el componente
+  const id = this.activatedRoute.snapshot.paramMap.get('id');
 
+  if (id) {
+    // Establece el valor del control de ID y llama al método para buscar el socio
+    this.userform.get('Id')?.setValue(id);
+    this.buscarSocioPorId();
+  }
 }
+
 buscarSocioPorId(): void {
-  const id = this.userform.get('Id')?.value;
+  const id = this.userform.get('Id').value;
 
   if (id) {
     this.usersService.obtenerSocioPorId(id).subscribe((socio) => {
@@ -103,25 +111,34 @@ buscarSocioPorId(): void {
 
   onSubmit(): void {
     if (this.userform.valid) {
-      console.log('Formulario válido:', this.userform.value);
+      console.log('Enviando datos de edición:', this.userform.getRawValue());
   
-      const id = this.userform.get('Id')?.value; // Obtiene el ID del usuario
+      // Obtenemos el valor del ID y los datos actualizados del formulario
+      const id = this.userform.get('Id')?.value;
+      const datosActualizados = this.userform.getRawValue(); // Usa getRawValue para incluir campos deshabilitados
   
       if (id) {
-        // Llama a la función para actualizar el usuario
-        this.usersService.actualizarUsuario(id, this.userform.value)
-          .then(() => {
-            this.showModal(); // Mostrar modal cuando la respuesta es exitosa
-            this.userform.reset();
-          })
-          .catch((err: any) => {
-            console.error('Error al actualizar los datos:', err);
-          });
+        this.usersService.actualizarUsuario(id, datosActualizados)
+          .subscribe(
+            (response) => {
+              console.log('Usuario actualizado con éxito:', response);
+              this.showModal(); // Muestra el modal de confirmación
+              this.userform.reset(); // Resetea el formulario
+              this.isEditing = false; // Desactiva la edición
+            },
+            (error) => {
+              console.error('Error al actualizar el usuario:', error);
+            }
+          );
+      } else {
+        console.error('El ID es necesario para actualizar el usuario.');
       }
     } else {
       console.log('Formulario inválido');
-      this.userform.markAllAsTouched();
+      this.userform.markAllAsTouched(); // Marca todos los campos como tocados para mostrar los errores
     }
   }
+  
+  
   
 }

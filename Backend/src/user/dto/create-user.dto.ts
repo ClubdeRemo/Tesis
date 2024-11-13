@@ -5,5 +5,5 @@ Email: string;
 Contraseña : string;
 FechaDeNacimiento: Date;
 Dni: number;
-
+Categorias: string;
 }

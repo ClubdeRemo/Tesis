@@ -26,4 +26,7 @@ export class User {
     
     @Column({ type: 'float', nullable: true })
     IdEstadoSocio: number;
+
+    @Column({ default: 'usuario' }) // por defecto será 'usuario'
+    Categorias: string;
 }
