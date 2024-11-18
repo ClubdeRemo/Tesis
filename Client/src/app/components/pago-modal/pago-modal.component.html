@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Seleccionar Pago</h2>
+<mat-dialog-content>
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Mes</mat-label>
+        <mat-select [(value)]="selectedMes">
+            <mat-option *ngFor="let mes of meses" [value]="mes">{{ mes }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Método de Pago</mat-label>
+        <mat-select [(value)]="selectedMetodo">
+            <mat-option *ngFor="let metodo of metodos" [value]="metodo">{{ metodo }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancelar()">Cancelar</button>
+    <button mat-button color="primary" (click)="onConfirmar()">Confirmar</button>
+</mat-dialog-actions>

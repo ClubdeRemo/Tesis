@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+
+<div>
+    <mat-list>
+    <!-- Usa un *ngFor para generar la lista desde el arreglo de items -->
+    <mat-list-item *ngFor="let item of items" (click)="openDialog(item)">
+        {{ item.title }}
+    </mat-list-item>
+</mat-list>
+</div>

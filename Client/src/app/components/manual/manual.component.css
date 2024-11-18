@@ -1,0 +1,31 @@
+/* Asegúrate de definir una altura fija para el navbar */
+app-navbar {
+    position: fixed; /* El navbar se queda fijo en la parte superior */
+    top: 0; /* Se asegura de estar al inicio de la pantalla */
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 1000; /* Coloca el navbar por encima de otros elementos */
+
+    background-color: #c55a1e; /* Color de fondo (opcional) */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Opcional: agrega sombra */
+}
+
+  /* Aplica un margen superior al contenido para compensar la altura del navbar */
+div {
+    margin-top: 60px; /* Misma altura que el navbar */
+}
+
+  /* Estilo de la lista */
+mat-list {
+    padding: 30px; /* Espaciado interno (opcional) */
+    
+}
+
+mat-list-item {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+mat-list-item:hover {
+    background-color: #ffac7c; /* Efecto hover para los ítems */
+}

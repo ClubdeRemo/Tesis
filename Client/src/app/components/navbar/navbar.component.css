@@ -62,3 +62,15 @@
 .home-icon:hover {
     color: #ffac7c; /* Cambia el color cuando se pasa el mouse */
 }
+
+.manual-icon {
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.manual-icon:hover {
+    color: #ffac7c; /* Cambia de color cuando se pasa el mouse */
+}

@@ -73,3 +73,8 @@
 .add-button:focus {
     outline: none; /* Elimina el contorno de enfoque */
 }
+
+.estado-al-dia {
+    background-color: #d4edda; /* Un verde claro */
+    color: #155724; /* Un verde oscuro */
+}

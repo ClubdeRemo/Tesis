@@ -6,5 +6,7 @@ export interface User{
     Contraseña: string;
     FechaDeNacimiento: Date;
     Dni: number;
+    EstadoSocio: string;
+    Categorias: string;
 
 } 

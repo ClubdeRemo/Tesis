@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Pagos } from "src/pagos/entities/pago.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('User') // Nombre de la tabla en la base de datos
 export class User {
@@ -23,10 +24,14 @@ export class User {
 
     @Column({ type: 'float', nullable: false, unique: true })
     Dni: number;
-    
-    @Column({ type: 'float', nullable: true })
-    IdEstadoSocio: number;
 
     @Column({ default: 'usuario' }) // por defecto será 'usuario'
     Categorias: string;
+
+    @Column({ default: 'Al dia' })
+    EstadoSocio: string;
+
+      // Relación uno a muchos con la entidad Pago
+    @OneToMany(() => Pagos, pagos => pagos.user)
+    pagos: Pagos[];
 }

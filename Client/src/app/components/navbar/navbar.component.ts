@@ -33,4 +33,7 @@ export class NavbarComponent {
   siguiente(): void {
     console.log('Método siguiente del NavbarComponent');
   }
+  goToManual() {
+    this.router.navigate(['/manual']);
+  }
 }

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { UserService } from 'src/user/user.service';
@@ -25,15 +25,17 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales incorrectas');
     }
 
-    // Verificar que el usuario tenga la categoría "admin"
-    if (user.Categorias !== 'Admin') {
-      throw new UnauthorizedException('Acceso restringido a usuarios administradores');
-    }
-
-    // Generar y devolver el token JWT si la autenticación es exitosa
+    // Generar el token JWT con la categoría del usuario
     const payload = { sub: user.Id, user: user.Nombre, categoria: user.Categorias };
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+  async getUserById(id: number) {
+    const user = await this.usersService.findOne(id);
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado');
+    }
+    return user;
   }
 }

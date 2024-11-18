@@ -10,6 +10,10 @@ import { MenuAdminComponent } from './components/menu-admin/menu-admin.component
 import { RegistrarPagoComponent } from './components/registrar-pago/registrar-pago.component';
 import { ModificarComponent } from './components/modificar/modificar.component';
 import { PagosComponent } from './components/pagos/pagos.component';
+import { UsuarioCompletoComponent } from './components/usuario-completo/usuario-completo.component';
+import { ManualComponent } from './components/manual/manual.component';
+import { HistorialPagosComponent } from './components/historial-pagos/historial-pagos.component';
+import { MenuUsuarioComponent } from './components/menu-usuario/menu-usuario.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/tablero', pathMatch: 'full' },
@@ -24,6 +28,10 @@ export const routes: Routes = [
     {path: 'modificar',component: ModificarComponent},
     {path: 'modificar/:id', component: ModificarComponent },
     {path: 'pagos', component: PagosComponent },
+    {path: 'usuario/completo/:id', component: UsuarioCompletoComponent },
+    {path: 'manual', component: ManualComponent },
+    {path: 'historial/pagos', component: HistorialPagosComponent },
+    {path: 'menu/usuario', component: MenuUsuarioComponent },
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

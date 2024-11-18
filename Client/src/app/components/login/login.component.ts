@@ -27,10 +27,22 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.signIn(this.loginForm.value).subscribe(
         response => {
-          const token = response.access_token;
+          const token = response.token.access_token; // Obtén el token desde la respuesta
+          const categoria = response.user.rol; // Obtén el rol (categoría) del usuario
+  
+          // Almacena el token en el localStorage
           localStorage.setItem('token', token);
+  
           console.log('Login exitoso');
-          this.router.navigate(['/menu/admin'])
+  
+          // Redirige según la categoría del usuario
+          if (categoria === 'Admin') {
+            this.router.navigate(['/menu/admin']);
+          } else if (categoria === 'Usuario') {
+            this.router.navigate(['/menu/usuario']);
+          } else {
+            console.warn('Rol no reconocido');
+          }
         },
         error => {
           console.error('Error de autenticación:', error);
@@ -38,4 +50,5 @@ export class LoginComponent {
       );
     }
   }
+  
 }

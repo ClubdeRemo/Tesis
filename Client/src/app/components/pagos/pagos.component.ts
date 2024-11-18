@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 import { User } from '../../interfaces/User';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog'; // Importar MatDialog
+import { PagoModalComponent } from '../pago-modal/pago-modal.component';
 @Component({
   selector: 'app-pagos',
   standalone: true,
@@ -25,27 +26,44 @@ import { UsersService } from '../../services/users.service';
     MatTableModule,
     CommonModule,
     RouterModule,
-    MatIconModule],
+    MatIconModule,
+    MatDialogModule],
   templateUrl: './pagos.component.html',
   styleUrl: './pagos.component.css'
 })
 export class PagosComponent implements OnInit {
 
-  displayedColumns: string[] = ['Id', 'Nombre', 'Gestión', 'Acciones'];
+  displayedColumns: string[] = ['Id', 'Socio', 'Gestión', 'Acciones'];
   dataSource: MatTableDataSource<User>;
 
-  constructor(private router: Router, private usersService: UsersService) {
+  constructor(private router: Router, private usersService: UsersService, private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource<User>([]); // Inicializamos la tabla vacía
   }
 
-  async ngOnInit(){
+  async ngOnInit(): Promise<void> {
+    try {
+      // Llama al servicio para obtener los datos desde la base de datos
+      const data: User[] = await this.usersService.obtenerDatos();
+      this.dataSource = new MatTableDataSource<User>(data); // Pasa los datos a la tabla
+    } catch (error) {
+      console.error('Error al cargar los datos:', error);
+    }  
   }
 
-  async pago (){
-
+  abrirPagoModal(): void {
+    const dialogRef = this.dialog.open(PagoModalComponent, {
+      width: '80%', // Ancho de la modal
+      data: {}, // Aquí puedes pasar datos si lo necesitas
+    });
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result) {
+      console.log('Pago seleccionado:', result);
+      // Aquí puedes manejar el resultado de la modal
+    }
+  });
   }
-  
-  async lista (){
 
+  historial(){
+    this.router.navigate(['/historial/pagos'])
   }
 }

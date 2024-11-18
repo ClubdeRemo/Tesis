@@ -6,4 +6,5 @@ Contraseña : string;
 FechaDeNacimiento: Date;
 Dni: number;
 Categorias: string;
+EstadoSocio: string;
 }

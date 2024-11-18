@@ -74,6 +74,22 @@
             </div>
         </div>
 
+<!-- Categoria -->
+<div class="form-group">
+    <label for="Categorias">Categoria:</label>
+    <mat-form-field appearance="fill" class="form-control">
+        <mat-label>Seleccione una categoría</mat-label>
+        <mat-select id="Categorias" formControlName="Categorias">
+            <mat-option value="Usuario">Usuario</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div *ngIf="userform.get('Categorias')?.invalid && userform.get('Categorias')?.touched">
+        <small *ngIf="userform.get('Categorias')?.errors?.['required']">La categoría es requerida.</small>
+    </div>
+</div>
+
+
         <button type="submit" class="btn btn-primary" [disabled]="!isEditing">Editar Socio</button>
     </form>
 </div>

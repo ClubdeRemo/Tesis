@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatHeaderRow, MatRow, MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { User } from '../../interfaces/User';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
@@ -36,7 +36,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class GestionSociosComponent implements OnInit {
   
-  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido', 'Email', 'FechaDeNacimiento', 'Dni', 'Acciones'];
+  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido', 'Dni', 'EstadoSocio', 'Acciones'];
   dataSource: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
@@ -108,6 +108,31 @@ export class GestionSociosComponent implements OnInit {
       console.error('Error al obtener los datos:', error);
     }
   }
+
+  async lista(Id: string): Promise<void> {
+    if (!Id) {
+      console.error('Error: El ID es undefined o null');
+      return;
+    }
   
+    try {
+      const usuario = await lastValueFrom(this.usersService.obtenerSocioPorId(Id));
+      console.log('Usuario obtenido:', usuario);
   
+      if (usuario) {
+        // Navegar al componente de modificación con parámetros adicionales
+        this.router.navigate(['/usuario/completo', Id], {
+          queryParams: { autocompletar: true },
+        });
+      } else {
+        console.error('Error: No se encontró el usuario con el ID proporcionado');
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  }
+
+  getClassByEstado(EstadoSocio: string): string {
+    return EstadoSocio === 'Al dia' ? 'estado-al-dia' : '';
+  }
 }  

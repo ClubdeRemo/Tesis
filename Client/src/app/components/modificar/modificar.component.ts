@@ -4,14 +4,22 @@ import { User } from '../../interfaces/User';
 import { UsersService } from '../../services/users.service';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatFormField } from '@angular/material/form-field';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-modificar',
   standalone: true,
-  imports: [   CommonModule,
+  imports: [  CommonModule,
     ReactiveFormsModule,
     FormsModule,
-  RouterModule],
+    RouterModule,
+    MatFormField,
+    MatSelectModule,
+    MatOptionModule,
+
+],
   templateUrl: './modificar.component.html',
   styleUrl: './modificar.component.css'
 })
@@ -33,7 +41,8 @@ export class ModificarComponent {
       Apellido: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
       Email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       FechaDeNacimiento: new FormControl({ value: '', disabled: true }, [Validators.required, this.fechaNoPosterior()]),
-      Dni: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern('^[0-9]{8}$')])
+      Dni: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern('^[0-9]{8}$')]),
+      Categorias: new FormControl({ value: '', disabled: true }, [Validators.required]),
     });
 }
 ngOnInit(): void {
@@ -69,6 +78,7 @@ buscarSocioPorId(): void {
         this.userform.get('Email')?.enable();
         this.userform.get('FechaDeNacimiento')?.enable();
         this.userform.get('Dni')?.enable();
+        this.userform.get('Categorias')?.enable();
     
         // Establecer isEditing en true
         this.isEditing = true; // Esto habilitará el botón de editar

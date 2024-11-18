@@ -25,7 +25,8 @@ export class UserService {
         Contraseña: hashedPassword,
         FechaDeNacimiento: createUserDto.FechaDeNacimiento,
         Dni: createUserDto.Dni,
-        Categorias: createUserDto.Categorias
+        Categorias: createUserDto.Categorias,
+        EstadoSocio: createUserDto.EstadoSocio
       }
 
     await this.UserRepository.save(NewDto);
@@ -102,7 +103,8 @@ export class UserService {
         FechaDeNacimiento: updateUserDto.FechaDeNacimiento, 
         Dni: updateUserDto.Dni,                  
         Contraseña: updateUserDto.Contraseña,
-        Categorias: updateUserDto.Categorias
+        Categorias: updateUserDto.Categorias,
+        EstadoSocio: updateUserDto.EstadoSocio
       })
       .where("Id = :Id", { Id : Id})
       .execute();
