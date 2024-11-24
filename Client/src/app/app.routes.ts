@@ -14,6 +14,7 @@ import { UsuarioCompletoComponent } from './components/usuario-completo/usuario-
 import { ManualComponent } from './components/manual/manual.component';
 import { HistorialPagosComponent } from './components/historial-pagos/historial-pagos.component';
 import { MenuUsuarioComponent } from './components/menu-usuario/menu-usuario.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/tablero', pathMatch: 'full' },
@@ -30,8 +31,9 @@ export const routes: Routes = [
     {path: 'pagos', component: PagosComponent },
     {path: 'usuario/completo/:id', component: UsuarioCompletoComponent },
     {path: 'manual', component: ManualComponent },
-    {path: 'historial/pagos', component: HistorialPagosComponent },
+    {path: 'historial/pagos/:UserId', component: HistorialPagosComponent },
     {path: 'menu/usuario', component: MenuUsuarioComponent },
+    {path: 'clima', component: WeatherComponent },
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

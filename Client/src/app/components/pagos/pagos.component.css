@@ -23,3 +23,20 @@
     background-color: #d4edda; /* Un verde claro */
     color: #155724; /* Un verde oscuro */
 }
+
+.custom-header {
+    background-color: #c55b1ec0 !important;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 
+        'FILL' 0, 
+        'wght' 400, 
+        'GRAD' 0, 
+        'opsz' 24;
+}

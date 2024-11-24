@@ -1,16 +1,17 @@
 .historia {
-    color: #333333; /* Color de texto más suave para una mejor lectura */
-    text-align: center; /* Centrado horizontal del texto */
-    margin: 50px auto; /* Márgenes para separación con otros elementos */
-    max-width: 80%; /* Limita el ancho del contenido */
-    padding: 40px; /* Espacio generoso alrededor del contenido */
-    background-color: #f4f4f4; /* Fondo suave para hacer el contenido destacar */
-    border-radius: 10px; /* Bordes redondeados para un diseño moderno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
-    line-height: 1.8; /* Espaciado entre líneas para mayor legibilidad */
-    font-family: 'Arial', sans-serif; /* Fuente limpia y profesional */
-    border: 1px solid #ddd; /* Borde sutil para definir el contorno */
+    color: #333333;
+    text-align: center;
+    margin: 100px auto; /* Centra horizontalmente y aplica margen superior */
+    max-width: 80%;
+    padding: 40px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
 }
+
 
 .historia h5 {
     font-size: 1.2rem; /* Tamaño de fuente ajustado para un mejor equilibrio */

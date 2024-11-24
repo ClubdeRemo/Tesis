@@ -3,7 +3,7 @@ import { CreatePagosDto } from './dto/create-pago.dto';
 import { PagoService } from './pagos.service';
 import { Pagos } from './entities/pago.entity';
 
-@Controller('Pagos')
+@Controller('historial/pagos')
 export class PagoController {
   constructor(private readonly pagoService: PagoService) {}
 
@@ -12,8 +12,8 @@ export class PagoController {
     return this.pagoService.crearPago(createPagoDto);
   }
 
-  @Get(':userId')
-  async obtenerPagos(@Param('userId') userId: number): Promise<Pagos[]> {
-    return this.pagoService.obtenerPagosPorUsuario(userId);
+  @Get('/:UserId')
+  async obtenerPagos(@Param('UserId') UserId: number): Promise<Pagos[]> {
+    return this.pagoService.obtenerPagosPorUsuario(UserId);
   }
 }

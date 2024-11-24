@@ -1,7 +1,10 @@
 <app-navbar></app-navbar>
-<div class="container">
-    <h2> Tablón Informativo</h2>
+<div class="weather-container">
+    <app-weather></app-weather>
 </div>
+
+
+
 
 <div class="reportes-container">
     <div>
@@ -11,7 +14,7 @@
                 
                 <!-- Validación de palabra con más de 145 caracteres -->
                 <div *ngIf="msj.get('Mensaje')?.hasError('maxWordLength')" class="aviso">
-                    No se permiten palabras de más de 50 caracteres seguidos.
+                    No se permiten palabras de más de 25 caracteres seguidos.
                 </div>
                 
                 <!-- Validación de máximo de 1000 caracteres -->

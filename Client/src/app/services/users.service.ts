@@ -11,9 +11,11 @@ export class UsersService {
 
 
   constructor(private http: HttpClient) {}
+  
   obtenerSocioPorId(id: string): Observable<User | null> {
     return this.http.get<User | null>(`${this.apiUrl}/${id}`);
   }
+
   async obtenerDatos() : Promise<User[]>{
     try {
       const datos = await lastValueFrom(this.http.get<User[]>(`${this.apiUrl}`));

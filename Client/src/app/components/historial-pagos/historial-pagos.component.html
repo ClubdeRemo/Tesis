@@ -3,10 +3,34 @@
 </div>
 <mat-card class="custom-card">
     <div class="card-header">
-        <mat-card-title class="custom-title">Gestión de Socios</mat-card-title>
+        <mat-card-title class="custom-title">Historial de pagos</mat-card-title>
     </div>
     <mat-card-content>
-        
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
+                <!-- Columnas de la tabla -->
+                <ng-container matColumnDef="IdPago">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header"> N°Pago </th>
+                    <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.IdPago }} </td>
+                </ng-container>
+                <ng-container matColumnDef="FechaPago">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header"> Fecha del Pago </th>
+                    <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.FechaPago | date: 'dd MMMM yyyy'  }} </td>
+                </ng-container>  
+                <ng-container matColumnDef="FechaVto">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header"> Fecha de vencimiento</th>
+                    <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.FechaVto | date: 'dd MMMM yyyy' }} </td>
+                </ng-container>  
+                <ng-container matColumnDef="Tipo">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header"> Tipo de pago </th>
+                    <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Tipo }} </td>
+                </ng-container>
+                
+            <!-- Encabezado y filas de la tabla -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+        </table>
+        </div>
     </mat-card-content>
     
 </mat-card>  

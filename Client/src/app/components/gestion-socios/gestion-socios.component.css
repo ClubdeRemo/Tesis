@@ -1,80 +1,150 @@
+/* Estilos para la tarjeta */
 .custom-card {
-    background-color: #bfbfbf; /* Fondo de la tarjeta */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px;
-}  
+}
+
+/* Título de la tarjeta */
 .custom-title {
-    color: #c55a1e; /* Color del título */
     font-weight: bold;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
     font-size: 24px;
     padding: 16px 0;
-}  
+}
+
+/* Contenedor de la tabla */
 .table-container {
     margin-top: 20px;
-}  
+}
+
+/* Estilo de la tabla */
 .custom-table {
     width: 100%;
-    border-collapse: collapse; /* Eliminar espacios entre celdas */
-}  
+    border-collapse: collapse;
+}
+
+/* Estilo del encabezado de la tabla */
 .custom-header {
-    background-color: #c55a1e; /* Color de fondo del encabezado */
-    color: rgb(0, 0, 0); /* Color del texto */
+    background-color: #c55b1ec0 !important;
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-weight: bold;
     padding: 10px;
     text-align: left;
 }
 
+/* Estilo de las celdas de la tabla */
 .custom-cell {
-    color: #333; /* Color del texto de las celdas */
+    color: #333;
     padding: 10px;
-}  
-.custom-row:hover {
-    background-color: #e3f2fd; /* Efecto hover sobre las filas */
-}  
-.custom-paginator {
-    background-color: #f9f9f9; /* Fondo del paginador */
-    margin-top: 20px;
-}  
+}
 
+/* Estilo de las filas en hover */
+.custom-row:hover {
+    background-color: #e3f2fd;
+}
+
+/* Estilo del paginador */
+.custom-paginator {
+    background-color: #f9f9f9;
+    margin-top: 20px;
+}
+
+/* Estilo del encabezado de la tarjeta */
 .card-header {
     display: flex;
-    justify-content: space-between; /* Espacia el título y el botón */
-    align-items: center; /* Centra verticalmente */
-    padding: 16px; /* Espaciado alrededor del contenido */
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
 }
 
-.add-button {
-    background-color: #c55a1e; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border-radius: 50%; /* Hacer el botón circular */
-    width: 50px; /* Ancho del botón */
-    height: 50px; /* Alto del botón */
-    font-size: 24px; /* Tamaño de fuente del símbolo "+" */
-    border: none; /* Sin borde */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, transform 0.2s; /* Efecto de transición para el fondo y el tamaño */
-    display: flex; /* Flex para centrar el contenido */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de profundidad */
-}
-
-.material-icons{
+/* Estilo de los botones de acción */
+.material-icons {
     cursor: pointer;
 }
+
+/* Estilo de los botones con el hover */
 .add-button:hover {
-    background-color: #e36c3c; /* Color de fondo al pasar el ratón */
-    transform: scale(1.1); /* Aumentar el tamaño al pasar el ratón */
+    background-color: #e36c3c;
+    transform: scale(1.1);
 }
 
 .add-button:focus {
-    outline: none; /* Elimina el contorno de enfoque */
+    outline: none;
 }
 
+/* Estilo para la celda de estado 'Al día' */
 .estado-al-dia {
-    background-color: #d4edda; /* Un verde claro */
-    color: #155724; /* Un verde oscuro */
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    /* Ocultar las columnas de "Nombre" y "Apellido" en pantallas pequeñas */
+    .custom-table .mat-column-Nombre,
+    .custom-table .mat-column-Apellido {
+        display: none;
+    }
+
+    /* Hacer que las acciones sean más visibles y accesibles */
+    .mat-cell button {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .mat-icon {
+        font-size: 20px;
+    }
+
+    /* Asegurar que las celdas de acciones se apilen correctamente en pantallas pequeñas */
+    .mat-cell {
+        display: flex;
+        justify-content: space-between; /* Espacia los botones */
+        flex-wrap: wrap; /* Permite que los botones se ajusten si no caben en una línea */
+        gap: 8px; /* Espacio entre los botones */
+    }
+
+    /* Mejorar la visibilidad del paginador en pantallas pequeñas */
+    .custom-paginator {
+        font-size: 14px;
+    }
+
+    /* Ajustar el tamaño de la tarjeta y de la tabla para pantallas pequeñas */
+    .custom-card {
+        margin: 10px;
+    }
+
+    /* Ajustar el tamaño del título de la tarjeta en pantallas pequeñas */
+    .custom-title {
+        font-size: 20px;
+    }
+}
+
+/* Ajustar el tamaño del paginador en pantallas pequeñas */
+@media (max-width: 768px) {
+    .custom-paginator {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+.paginador-container {
+    margin-top: 20px;
+    text-align: right;
+    color: fff;
+}
+
+.mat-mdc-button:not(:disabled) {
+    color: #000;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
 }

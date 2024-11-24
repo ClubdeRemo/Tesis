@@ -1,12 +1,22 @@
+html, body {
+    height: 100%; /* Asegura que ocupen el 100% de la altura de la ventana */
+    margin: 0; /* Elimina márgenes por defecto */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Permite que los elementos se distribuyan en columnas */
+    min-height: 100%; /* Asegura que el contenido ocupe al menos el 100% */
+}
+
 footer.footer {
+    margin-top: 70px; /* Ajusta este valor según tu necesidad */
     position: relative;
     width: 100%;
     background-color: #c55a1e;
     color: #fff;
     text-align: center;
     padding: 10px;
-    margin-top: 20px;
-    bottom: 0;
     z-index: 2;
-    box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.3); /* Sombra leve en el borde superior */
+    box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.3);
 }

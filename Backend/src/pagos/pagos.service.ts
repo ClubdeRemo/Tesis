@@ -35,10 +35,10 @@ export class PagoService {
 
   // Función para obtener todos los pagos de un usuario
   async obtenerPagosPorUsuario(userId: number): Promise<Pagos[]> {
-    // Aquí pasamos el 'UserId' correctamente para filtrar los pagos por el ID del usuario
     return this.pagoRepo.find({
-      where: { UserId: userId },
-      relations: ['user'], // Esto carga la relación con el usuario
+      where: { UserId: userId }, // Filtra los pagos por el ID del usuario
+      relations: ['user'], // Carga la relación con la tabla 'user'
     });
   }
+  
 }
