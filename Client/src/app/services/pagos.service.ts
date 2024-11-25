@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { Pagos } from '../interfaces/Pagos';
 
 @Injectable({
@@ -20,4 +20,13 @@ export class PagosService {
       return []; // Devuelve un array vacío en caso de error
     }
   }
+    // Método para agregar un nuevo pago
+    agregarPago(pago: any): Observable<any> {
+      return this.http.post(`${this.apiUrl}/pagos`, pago);
+    }
+  
+    // Método para obtener el historial de pagos
+    obtenerPagos(): Observable<any[]> {
+      return this.http.get<any[]>(`${this.apiUrl}/pagos`);
+    }
 }

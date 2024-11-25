@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';  // Agregar esta importación
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, NavbarComponent, FooterComponent, CommonModule],  // Agregar CommonModule
+  imports: [ReactiveFormsModule, NavbarComponent, CommonModule],  // Agregar CommonModule
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

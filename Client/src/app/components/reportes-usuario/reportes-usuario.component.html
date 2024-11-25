@@ -7,24 +7,7 @@
 
 
 <div class="reportes-container">
-    <div>
-        <form [formGroup]="msj" (ngSubmit)="enviarMsj()">
-            <div class="cardInput">
-                <textarea type="text" id="Mensaje" formControlName="Mensaje" placeholder="Nuevo mensaje" class="input"></textarea>
-                
-                <!-- Validación de palabra con más de 145 caracteres -->
-                <div *ngIf="msj.get('Mensaje')?.hasError('maxWordLength')" class="aviso">
-                    No se permiten palabras de más de 25 caracteres seguidos.
-                </div>
-                
-                <!-- Validación de máximo de 1000 caracteres -->
-                <small *ngIf="msj.get('Mensaje')?.errors?.['maxLength']">El mensaje no puede contener más de mil (1000) caracteres.</small>
-            </div>
-            <div class="centrador">
-                <button type="submit" class="btn" [disabled]="msj.invalid">Enviar</button>
-            </div>
-        </form>
-    </div>
+
 
     <mat-card class="custom-card">
         <mat-card-title class="custom-title">Reportes</mat-card-title>

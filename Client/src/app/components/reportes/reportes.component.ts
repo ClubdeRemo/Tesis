@@ -12,7 +12,7 @@ import { WeatherComponent } from "../weather/weather.component";
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [FooterComponent,
+  imports: [
     NavbarComponent,
     CommonModule,
     ReactiveFormsModule,

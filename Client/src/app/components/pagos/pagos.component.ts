@@ -38,13 +38,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class PagosComponent implements OnInit {
 
   displayedColumns: string[] = ['Id', 'Socio', 'Gestión', 'Acciones'];
-  dataSource: MatTableDataSource<User>;
+  dataSource: MatTableDataSource<any>; // Cambié 'User' por 'any' para incluir pagos
+  pagos: any[] = []; // Declara la propiedad 'pagos' como un array vacío
   UserId!: number;
 
 
 
   constructor(private router: Router, private usersService: UsersService, private dialog: MatDialog, private route: ActivatedRoute) {
-    this.dataSource = new MatTableDataSource<User>([]); // Inicializamos la tabla vacía
+    this.dataSource = new MatTableDataSource<any>([]); // Inicializamos la tabla vacía
   }
 
   async ngOnInit(): Promise<void> {
@@ -52,10 +53,11 @@ export class PagosComponent implements OnInit {
       // Llama al servicio para obtener los datos desde la base de datos
       const data: User[] = await this.usersService.obtenerDatos();
       this.UserId = +this.route.snapshot.paramMap.get('UserId')!;
-      this.dataSource = new MatTableDataSource<User>(data); // Pasa los datos a la tabla
+      this.pagos = data; // Suponiendo que los pagos también vienen de aquí
+      this.dataSource.data = this.pagos; // Pasa los datos a la tabla
     } catch (error) {
       console.error('Error al cargar los datos:', error);
-    }  
+    }
   }
 
   abrirPagoModal(): void {
@@ -63,12 +65,12 @@ export class PagosComponent implements OnInit {
       width: '80%', // Ancho de la modal
       data: {}, // Aquí puedes pasar datos si lo necesitas
     });
-  dialogRef.afterClosed().subscribe((result) => {
-    if (result) {
-      console.log('Pago seleccionado:', result);
-      // Aquí puedes manejar el resultado de la modal
-    }
-  });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.pagos.push(result); // Agrega el pago al array 'pagos'
+        this.dataSource.data = [...this.pagos]; // Actualiza la fuente de datos
+      }
+    });
   }
 
   historial(userId: number): void {
@@ -78,5 +80,4 @@ export class PagosComponent implements OnInit {
       console.error('El UserId no es válido.');
     }
   }
-  
 }

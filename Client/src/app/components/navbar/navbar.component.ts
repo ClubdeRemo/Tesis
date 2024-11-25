@@ -25,7 +25,7 @@ export class NavbarComponent {
     this.router.navigate(['/historia']);
   }
   onLogin3(): void {
-    this.router.navigate(['/reportes']);
+    this.router.navigate(['/reportes/usuario']);
   }
   volver(): void {
     this.router.navigate(['/login']);
