@@ -40,35 +40,23 @@ export class HistorialPagosComponent {
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private pagosService: PagosService, 
-    private fb: FormBuilder 
   ) {
     this.dataSource = new MatTableDataSource<Pagos>(this.data);
   }
 
   async ngOnInit(): Promise<void> {
-    try {
-      // Obtener el ID del usuario desde la URL
+    try {                                                                 
       const userId = this.activatedRoute.snapshot.paramMap.get('UserId');
-      
-      // Verificar que el ID sea válido (no null y es un número)
       if (userId && !isNaN(+userId)) {
-        // Llamar al servicio para obtener los pagos del usuario
-        const data = await this.pagosService.obtenerDatos(+userId);
-        this.totalRecords = data.length; // Total de pagos
-        this.data = data; // Guardar los datos de pagos
-        this.dataSource.data = this.data; // Configurar la fuente de datos para la tabla
+        const response = await this.pagosService.obtenerDatos(+userId); // Obtener datos del servicio
+        this.data = response.pagos; // Acceder solo a la lista de pagos
+        this.dataSource.data = this.data; // Asignar los pagos al dataSource
       } else {
-        console.error('No se proporcionó un ID válido en la URL.');
-        // Opcional: redirigir a una página de error o mostrar un mensaje
+        console.error('El UserId no es válido.'); // Si el UserId no es válido                                                        
         this.router.navigate(['/error']);
       }
     } catch (error) {
-      console.error('Error al cargar los datos:', error);
+      console.error('Error al cargar los pagos:', error);
     }
-  }
-  
-
-  getClassByEstado(EstadoSocio: string): string {
-    return EstadoSocio === 'Al dia' ? 'estado-al-dia' : '';
   }
 }

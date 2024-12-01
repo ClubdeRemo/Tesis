@@ -1,20 +1,27 @@
 <h2 mat-dialog-title>Seleccionar Pago</h2>
 <mat-dialog-content>
-    <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Mes</mat-label>
-        <mat-select [(value)]="selectedMes">
-            <mat-option *ngFor="let mes of meses" [value]="mes">{{ mes }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+  <!-- Calendario para seleccionar fecha -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Fecha de Pago</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="selectedFecha"
+      placeholder="Seleccionar fecha">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Método de Pago</mat-label>
-        <mat-select [(value)]="selectedMetodo">
-            <mat-option *ngFor="let metodo of metodos" [value]="metodo">{{ metodo }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+  <!-- Selector de método de pago -->
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Método de Pago</mat-label>
+    <mat-select [(ngModel)]="selectedMetodo">
+      <mat-option *ngFor="let metodo of metodos" [value]="metodo">{{ metodo }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
-    <button mat-button (click)="onCancelar()">Cancelar</button>
-    <button mat-button color="primary" (click)="onConfirmar()">Confirmar</button>
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-button color="primary" (click)="onConfirmar()">Confirmar</button>
 </mat-dialog-actions>

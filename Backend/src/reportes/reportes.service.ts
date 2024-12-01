@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Mensajes } from './reportes.entity';
 import { Repository } from 'typeorm';
@@ -44,4 +44,28 @@ export class ReportesService {
             return new BadRequestException(error);
         }
     }
+
+    async eliminarMensaje(IdMensaje: string): Promise<void> {
+        await this.MensajeRepository.delete(IdMensaje); 
+    }      
+
+     // Obtener mensaje por ID
+     async obtenerMensajePorId(IdMensaje: number): Promise<Mensajes | null> {
+        try {
+          return await this.MensajeRepository.findOne({ where: { IdMensaje } }); // Usamos 'where' para buscar por el ID
+        } catch (error) {
+          console.error('Error al obtener mensaje:', error);
+          throw new Error('Mensaje no encontrado');
+        }
+      }
+    
+      // Modificar mensaje
+      async modificarMensaje(IdMensaje: number, nuevoMensaje: string): Promise<Mensajes> {
+        const mensaje = await this.MensajeRepository.findOne({ where: { IdMensaje } });
+        if (!mensaje) {
+          throw new Error('Mensaje no encontrado');
+        }
+    mensaje.Mensaje = nuevoMensaje;
+    return await this.MensajeRepository.save(mensaje);
+}
 }

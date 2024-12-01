@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { catchError, lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +10,50 @@ export class ReportesService {
 
   constructor(private http: HttpClient) {}
 
-  async obtenerDatos() : Promise<any>{
+  async obtenerDatos(): Promise<any> {
     try {
-      const datos = await lastValueFrom(this.http.get<any>(`${this.apiUrl}`));
-      return datos;
+      return await lastValueFrom(this.http.get<any>(`${this.apiUrl}`));
     } catch (error) {
       console.error('Error al obtener datos:', error);
       throw error;
     }
   }
-  
-  async enviarDatos(data: any) : Promise<any>{
+
+  async enviarDatos(data: any): Promise<any> {
     try {
-      const res = await lastValueFrom(this.http.post<any>(`${this.apiUrl}`, data)); 
-      return res;
+      return await lastValueFrom(this.http.post<any>(`${this.apiUrl}`, data));
     } catch (error) {
-      console.error('Error al obtener datos:', error);
+      console.error('Error al enviar datos:', error);
       throw error;
     }
-}
+  }
+
+  async eliminarMensaje(IdMensaje: string): Promise<any> {
+    try {
+      return await lastValueFrom(this.http.delete<any>(`${this.apiUrl}/${IdMensaje}`));
+    } catch (error) {
+      console.error('Error al eliminar mensaje:', error);
+      throw error;
+    }
+  }
+   // Obtener un mensaje específico por ID
+    async obtenerMensajePorId(IdMensaje: number): Promise<any> {
+    try {
+      return await lastValueFrom(this.http.get<any>(`${this.apiUrl}/${IdMensaje}`));
+    } catch (error) {
+      console.error('Error al obtener el mensaje:', error);
+      throw error;
+    }
+  }
+
+  // Modificar un mensaje
+  async modificarMensaje(IdMensaje: number, nuevoMensaje: string): Promise<any> {
+    try {
+      const data = { Mensaje: nuevoMensaje };
+      return await lastValueFrom(this.http.put<any>(`${this.apiUrl}/modificar/${IdMensaje}`, data));
+    } catch (error) {
+      console.error('Error al modificar mensaje:', error);
+      throw error;
+    }
+  }
 }

@@ -73,6 +73,10 @@ h2 {
     text-decoration: none;
 }
 
+.btn-primary{
+    margin-right: 10px;
+}
+
 .btn:hover {
     background-color: #c55a1e;
 }

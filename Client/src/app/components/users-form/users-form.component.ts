@@ -90,4 +90,8 @@ ngOnInit(): void {
       this.userform.markAllAsTouched();
     }
   }
+
+  async volver(){
+    this.router.navigate(['/socios'])
+  }
 }

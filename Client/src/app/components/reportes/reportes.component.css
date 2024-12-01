@@ -129,3 +129,37 @@
     margin-bottom: 20px; /* Ajusta el valor */
     padding-top: 40px;
  }
+
+ .top-bar {
+    width: 100%;
+    background-color: #4c5773;
+    color: #fff;
+    text-align: left; 
+    padding: 10px 20px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar-text {
+    font-size: 16px;
+    padding-right: 60px;
+}
+
+.top-bar-index {
+    background-color: #c55a1e; /* Color de fondo de la barra */
+    color: #fff; /* Color del texto */
+    display: flex; /* Usa flexbox para alinear los elementos */
+    padding-right: 30px; /* Padding interno */
+}
+
+.top-bar-text-index {
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 10px 100px 10px 30px; /* Espacio interno para hacer clic más fácilmente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+}
+
+.top-bar-text-index:hover {
+    background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+}

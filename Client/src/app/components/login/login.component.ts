@@ -17,6 +17,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isModalVisible: boolean = false;
   modalMessage: string = '';
+  showPassword: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -47,14 +48,24 @@ export class LoginComponent {
         },
         error => {
           console.error('Error de autenticación:', error);
-          this.modalMessage = 'Hubo un error al iniciar sesión. Verifique sus datos e intente nuevamente.';
+          this.modalMessage = 'Hubo un error al iniciar sesión. Verifique sus datos e intente nuevamente. Recuerda que las mayúsculas y minúsculas tambien cuentan';
           this.isModalVisible = true;
         }
       );
     }
   }
 
+   // Método para abrir el modal con el mensaje para la contraseña olvidada
+   openModal() {
+    this.modalMessage = 'En caso de haber olvidado tu contraseña, por favor ve al club para restablecerla.';
+    this.isModalVisible = true;
+  }
+
   closeModal() {
     this.isModalVisible = false;
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

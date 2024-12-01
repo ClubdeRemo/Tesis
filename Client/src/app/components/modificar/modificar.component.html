@@ -1,6 +1,7 @@
 <div class="top-bar">
     <span class="top-bar-text">Asociación Cordobesa de Remo</span>
 </div>
+
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>Modificar Usuario</h2>
@@ -54,6 +55,21 @@
             </div>
         </div>
 
+        <!-- Contraseña -->
+        <div class="form-group password-wrapper">
+            <label for="Contraseña">Contraseña</label>
+            <input [type]="showPassword ? 'text' : 'password'" id="Contraseña" formControlName="Contraseña" placeholder="Introduzca la Contraseña" >
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+                <span class="material-icons">
+                    {{ showPassword ? 'visibility_off' : 'visibility' }}
+                </span>
+                </button>
+            <div *ngIf="userform.get('Contraseña')?.invalid && userform.get('Contraseña')?.touched">
+                <small *ngIf="userform.get('Contraseña')?.errors?.['required']">La contraseña es requerida.</small>
+                <small *ngIf="userform.get('Contraseña')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+            </div>
+        </div>
+
         <!-- Fecha de Nacimiento -->
         <div class="form-group">
             <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
@@ -91,5 +107,7 @@
 
 
         <button type="submit" class="btn btn-primary" [disabled]="!isEditing">Editar Socio</button>
+        <button type="submit" class="btn btn-primary volver" (click)="volver()">Volver</button>
     </form>
 </div>
+

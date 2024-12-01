@@ -1,81 +1,87 @@
 <mat-card class="custom-card">
-    <div class="card-header">
-      <mat-card-title class="custom-title">Gestión de Socios</mat-card-title>
-      <button mat-fab [routerLink]="['/users/form']">
-        <mat-icon>add</mat-icon>
-      </button>
-      <mat-card-content>
-        <form [formGroup]="dniForm" (ngSubmit)="buscarUsuario()" class="search-form">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Ingrese el DNI</mat-label>
-            <input matInput formControlName="dni" type="text" placeholder="Ej: 12345678" />
-            <mat-error *ngIf="dniForm.get('dni')?.hasError('required')">El DNI es obligatorio</mat-error>
-            <mat-error *ngIf="dniForm.get('dni')?.hasError('pattern')">El DNI debe ser un número válido</mat-error>
-          </mat-form-field>
-          <button mat-raised-button color="primary" type="submit" [disabled]="dniForm.invalid">Buscar</button>
-        </form>
-        <button mat-raised-button color="primary" (click)="refrescarFormulario()">
-          Refrescar
-        </button>
-      </mat-card-content>
-    </div>
+  <div class="card-header">
+    
+    <div class="top-bar">
+      <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+  </div>
+
+    <button class="full-rounded custom-button" [routerLink]="['/users/form']">
+      <span>Crear Usuario</span>
+      
+    </button>
+    
+
     <mat-card-content>
-      <div class="table-container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
-          <!-- Columnas de la tabla -->
-          <ng-container matColumnDef="Id">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> N°Socio </th>
-            <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Id }} </td>
-          </ng-container>
-          <ng-container matColumnDef="Nombre">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> Nombre </th>
-            <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Nombre }} </td>
-          </ng-container>
-          <ng-container matColumnDef="Apellido">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> Apellido </th>
-            <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Apellido }} </td>
-          </ng-container>
-          <ng-container matColumnDef="Dni">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> DNI </th>
-            <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Dni }} </td>
-          </ng-container>
-          <ng-container matColumnDef="EstadoSocio">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> Estado Socio </th>
-            <td mat-cell *matCellDef="let element" class="custom-cell" [ngClass]="{'estado-al-dia': element.EstadoSocio === 'Al dia'}">
-              {{ element.EstadoSocio }}
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="Acciones">
-            <th mat-header-cell *matHeaderCellDef class="custom-header"> Acciones </th>
-            <td mat-cell *matCellDef="let socio">
-              <button mat-icon-button color="warn" matTooltip="Eliminar" (click)="eliminarSocio(socio.Id)">
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button mat-icon-button matTooltip="Editar" (click)="modificar(socio.Id)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button matTooltip="Ver todo" (click)="lista(socio.Id)">
-                <span class="material-symbols-outlined">
-                  visibility
-                  </span>
-              </button>
-            </td>
-          </ng-container>
-  
-          <!-- Encabezado y filas de la tabla -->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
-        </table>
-      </div>
-  
-      <!-- Paginador manual -->
-      <div class="paginador-container">
-        <button mat-button (click)="cambiarPagina({pageIndex: currentPage - 1, pageSize: pageSize})" [disabled]="currentPage === 0">
-          Anterior
-        </button>
-        <button mat-button (click)="cambiarPagina({pageIndex: currentPage + 1, pageSize: pageSize})" [disabled]="currentPage >= (totalRecords / pageSize) - 1">
-          Siguiente
-        </button>
-      </div>
+      <!-- Formulario de búsqueda -->
+      <form [formGroup]="dniForm" (ngSubmit)="buscarUsuario()" class="search-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Ingrese el DNI</mat-label>
+          <input matInput formControlName="dni" type="text" placeholder="Ej: 12345678" />
+          <mat-error *ngIf="dniForm.get('dni')?.hasError('required')">El DNI es obligatorio</mat-error>
+          <mat-error *ngIf="dniForm.get('dni')?.hasError('pattern')">El DNI debe ser un número válido</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="dniForm.invalid" class="buscar-button">Buscar</button>
+        <button mat-raised-button color="accent" class="refresh-button" (click)="refrescarFormulario()">Refrescar</button>
+        
+        
+      </form>
+        
     </mat-card-content>
-  </mat-card>
+  </div>
+ 
+
+  <mat-card-content>
+    <!-- Tabla de socios -->
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 custom-table">
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">N°Socio</th>
+          <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Id }} </td>
+        </ng-container>
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">Nombre</th>
+          <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Nombre }} </td>
+        </ng-container>
+        <ng-container matColumnDef="Apellido">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">Apellido</th>
+          <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Apellido }} </td>
+        </ng-container>
+        <ng-container matColumnDef="Dni">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">DNI</th>
+          <td mat-cell *matCellDef="let element" class="custom-cell"> {{ element.Dni }} </td>
+        </ng-container>
+        <ng-container matColumnDef="EstadoSocio">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">Estado Socio</th>
+          <td mat-cell *matCellDef="let element" class="custom-cell" [ngClass]="{
+            'estado-al-dia': element.EstadoSocio === 'Al dia',
+            'estado-mora': element.EstadoSocio === 'Mora',
+            'estado-inactivo': element.EstadoSocio === 'Inactivo'
+            }">{{ element.EstadoSocio }}
+        </td>
+        </ng-container>
+        <ng-container matColumnDef="Acciones">
+          <th mat-header-cell *matHeaderCellDef class="custom-header">Acciones</th>
+          <td mat-cell *matCellDef="let socio" class="custom-cell actions-cell">
+            <button mat-icon-button color="warn" matTooltip="Eliminar" aria-label="Eliminar socio" (click)="eliminarSocio(socio.Id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" matTooltip="Editar" aria-label="Editar socio" (click)="modificar(socio.Id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Ver todo" aria-label="Ver detalles" (click)="lista(socio.Id)">
+              <span class="material-symbols-outlined">visibility</span>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
+      </table>
+    </div>
+
+    <!-- Paginador -->
+    <div class="paginador-container">
+      <button mat-button (click)="cambiarPagina({pageIndex: currentPage - 1, pageSize: pageSize})" [disabled]="currentPage === 0">Anterior</button>
+      <button mat-button (click)="cambiarPagina({pageIndex: currentPage + 1, pageSize: pageSize})" [disabled]="currentPage >= (totalRecords / pageSize) - 1">Siguiente</button>
+    </div>
+  </mat-card-content>
+</mat-card>

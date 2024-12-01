@@ -4,7 +4,12 @@
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>¡Bienvenido!</h2>
-    <div class="buttons">
-        
-    </div>
+    <a [routerLink]="['/socios']" routerLinkActive="active" class="btn socios-btn">Historial</a>
+<!--     <div *ngFor="let user of data" class="user-item">
+        <span>{{ user.Nombre }} {{ user.Apellido }}</span>
+        <button mat-icon-button matTooltip="Ver historial" (click)="historial(user.Id)">
+        </button>
+    </div> -->
+    
+    
 </div>

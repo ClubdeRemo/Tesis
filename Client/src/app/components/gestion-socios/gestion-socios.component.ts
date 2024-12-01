@@ -15,7 +15,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-
 @Component({
   selector: 'app-gestion-socios',
   standalone: true,
@@ -51,7 +50,10 @@ export class GestionSociosComponent implements OnInit {
   constructor(private router: Router, private usersService: UsersService, private fb: FormBuilder) {
     this.dataSource = new MatTableDataSource<User>(this.data); // Inicializa con los datos originales
     this.dniForm = this.fb.group({
-      dni: ['', [Validators.required, Validators.pattern(/^\d+$/)]] // Validación para que solo acepte números
+      dni: ['', [
+        Validators.required,
+        Validators.pattern(/^\d{8}$/) // Validación para que el DNI tenga exactamente 8 dígitos numéricos
+      ]]
     });
     const today = new Date();
     this.currentDate = today.toLocaleDateString();
@@ -181,5 +183,4 @@ export class GestionSociosComponent implements OnInit {
     this.currentPage = 0; // Reinicia la página actual
     this.updateDataSource(); // Actualiza los datos según la paginación
   }
-  
 }

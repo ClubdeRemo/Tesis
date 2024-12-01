@@ -39,6 +39,7 @@ export class ModificarComponent {
       Id: new FormControl({ value: '', disabled: false }), // El Id siempre habilitado
       Nombre: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
       Apellido: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
+      Contraseña: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
       Email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       FechaDeNacimiento: new FormControl({ value: '', disabled: true }, [Validators.required, this.fechaNoPosterior()]),
       Dni: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern('^[0-9]{8}$')]),
@@ -70,12 +71,14 @@ buscarSocioPorId(): void {
           Nombre: socio.Nombre,
           Apellido: socio.Apellido,
           Email: socio.Email,
+          Contraseña: socio.Contraseña,
           FechaDeNacimiento: fechaFormatoCorrecto, // Asignar la fecha en el formato correcto
           Dni: socio.Dni
         });
         this.userform.get('Nombre')?.enable();
         this.userform.get('Apellido')?.enable();
         this.userform.get('Email')?.enable();
+        this.userform.get('Contraseña')?.enable();
         this.userform.get('FechaDeNacimiento')?.enable();
         this.userform.get('Dni')?.enable();
         this.userform.get('Categorias')?.enable();
@@ -149,6 +152,8 @@ buscarSocioPorId(): void {
     }
   }
   
-  
+  async volver(){
+    this.router.navigate(['/socios'])
+  }
   
 }

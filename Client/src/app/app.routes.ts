@@ -16,6 +16,8 @@ import { HistorialPagosComponent } from './components/historial-pagos/historial-
 import { MenuUsuarioComponent } from './components/menu-usuario/menu-usuario.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ReportesUsuarioComponent } from './components/reportes-usuario/reportes-usuario.component';
+import { PagoModalComponent } from './components/pago-modal/pago-modal.component';
+import { ModificarMensajeComponent } from './components/modificar-mensaje/modificar-mensaje.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/tablero', pathMatch: 'full' },
@@ -24,7 +26,9 @@ export const routes: Routes = [
     {path: 'users/form',component: UsersFormComponent},
     {path: 'socios',component: GestionSociosComponent},
     {path: 'historia',component: HistoriaComponent},
-    {path: 'reportes',component: ReportesComponent},
+    {path: 'reportes', component: ReportesComponent },    
+    {path: 'modificar/mensaje/:id',component: ModificarMensajeComponent},
+    {path: 'reportes/usuario', component: ReportesUsuarioComponent },  
     {path: 'menu/admin',component: MenuAdminComponent},
     {path: 'registrar/pago',component: RegistrarPagoComponent},
     {path: 'modificar',component: ModificarComponent},
@@ -35,7 +39,7 @@ export const routes: Routes = [
     {path: 'historial/pagos/:UserId', component: HistorialPagosComponent },
     {path: 'menu/usuario', component: MenuUsuarioComponent },
     {path: 'clima', component: WeatherComponent },
-    {path: 'reportes/usuario', component: ReportesUsuarioComponent },
+
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
 ];

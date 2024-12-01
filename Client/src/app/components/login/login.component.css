@@ -51,6 +51,7 @@ h3 {
 .form-group {
     margin-bottom: 15px;
     text-align: left;
+    
 }
 
 .form-group label {
@@ -167,3 +168,51 @@ h3 {
     text-decoration: none;
     cursor: pointer;
   }
+
+  .password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Espacio para el ícono */
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+}
+
+.password-wrapper .toggle-password:focus {
+    outline: none;
+    
+}
+
+
+/* Estilo personalizado para reducir el tamaño del ícono */
+.icon-eye {
+  font-size: 5px; /* Ajusta el tamaño según tu preferencia */
+  cursor: pointer; /* Para que sea clickeable */
+  vertical-align: middle; /* Alinearlo verticalmente con el campo */
+  margin-left: -30px; /* Ajusta la posición según sea necesario */
+
+}
+
+.forgot-password {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Añade una transición suave */
+}
+
+.forgot-password:hover {
+    color: #0056b3; /* Cambia a un tono más oscuro al pasar el ratón */
+    text-decoration: underline; /* Añade subrayado */
+}

@@ -1,4 +1,8 @@
-.full-width {
-    width: 100%;
-  }
-  
+/* Asegúrate de que los elementos estén visibles */
+.mat-datepicker-toggle-button {
+  display: block !important;
+}
+
+.mat-datepicker-content {
+  z-index: 10000; /* Asegúrate de que el calendario esté por encima de otros elementos */
+}

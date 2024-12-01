@@ -8,31 +8,43 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { WeatherComponent } from "../weather/weather.component";
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ModificarMensajeComponent } from '../modificar-mensaje/modificar-mensaje.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
   imports: [
-    NavbarComponent,
     CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatTableModule,
     HttpClientModule,
-    WeatherComponent],
+    WeatherComponent,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule
+  ],
   templateUrl: './reportes.component.html',
-  styleUrl: './reportes.component.css'
+  styleUrls: ['./reportes.component.css']
 })
 
 export class ReportesComponent implements OnInit {
   msj: FormGroup;
   dataSource: MatTableDataSource<any>;
-  displayedColumns: string[] = ['Mensaje', 'Fecha']; // Añade la columna Fecha
+  displayedColumns: string[] = ['Mensaje', 'Fecha', 'Acciones'];
 
+  mensajeSeleccionado: any = null;
 
   constructor(
     private fb: FormBuilder, 
-    private reportesService: ReportesService
+    private reportesService: ReportesService,
+    private dialog: MatDialog
   ) {
     this.dataSource = new MatTableDataSource<any>([]);
     this.msj = this.fb.group({
@@ -41,27 +53,25 @@ export class ReportesComponent implements OnInit {
     });
   }
 
-  async ngOnInit(): Promise<void> {
-    try {
-      // Llama al servicio para obtener los datos desde la base de datos
-      const data: [] = await this.reportesService.obtenerDatos();
-      this.dataSource = new MatTableDataSource<any>(data);  // Pasa los datos a la tabla
-    } catch (error) {
-      console.error('Error al cargar los datos:', error);
-    }
+  ngOnInit(): void {
+    this.cargarMensajes();
   }
 
   async enviarMsj() {
     if (this.msj.valid) {
-      console.log('Mensaje válido:', this.msj.value);
-      
       try {
-        // Espera a que se envíe el mensaje antes de cargar los nuevos datos
-        await this.reportesService.enviarDatos(this.msj.value);
-        this.msj.reset();  // Resetear el formulario después de enviar el mensaje
-        await this.cargarMensajes();  // Recargar los mensajes
+        if (this.mensajeSeleccionado) {
+          // Si estamos editando, actualizamos el mensaje
+          await this.reportesService.modificarMensaje(this.mensajeSeleccionado.IdMensaje, this.msj.value);
+        } else {
+          // Si es un nuevo mensaje, lo enviamos
+          await this.reportesService.enviarDatos(this.msj.value);
+        }
+        this.msj.reset();
+        this.mensajeSeleccionado = null;
+        this.cargarMensajes(); // Recargamos los mensajes después de la operación
       } catch (error) {
-        console.error('Error al enviar el mensaje:', error);
+        console.error('Error al enviar o modificar el mensaje:', error);
       }
     } else {
       console.log('Mensaje inválido');
@@ -69,6 +79,20 @@ export class ReportesComponent implements OnInit {
     }
   }
 
+  editarMensaje(IdMensaje: number, Mensaje: string): void {
+    const dialogRef = this.dialog.open(ModificarMensajeComponent, {
+      data: { id: IdMensaje, mensaje: Mensaje }, 
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.cargarMensajes(); // Recargar la lista si se modificó algo
+      }
+    });
+  }
+
+  // Función para cargar los mensajes
   async cargarMensajes() {
     try {
       const data = await this.reportesService.obtenerDatos();
@@ -77,23 +101,27 @@ export class ReportesComponent implements OnInit {
       console.error('Error al cargar los mensajes:', error);
     }
   }
-  
+
+  async eliminarMensaje(IdMensaje: string) {
+    const confirmacion = confirm("¿Estás seguro de que deseas eliminar este mensaje?");
+    if (confirmacion) {
+      try {
+        await this.reportesService.eliminarMensaje(IdMensaje);
+        alert("Mensaje eliminado correctamente.");
+        this.cargarMensajes(); // Recargar los mensajes después de eliminar
+      } catch (error) {
+        console.error("Error al eliminar mensaje:", error);
+        alert("Hubo un error al intentar eliminar el mensaje.");
+      }
+    }
+  }
 }
 
-export function maxWordLengthValidator(maxLength: number): ValidatorFn {
-  return (control: AbstractControl): { [key: string]: any } | null => {
-    // Verifica si control.value es null o undefined y lo convierte a string vacío si lo es
+export function maxWordLengthValidator(maxLength: number) {
+  return (control: AbstractControl) => {
     const value = control.value ? control.value.toString() : '';
-
-    const words: string[] = value.split(/\s+/); // Aseguramos que words es un arreglo de strings
-
-    // Verifica si hay alguna palabra con más de 'maxLength' caracteres
+    const words: string[] = value.split(/\s+/);
     const hasLongWord = words.some((word: string) => word.length > maxLength);
-
-    // Retorna un error si se encuentra una palabra muy larga
     return hasLongWord ? { 'maxWordLength': { value: control.value } } : null;
   };
-
-
-  
 }
