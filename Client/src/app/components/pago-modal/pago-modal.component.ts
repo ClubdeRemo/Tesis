@@ -54,26 +54,23 @@ export class PagoModalComponent {
     const nuevoPago: Pagos = {
       UserId: this.data.UserId,
       FechaPago: this.selectedFecha || new Date(),
-      FechaVto: this.calculateFechaVto(),
+      FechaVto: this.calculateFechaVto(this.selectedFecha || new Date()),
       Tipo: this.selectedMetodo || 'Efectivo',
     };
   
     this.dialogRef.close(nuevoPago); // Devuelve el pago al cerrar el modal
   }
-  private calculateFechaVto(): Date {
-    const hoy = new Date();
-    // Crear una nueva fecha que sea el mismo día, pero el mes siguiente
-    const fechaVto = new Date(hoy);
-    fechaVto.setMonth(hoy.getMonth() + 1);  // Establecer el mes siguiente
+  private calculateFechaVto(fechaPago: Date): Date {
+    const fechaVto = new Date(fechaPago);  // Usar la fecha seleccionada como base
+    fechaVto.setMonth(fechaPago.getMonth() + 1);  // Establecer el mes siguiente
   
     // Si el mes siguiente no tiene el mismo día, ajustamos al último día del mes
-    if (fechaVto.getMonth() !== (hoy.getMonth() + 1) % 12) {
+    if (fechaVto.getMonth() !== (fechaPago.getMonth() + 1) % 12) {
       fechaVto.setDate(0); // Establece el último día del mes anterior (mes siguiente)
     }
   
     return fechaVto;
   }
-  
 
 // Aqui deberia realizar una relacion bidireccional con [(ngModel)]="selectedFecha": Realiza el enlace bidireccional entre el modelo de datos
 // Tambien [matDatepicker]="picker": Vincula este campo de entrada con un componente de calendario identificado como picker.

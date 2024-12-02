@@ -38,30 +38,33 @@ export class PagoService {
     return nuevoPago;
   }
 
+  // Función para calcular el estado basado en los pagos
   async calcularEstado(userId: number): Promise<string> {
     const pagos = await this.obtenerPagosPorUsuario(userId);
     const fechaActual = new Date();
-//REVISAR SI CUANDO HAY UN PAGO EN MORA NO SE PISA CON INACTIVO
-    const tienePagosPendientes = pagos.some(pago => pago.FechaVto < new Date());
-     // Determinar si hay pagos con más de 3 meses de vencimiento
+    
+    const tienePagosPendientes = pagos.some(pago => pago.FechaVto < new Date()); // Pagos vencidos
     const tienePagosInactivos = pagos.some(pago => {
-    const fechaVto = new Date(pago.FechaVto); 
-    const diferenciaMeses = (fechaActual.getFullYear() - fechaVto.getFullYear()) * 12 
+      const fechaVto = new Date(pago.FechaVto); 
+      const diferenciaMeses = (fechaActual.getFullYear() - fechaVto.getFullYear()) * 12 
                         + fechaActual.getMonth() - fechaVto.getMonth();
-  return diferenciaMeses > 3; // Más de 3 meses vencido
-});
-    //pagos.some(...) verifica si al menos uno de los pagos cumple una condición.
-    //La condición es que la fecha de vencimiento del pago (pago.FechaVto) sea anterior a la fecha actual (new Date()), 
-    //lo que indica un pago vencido.
+      return diferenciaMeses > 3; // Más de 3 meses vencido
+    });
 
-    /* if (!pagos.length) {
-      return 'Inactivo'; // No tiene pagos registrados. Por ahora creo que no hace falta porque el socio se carga predeterminado como 'Al dia'
-    }  */
+    // Revisar si existe un pago reciente que lo actualice a "Al día"
+    const tienePagoReciente = pagos.some(pago => {
+      const fechaPago = new Date(pago.FechaPago);
+      return fechaPago >= new Date(fechaActual.setHours(0, 0, 0, 0)); // Pago realizado hoy
+    });
+
+    if (tienePagoReciente) {
+      return 'Al día'; // Si existe un pago reciente
+    }
 
     if (tienePagosInactivos) {
-      return 'Inactivo'; // Tiene pagos vencidos mayores a 3 meses
+      return 'Inactivo'; // Si tiene pagos vencidos mayores a 3 meses
     } else if (tienePagosPendientes) {
-      return 'Mora'; // Tiene pagos pendientes de vencer
+      return 'Mora'; // Si tiene pagos pendientes de vencer
     } else {
       return 'Al día'; // Todos los pagos están al día
     }
@@ -75,20 +78,20 @@ export class PagoService {
     });
   }
 
-// Función para actualizar el estado del socio en la tabla 'User'
-async actualizarEstadoSocio(userId: number): Promise<void> {
-  const estado = await this.calcularEstado(userId);
+  // Función para actualizar el estado del socio en la tabla 'User'
+  async actualizarEstadoSocio(userId: number): Promise<void> {
+    const estado = await this.calcularEstado(userId);
 
-  console.log(`Pagos del usuario ${userId}:`, await this.obtenerPagosPorUsuario(userId));
-  console.log(`Estado calculado para el usuario ${userId}: ${estado}`);
+    console.log(`Pagos del usuario ${userId}:`, await this.obtenerPagosPorUsuario(userId));
+    console.log(`Estado calculado para el usuario ${userId}: ${estado}`);
   
-  const resultado = await this.userRepository.update({ Id: userId }, { EstadoSocio: estado });
-  console.log('Resultado de la actualización:', resultado);
+    const resultado = await this.userRepository.update({ Id: userId }, { EstadoSocio: estado });
+    console.log('Resultado de la actualización:', resultado);
 
-  if (resultado.affected === 0) {
-    console.error(`No se pudo actualizar el usuario con Id ${userId}`);
+    if (resultado.affected === 0) {
+      console.error(`No se pudo actualizar el usuario con Id ${userId}`);
+    }
   }
-}
 
   @Cron('0 0 * * *') // Se ejecutará todos los días a medianoche
   async actualizarEstadosUsuarios() {
@@ -98,5 +101,4 @@ async actualizarEstadoSocio(userId: number): Promise<void> {
     }
     console.log('Actualización diaria de estados completada');
   }
-
 }
