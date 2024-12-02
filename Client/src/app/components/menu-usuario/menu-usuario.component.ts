@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterModule, Router } from '@angular/router'; // Importa Router de Angular
 import { User } from '../../interfaces/User';
 import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-menu-usuario',
@@ -12,11 +13,11 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./menu-usuario.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
 export class MenuUsuarioComponent {
-
+  userId: string | null = localStorage.getItem('user_id');
   totalRecords: number = 0;
   data: User[] = []; 
 
-  constructor(private router: Router, private usersService: UsersService) { }
+  constructor(private router: Router, private usersService: UsersService, private authService: AuthService) { }
 
   async ngOnInit(): Promise<void> {
     try {
@@ -27,13 +28,13 @@ export class MenuUsuarioComponent {
       console.error('Error al cargar los datos:', error);
     }
   }
-
-  historial(userId: number | undefined): void {
-    if (userId !== undefined && userId > 0) {
-        this.router.navigate(['/historial/pagos', userId]);
+  historial(userId: string | null): void {
+    if (userId) {
+      this.router.navigate([`/historial/pagos/${userId}`]);
     } else {
-        console.error('El UserId no es válido.');
+      // Si userId es null, redirigir al login o mostrar un mensaje de error
+      this.router.navigate(['/login']);
     }
-}
-
+  }
+  
 }

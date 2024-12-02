@@ -23,6 +23,7 @@ export class AuthController {
     const { Id, Nombre, Contraseña } = signInDto;
     const token = await this.authService.signIn(Id, Nombre, Contraseña);
     const user = await this.authService.getUserById(Id); // Método implementado abajo
+    console.log(token);
     return {
       token,
       user: {
@@ -31,6 +32,7 @@ export class AuthController {
         rol: user.Categorias,
       },
     };
+    
   }
 
   @UseGuards(AuthGuard)

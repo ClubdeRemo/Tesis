@@ -35,6 +35,8 @@ export class HistorialPagosComponent {
   dataSource: MatTableDataSource<Pagos>;
   data: Pagos[] = [];
   totalRecords: number = 0;
+  userId!: string;
+
 
   constructor(
     private router: Router, 
@@ -42,6 +44,10 @@ export class HistorialPagosComponent {
     private pagosService: PagosService, 
   ) {
     this.dataSource = new MatTableDataSource<Pagos>(this.data);
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.userId = params.get('UserId')!;
+      console.log('UserId:', this.userId);
+    });
   }
 
   async ngOnInit(): Promise<void> {

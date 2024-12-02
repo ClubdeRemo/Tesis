@@ -8,19 +8,20 @@ body, html {
     color: #333;
     line-height: 1.6;
     padding-bottom: 100px; /* Evitar superposición del video con contenido */
-    overflow-x: auto; /* Permite desplazamiento horizontal */
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal */
     overflow-y: hidden; /* Oculta el desplazamiento vertical */
 }
 
 /* Contenedor del mensaje de bienvenida */
 .welcome-container {
-    position: absolute; /* Posición absoluta para que esté encima del video */
-    top: 35%; /* Centrado verticalmente */
-    left: 50%; /* Centrado horizontalmente */
-    transform: translate(-50%, -50%); /* Ajuste para centrar el contenido */
-    z-index: 2; /* Asegurarse que quede encima del video */
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
     text-align: center;
     color: white;
+    max-width: 100%; /* Evita el desbordamiento */
 }
 
 .welcome-container img {
@@ -29,15 +30,10 @@ body, html {
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
-h2.h2-index {
-    font-size: 48px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-}
-
 /* Sección del video */
 .video-section {
     width: 100%;
-    height: 100vh; /* El video ocupa el 100% de la altura de la pantalla */
+    height: 100vh;
     position: relative;
     overflow: hidden;
 }
@@ -45,36 +41,69 @@ h2.h2-index {
 .video-section video {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* El video cubre toda la pantalla */
-    filter: brightness(0.6); /* Oscurece el video para que el texto sea más legible */
+    object-fit: cover;
+    filter: brightness(0.6);
 }
 
+/* Contenedor del texto adicional */
 /* Contenedor del texto adicional */
 .about-acr {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 40px 20px;
-    max-width: 800px;
-    margin: 50px auto; /* Centrado */
+    max-width: 90%; /* Cambié el max-width a 90% para asegurarse de que no exceda el tamaño de la pantalla */
+    margin: 50px auto;
     text-align: center;
     z-index: 1;
     position: relative;
-    white-space: nowrap; /* Evita que el texto se desplace verticalmente */
-
+    white-space: normal; /* Permite que el texto se ajuste dentro del contenedor */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño total del contenedor */
 }
 
+/* Hacer que el texto sea responsivo */
 .about-acr h3 {
     font-size: 28px;
     color: #c55a1e;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
+/* Responsividad para texto */
 .about-acr p {
     font-size: 18px;
     line-height: 1.6;
     color: #333;
     line-height: 1.5;
+    text-align: center;
 }
 
-.alineacion {
-    text-align: center;
+/* Asegura que el contenedor se ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+    .about-acr {
+        max-width: 100%; /* El contenedor ocupa el 100% en pantallas pequeñas */
+        padding: 20px;
+    }
+
+    .about-acr h3 {
+        font-size: 24px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+
+    .about-acr p {
+        font-size: 16px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Media query adicional para pantallas más pequeñas (móviles) */
+@media (max-width: 480px) {
+    .about-acr {
+        padding: 15px; /* Menor padding para dispositivos más pequeños */
+    }
+
+    .about-acr h3 {
+        font-size: 20px; /* Tamaño de fuente más pequeño para pantallas muy pequeñas */
+        margin-bottom: 0.8rem; /* Reducir el margen inferior */
+    }
+
+    .about-acr p {
+        font-size: 14px; /* Reducir el tamaño del texto aún más */
+    }
 }

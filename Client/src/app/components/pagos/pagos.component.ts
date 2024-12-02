@@ -65,15 +65,22 @@ export class PagosComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     try {
-      // Obtén los datos de los usuarios y asigna el dataSource
+      // Obtén los datos de los usuarios
       const data: User[] = await this.usersService.obtenerDatos();
       this.totalRecords = data.length;
       this.data = data;
+  
+      // Inicializa el dataSource con los datos de la primera página
       this.updateDataSource();
-      this.dataSource = new MatTableDataSource<any>(data);
     } catch (error) {
       console.error('Error al cargar los datos:', error);
     }
+  }
+  
+  updateDataSource(): void {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.dataSource = new MatTableDataSource<any>(this.data.slice(startIndex, endIndex)); // Paginamos los datos
   }
   
   async abrirPagoModal(Socio: any): Promise<void> {
@@ -147,12 +154,6 @@ export class PagosComponent implements OnInit {
         this.dataSource = new MatTableDataSource<User>([]); // Limpia la tabla en caso de error
       }
     }
-  }
-
-  updateDataSource(): void {
-    const startIndex = this.currentPage * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.dataSource.data = this.data.slice(startIndex, endIndex); // Paginamos los datos
   }
 
   refrescarFormulario(): void {

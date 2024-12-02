@@ -4,12 +4,8 @@
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <h2>¡Bienvenido!</h2>
-    <a [routerLink]="['/socios']" routerLinkActive="active" class="btn socios-btn">Historial</a>
-<!--     <div *ngFor="let user of data" class="user-item">
-        <span>{{ user.Nombre }} {{ user.Apellido }}</span>
-        <button mat-icon-button matTooltip="Ver historial" (click)="historial(user.Id)">
-        </button>
-    </div> -->
+    <button routerLinkActive="active" class="btn socios-btn" (click)="historial(userId)">Ver historial de pagos</button>
+
     
     
 </div>

@@ -28,7 +28,7 @@ export const routes: Routes = [
     {path: 'historia',component: HistoriaComponent},
     {path: 'reportes', component: ReportesComponent },    
     {path: 'modificar/mensaje/:id',component: ModificarMensajeComponent},
-    {path: 'reportes/usuario', component: ReportesUsuarioComponent },  
+    {path: 'reportes/usuario/', component: ReportesUsuarioComponent },  
     {path: 'menu/admin',component: MenuAdminComponent},
     {path: 'registrar/pago',component: RegistrarPagoComponent},
     {path: 'modificar',component: ModificarComponent},
@@ -37,7 +37,7 @@ export const routes: Routes = [
     {path: 'usuario/completo/:id', component: UsuarioCompletoComponent },
     {path: 'manual', component: ManualComponent },
     {path: 'historial/pagos/:UserId', component: HistorialPagosComponent },
-    {path: 'menu/usuario', component: MenuUsuarioComponent },
+    {path: 'menu/usuario/:UserId', component: MenuUsuarioComponent },
     {path: 'clima', component: WeatherComponent },
 
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
