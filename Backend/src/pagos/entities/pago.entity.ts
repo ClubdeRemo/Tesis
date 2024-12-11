@@ -13,12 +13,15 @@ export class Pagos {
   @JoinColumn({ name: 'UserId' }) // Este es el campo que se usa para la relación
   user: User; // Relación de tipo 'User'
 
-  @Column()
+  @Column({ type: 'datetime' })
   FechaPago: Date;
-
-  @Column()
+  
+  @Column({ type: 'datetime' })
   FechaVto: Date;
 
   @Column()
   Tipo: 'Efectivo' | 'Transferencia';
+
+  @Column({ type: 'decimal', precision: 20, scale: 2, default: 0.0 })
+  Monto: number;
 }

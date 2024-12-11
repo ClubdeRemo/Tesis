@@ -286,3 +286,8 @@
 .busqueda {
 margin-top: 70px;
 }
+
+/* Contenedor de la card */
+.busqueda {
+    position: relative;
+}

@@ -75,9 +75,11 @@ export class LoginComponent implements OnInit {
   }
   
   // Método para abrir el modal de error
-  openModal(): void {
+  openModal(message: string = 'Para restablecer la contraseña por favor acercarse al club'): void {
+    this.modalMessage = message;
     this.isModalVisible = true;
   }
+  
 
   // Método para cerrar el modal
   closeModal(): void {

@@ -41,7 +41,7 @@ import { Pagos } from '../../interfaces/Pagos';
 })
 export class PagosComponent implements OnInit {
 
-  displayedColumns: string[] = ['Id', 'Socio', 'Gestión', 'Acciones'];
+  displayedColumns: string[] = ['Id', 'Socio', 'Dni', 'Gestión', 'Acciones'];
   dataSource: MatTableDataSource<any>; // Cambié 'User' por 'any' para incluir pagos
   pagos: any[] = []; // Declara la propiedad 'pagos' como un array vacío
   UserId!: number;
@@ -51,6 +51,7 @@ export class PagosComponent implements OnInit {
   pageSize: number = 5; 
   data: User[] = []; 
   totalRecords: number = 0;
+  Socio: any; 
 
   constructor(private router: Router, private pagosService: PagosService, private usersService: UsersService, private dialog: MatDialog, private route: ActivatedRoute, private fb: FormBuilder) {
     this.dataSource = new MatTableDataSource<any>([]); // Inicializamos la tabla vacía
@@ -109,6 +110,7 @@ export class PagosComponent implements OnInit {
           this.dataSource.data = [...this.pagos];
           Socio.EstadoSocio = estado; // Actualiza el estado localmente
           await this.actualizarUsuarios();
+          this.refrescarFormulario();
         } catch (error) {
           console.error('Error al guardar el pago:', error);
         }
@@ -175,4 +177,16 @@ export class PagosComponent implements OnInit {
     const filtroValor = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtroValor.trim().toLowerCase();
   }
+
+/*   async obtenerPagos(): Promise<void> {
+    try {
+      const pagos = await this.pagosService.obtenerPagos(); // Llama al servicio para obtener los pagos actualizados
+      this.pagos = pagos;
+      this.dataSource.data = pagos;
+    } catch (error) {
+      console.error('Error al obtener los pagos:', error);
+    }
+  }
+   */
+  
 }

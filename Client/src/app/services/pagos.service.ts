@@ -26,6 +26,16 @@ export class PagosService {
                                                     //enviando el objeto pago en el cuerpo de la solicitud.
   }
 
+  async obtenerTodosPagos(): Promise<{ pagos: Pagos[]; estado: string }> {
+    try {
+      return await lastValueFrom(this.http.get<{ pagos: Pagos[]; estado: string }>(`${this.apiUrl}/todos`));
+    } catch (error) {
+      console.error('Error al obtener los pagos de todos los socios:', error);
+      return { pagos: [], estado: 'Desconocido' }; // Devuelve valores predeterminados en caso de error
+    }
+  }
+  
+
 /*   // Método para obtener el historial de pagos
   obtenerPagos(): Observable<Pagos[]> {
     return this.http.get<Pagos[]>(`${this.apiUrl}`); // Esto usa la ruta base de 'historial/pagos'

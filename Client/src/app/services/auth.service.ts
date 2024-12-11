@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -15,7 +15,7 @@ export class AuthService {
 
  // Método para iniciar sesión y almacenar el token
  signIn(credentials: { Id: string; Nombre: string; Contraseña: string }): Observable<{ token: string, user: { id: string, nombre: string, rol: string } }> {
-  return this.http.post<{ token: string, user: { id: string, nombre: string, rol: string } }>(this.apiUrl, credentials);
+  return this.http.post<{ token: string, user: { id: string, nombre: string, rol: string } }>(this.apiUrl, credentials).pipe(catchError(this.handleError));
 }
 
 
@@ -60,5 +60,18 @@ public getUserCategoryFromToken(): string | null {
 // Método para cerrar sesión y eliminar el token
 logout(): void {
   localStorage.removeItem('token');
+}
+
+private handleError(error: HttpErrorResponse) {
+  let errorMessage = 'Ocurrió un error inesperado. Por favor, intenta nuevamente.';
+  
+  if (error.status === 401) {
+    errorMessage = 'Credenciales inválidas. Por favor, verifica que tu usuario y contraseña sean correctos.';
+  } else if (error.status === 0) {
+    errorMessage = 'No se puede conectar al servidor. Verifica tu conexión a Internet.';
+  }
+
+  // Devuelve el error para que pueda ser manejado por otros componentes si es necesario
+  return throwError(() => new Error(errorMessage));
 }
 }

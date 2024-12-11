@@ -5,10 +5,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';  
-import { MatNativeDateModule } from '@angular/material/core';  // Asegúrate de que esta línea esté presente
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Pagos } from '../../interfaces/Pagos';
 
 @Component({
@@ -21,63 +21,58 @@ import { Pagos } from '../../interfaces/Pagos';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatDatepickerModule,  // Asegúrate de importar este módulo
-    MatNativeDateModule,  // Asegúrate de importar este módulo
-    FormsModule,  
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './pago-modal.component.html',
-  styleUrl: './pago-modal.component.css'
+  styleUrls: ['./pago-modal.component.css']
 })
 export class PagoModalComponent {
-
+  pagoForm: FormGroup;
   metodos = ['Transferencia', 'Efectivo'];
 
-  selectedMes: string | null = null;
-  selectedMetodo: string | null = null;
-  selectedFecha: Date | null = null;
-//  UserId: number | null = null;
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { UserId: number }, public dialogRef: MatDialogRef<PagoModalComponent>) {
-//    this.UserId = data.UserId;
-    console.log('UserId recibido en el modal:', data.UserId);
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { UserId: number },
+    public dialogRef: MatDialogRef<PagoModalComponent>,
+    private fb: FormBuilder
+  ) {
+    this.pagoForm = this.fb.group({
+      monto: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      metodo: [null, Validators.required],
+      fechaPago: [null, Validators.required]
+    });
   }
 
   onCancelar(): void {
     this.dialogRef.close();
   }
+
   onConfirmar(): void {
-    if (!this.data.UserId) {
-      console.error('UserId es obligatorio.');
-      return;
+    if (this.pagoForm.valid) {
+      const { monto, metodo, fechaPago } = this.pagoForm.value;
+
+      const nuevoPago: Pagos = {
+        UserId: this.data.UserId,
+        FechaPago: fechaPago || new Date(),
+        FechaVto: this.calculateFechaVto(fechaPago || new Date()),
+        Tipo: metodo || 'Efectivo',
+        Monto: parseFloat(monto)
+      };
+
+      this.dialogRef.close(nuevoPago);
+    } else {
+      console.error('Formulario inválido:', this.pagoForm.errors);
     }
-  
-    const nuevoPago: Pagos = {
-      UserId: this.data.UserId,
-      FechaPago: this.selectedFecha || new Date(),
-      FechaVto: this.calculateFechaVto(this.selectedFecha || new Date()),
-      Tipo: this.selectedMetodo || 'Efectivo',
-    };
-  
-    this.dialogRef.close(nuevoPago); // Devuelve el pago al cerrar el modal
-  }
-  private calculateFechaVto(fechaPago: Date): Date {
-    const fechaVto = new Date(fechaPago);  // Usar la fecha seleccionada como base
-    fechaVto.setMonth(fechaPago.getMonth() + 1);  // Establecer el mes siguiente
-  
-    // Si el mes siguiente no tiene el mismo día, ajustamos al último día del mes
-    if (fechaVto.getMonth() !== (fechaPago.getMonth() + 1) % 12) {
-      fechaVto.setDate(0); // Establece el último día del mes anterior (mes siguiente)
-    }
-  
-    return fechaVto;
   }
 
-// Aqui deberia realizar una relacion bidireccional con [(ngModel)]="selectedFecha": Realiza el enlace bidireccional entre el modelo de datos
-// Tambien [matDatepicker]="picker": Vincula este campo de entrada con un componente de calendario identificado como picker.
+  private calculateFechaVto(fechaPago: Date): Date {
+    const fechaVto = new Date(fechaPago);
+    fechaVto.setMonth(fechaPago.getMonth() + 1);
+    if (fechaVto.getMonth() !== (fechaPago.getMonth() + 1) % 12) {
+      fechaVto.setDate(0);
+    }
+    return fechaVto;
+  }
 }
-/* 
-Obtenemos la fecha de hoy con new Date().
-Calculamos el mes siguiente con fechaVto.setMonth(hoy.getMonth() + 1). Este método establece el mes a uno más que el mes actual.
-Ajuste para meses con diferente número de días: Si el día de la fecha siguiente no existe en el nuevo mes 
-(como cuando se pasa de enero 31 a febrero), la propiedad getMonth() de la fecha resultante no coincidiría con el mes esperado.
- En ese caso, usamos setDate(0) para establecer la fecha al último día del mes anterior (el mes siguiente en este caso). */

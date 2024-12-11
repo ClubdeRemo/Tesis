@@ -5,6 +5,7 @@ import { ReportesService } from '../../services/reportes.service';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-modificar-mensaje',
@@ -14,7 +15,8 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   templateUrl: './modificar-mensaje.component.html',
   styleUrls: ['./modificar-mensaje.component.css']

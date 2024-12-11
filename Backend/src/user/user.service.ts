@@ -93,30 +93,39 @@ export class UserService {
   }
 
   async update(Id: number, updateUserDto: UpdateUserDto) {
+    const saltRounds = 10;
     try {
-      await this.UserRepository.createQueryBuilder() //El método createQueryBuilder() permite construir consultas SQL de manera programática.
-      .update(User)
-      .set({
-        Nombre: updateUserDto.Nombre,
-        Apellido: updateUserDto.Apellido,        
-        Email: updateUserDto.Email,              
-        FechaDeNacimiento: updateUserDto.FechaDeNacimiento, 
-        Dni: updateUserDto.Dni,                  
-        Contraseña: updateUserDto.Contraseña,
-        Categorias: updateUserDto.Categorias,
-        EstadoSocio: updateUserDto.EstadoSocio
-      })
-      .where("Id = :Id", { Id : Id})
-      .execute();
-      return{
-        statusCode:200,
-        msg: 'Se realizó la modificación con exito'
+      // Solo hashear la contraseña si se proporciona una nueva contraseña
+      let hashedPassword = updateUserDto.Contraseña;
+      if (updateUserDto.Contraseña) {
+        hashedPassword = await bcrypt.hash(updateUserDto.Contraseña, saltRounds);
       }
-    }
-    catch(error){
+  
+      await this.UserRepository.createQueryBuilder()
+        .update(User)
+        .set({
+          Nombre: updateUserDto.Nombre,
+          Apellido: updateUserDto.Apellido,
+          Email: updateUserDto.Email,
+          FechaDeNacimiento: updateUserDto.FechaDeNacimiento,
+          Dni: updateUserDto.Dni,
+          // Si no se proporciona una nueva contraseña, no se actualiza
+          ...(hashedPassword && { Contraseña: hashedPassword }),
+          Categorias: updateUserDto.Categorias,
+          EstadoSocio: updateUserDto.EstadoSocio,
+        })
+        .where("Id = :Id", { Id: Id })
+        .execute();
+  
+      return {
+        statusCode: 200,
+        msg: 'Se realizó la modificación con éxito'
+      };
+    } catch (error) {
       return new BadRequestException(error);
     }
   }
+  
 
   async remove(Id: number) {
     try { 

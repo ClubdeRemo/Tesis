@@ -13,11 +13,15 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./menu-usuario.component.css'] // Corrige 'styleUrl' a 'styleUrls'
 })
 export class MenuUsuarioComponent {
-  userId: string | null = localStorage.getItem('user_id');
+  userId: string | null = null;
   totalRecords: number = 0;
   data: User[] = []; 
 
-  constructor(private router: Router, private usersService: UsersService, private authService: AuthService) { }
+  constructor(private router: Router, private usersService: UsersService, private authService: AuthService) { 
+    if (typeof window !== 'undefined' && localStorage) {
+      this.userId = localStorage.getItem('user_id');
+    }
+  }
 
   async ngOnInit(): Promise<void> {
     try {
@@ -30,7 +34,7 @@ export class MenuUsuarioComponent {
   }
   historial(userId: string | null): void {
     if (userId) {
-      this.router.navigate([`/historial/pagos/${userId}`]);
+      this.router.navigate([`/historial/usuario/${userId}`]);
     } else {
       // Si userId es null, redirigir al login o mostrar un mensaje de error
       this.router.navigate(['/login']);

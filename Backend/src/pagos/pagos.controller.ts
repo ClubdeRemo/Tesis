@@ -13,16 +13,20 @@ export class PagoController {
   }
 
   @Get('/:UserId')
-  async obtenerPagos(@Param('UserId') UserId: number): Promise<{ pagos: Pagos[]; estado: string }> {
-    const pagos = await this.pagoService.obtenerPagosPorUsuario(UserId);
-    const estado = await this.pagoService.calcularEstado(UserId);
-
-
-      // Sincroniza el estado en la base de datos antes de devolver la respuesta
-    await this.pagoService.actualizarEstadoSocio(UserId);
-
-
-    
-    return { pagos, estado }; // Devuelve pagos y estado en UN SOLO OBJETO
+  async obtenerPagos(@Param('UserId') UserId: string): Promise<{ pagos: Pagos[]; estado: string }> {
+      if (UserId === 'todos') {
+          // Aquí llamas al servicio para obtener todos los pagos
+          const pagos = await this.pagoService.obtenerPagosHoy();
+          return { pagos, estado: 'OK' };
+      } else {
+          // Aquí llamas al servicio para obtener los pagos de un usuario específico
+          const pagos = await this.pagoService.obtenerPagosPorUsuario(Number(UserId));
+          const estado = await this.pagoService.calcularEstado(Number(UserId));
+          await this.pagoService.actualizarEstadoSocio(Number(UserId));
+          return { pagos, estado };
+      }
   }
+  
+
+
 }

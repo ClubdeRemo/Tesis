@@ -34,7 +34,10 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
     };
+    
   }
+
+  
   async getUserById(id: number) {
     const user = await this.usersService.findOne(id);
     if (!user) {

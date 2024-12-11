@@ -7,8 +7,10 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { LOCALE_ID } from '@angular/core';
+
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
-    provideAnimations(),importProvidersFrom(MatNativeDateModule), 
+    provideAnimations(),importProvidersFrom(MatNativeDateModule),  {provide: LOCALE_ID, useValue: 'es'},
     provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withFetch()), provideAnimationsAsync('noop')]
 };

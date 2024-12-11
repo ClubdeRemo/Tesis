@@ -39,7 +39,7 @@ export class ModificarComponent {
       Id: new FormControl({ value: '', disabled: false }), // El Id siempre habilitado
       Nombre: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
       Apellido: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
-      Contraseña: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.minLength(3)]),
+      Contraseña: new FormControl({ value: '', disabled: true }, [ Validators.minLength(3)]),
       Email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       FechaDeNacimiento: new FormControl({ value: '', disabled: true }, [Validators.required, this.fechaNoPosterior()]),
       Dni: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.pattern('^[0-9]{8}$')]),
@@ -57,8 +57,40 @@ ngOnInit(): void {
   }
 }
 
+guardarCambios(): void {
+  const formularioValores: User = this.userform.value;
+  const id = this.userform.get('Id')?.value; // Obtenemos el ID del formulario
+
+  // Construimos el objeto con los datos que vamos a enviar
+  const socioActualizado: User = {
+    Nombre: formularioValores.Nombre,
+    Apellido: formularioValores.Apellido,
+    Email: formularioValores.Email,
+    FechaDeNacimiento: formularioValores.FechaDeNacimiento,
+    Dni: formularioValores.Dni,
+    Categorias: formularioValores.Categorias,
+    
+  };
+
+  // Solo se agrega la contraseña si el usuario la proporciona
+  if (formularioValores.Contraseña?.trim()) {
+    socioActualizado.Contraseña = formularioValores.Contraseña;
+  } else {
+    // Si la contraseña no se proporciona, la dejamos sin cambios
+    delete socioActualizado.Contraseña;
+  }
+
+  // Llamamos al servicio para actualizar el usuario
+  this.usersService.actualizarUsuario(id, socioActualizado).subscribe(() => {
+    console.log('Socio actualizado exitosamente');
+  }, (error) => {
+    console.error('Error al actualizar el socio', error);
+  });
+}
+
+
 buscarSocioPorId(): void {
-  const id = this.userform.get('Id').value;
+  const id = this.userform.get('Id')?.value;
 
   if (id) {
     this.usersService.obtenerSocioPorId(id).subscribe((socio) => {
@@ -66,15 +98,18 @@ buscarSocioPorId(): void {
         // Convertir la fecha al formato 'yyyy-MM-dd'
         const fechaNacimiento = new Date(socio.FechaDeNacimiento);
         const fechaFormatoCorrecto = `${fechaNacimiento.getFullYear()}-${(fechaNacimiento.getMonth() + 1).toString().padStart(2, '0')}-${fechaNacimiento.getDate().toString().padStart(2, '0')}`;
-        
+
+        // Actualizar los valores del formulario, dejando la contraseña vacía
         this.userform.patchValue({
           Nombre: socio.Nombre,
           Apellido: socio.Apellido,
           Email: socio.Email,
-          Contraseña: socio.Contraseña,
-          FechaDeNacimiento: fechaFormatoCorrecto, // Asignar la fecha en el formato correcto
+          Contraseña: '', // Dejar la contraseña vacía al cargar los datos
+          FechaDeNacimiento: fechaFormatoCorrecto,
           Dni: socio.Dni
         });
+
+        // Habilitar los campos del formulario
         this.userform.get('Nombre')?.enable();
         this.userform.get('Apellido')?.enable();
         this.userform.get('Email')?.enable();
@@ -82,9 +117,9 @@ buscarSocioPorId(): void {
         this.userform.get('FechaDeNacimiento')?.enable();
         this.userform.get('Dni')?.enable();
         this.userform.get('Categorias')?.enable();
-    
-        // Establecer isEditing en true
-        this.isEditing = true; // Esto habilitará el botón de editar
+
+        // Establecer isEditing en true para habilitar el botón de editar
+        this.isEditing = true;
 
       } else {
         console.error('Socio no encontrado');
@@ -92,6 +127,7 @@ buscarSocioPorId(): void {
     });
   }
 }
+
   fechaNoPosterior() {
     return (control: AbstractControl) => {
       const fechaIngresada = new Date(control.value);

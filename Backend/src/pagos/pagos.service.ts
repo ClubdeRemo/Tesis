@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Between, Repository } from 'typeorm';
 import { Pagos } from './entities/pago.entity';
 import { User } from '../user/entities/user.entity';
 import { CreatePagosDto } from './dto/create-pago.dto';
@@ -23,11 +23,12 @@ export class PagoService {
     if (!user) {
       throw new Error('Usuario no encontrado');
     }
-
+    const now = new Date();
     // Crear el objeto de pago, asegurándonos de que el UserId sea un número
     const pago = this.pagoRepo.create({
       ...createPagosDto, // Usamos spread para los otros campos
       UserId: createPagosDto.UserId, // Aseguramos que el UserId se pase correctamente
+      FechaPago: createPagosDto.FechaPago || now,
     });
 
     const nuevoPago = await this.pagoRepo.save(pago);
@@ -93,6 +94,18 @@ export class PagoService {
     }
   }
 
+  async obtenerPagosHoy(): Promise<Pagos[]> {
+    const today = new Date();
+    const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+    const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+  
+    return this.pagoRepo.find({
+      where: {
+        FechaPago: Between(startOfDay, endOfDay), // Filtra pagos realizados hoy
+      },
+    });
+  }
+  
   @Cron('0 0 * * *') // Se ejecutará todos los días a medianoche
   async actualizarEstadosUsuarios() {
     const usuarios = await this.userRepository.find();

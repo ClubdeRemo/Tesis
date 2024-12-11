@@ -55,7 +55,7 @@ async eliminarSocio(Id: string): Promise<any | null> {
   }
 }
 
-actualizarUsuario(id: string, datos: any): Observable<any> {
+actualizarUsuario(id: string, datos: User): Observable<any> {
   return this.http.put(`http://localhost:3000/user/modificar/${id}`, datos); // Asegúrate de que la URL y el método sean correctos
 }
 
