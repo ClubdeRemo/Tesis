@@ -27,6 +27,18 @@ export class PagoController {
       }
   }
   
-
+  @Delete('/:idPago')
+  async eliminarPago(@Param('idPago') idPago: string): Promise<{ mensaje: string; estado: string }> {
+    try {
+      // Llama al servicio para eliminar el pago
+      const mensaje = await this.pagoService.eliminarPago(Number(idPago));
+      
+      return { mensaje, estado: 'OK' };
+    } catch (error) {
+      // Maneja errores y devuelve un mensaje con estado de error
+      return { mensaje: error.message, estado: 'ERROR' };
+    }
+  }
+  
 
 }

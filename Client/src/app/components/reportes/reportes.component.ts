@@ -44,7 +44,8 @@ export class ReportesComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private reportesService: ReportesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.dataSource = new MatTableDataSource<any>([]);
     this.msj = this.fb.group({
@@ -115,6 +116,10 @@ export class ReportesComponent implements OnInit {
       }
     }
   }
+
+  async volver(){
+    this.router.navigate(['/menu/admin'])
+  }
 }
 
 export function maxWordLengthValidator(maxLength: number) {
@@ -124,4 +129,5 @@ export function maxWordLengthValidator(maxLength: number) {
     const hasLongWord = words.some((word: string) => word.length > maxLength);
     return hasLongWord ? { 'maxWordLength': { value: control.value } } : null;
   };
+  
 }

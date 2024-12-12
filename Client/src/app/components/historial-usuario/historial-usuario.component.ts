@@ -30,7 +30,7 @@ import { PagosService } from '../../services/pagos.service';
   styleUrl: './historial-usuario.component.css'
 })
 export class HistorialUsuarioComponent {
-  displayedColumns: string[] = ['IdPago', 'FechaPago', 'MesPago', 'Tipo'];
+  displayedColumns: string[] = ['FechaPago', 'FechaVto', 'Tipo', 'Monto'];
   dataSource: MatTableDataSource<Pagos>;
   data: Pagos[] = [];
   totalRecords: number = 0;

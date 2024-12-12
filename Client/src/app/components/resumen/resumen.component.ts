@@ -72,6 +72,9 @@ export class ResumenComponent {
   seleccionarPago(pago: Pagos): void {
     this.pagoSeleccionado = pago;
   }
-
+  
+  async volver(){
+    this.router.navigate(['/menu/admin'])
+  }
 
 }

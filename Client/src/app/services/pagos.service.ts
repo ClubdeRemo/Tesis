@@ -34,13 +34,11 @@ export class PagosService {
       return { pagos: [], estado: 'Desconocido' }; // Devuelve valores predeterminados en caso de error
     }
   }
+
+  eliminarPago(idPago: number): Observable<{ mensaje: string; estado: string }> {
+    return this.http.delete<{ mensaje: string; estado: string }>(`${this.apiUrl}/${idPago}`);
+  }
   
-
-/*   // Método para obtener el historial de pagos
-  obtenerPagos(): Observable<Pagos[]> {
-    return this.http.get<Pagos[]>(`${this.apiUrl}`); // Esto usa la ruta base de 'historial/pagos'
-  } */
-
 
 
 }

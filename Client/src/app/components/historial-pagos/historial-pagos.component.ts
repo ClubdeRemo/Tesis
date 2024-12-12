@@ -34,7 +34,7 @@ import { jsPDF } from 'jspdf';
   styleUrls: ['./historial-pagos.component.css'],
 })
 export class HistorialPagosComponent {
-  displayedColumns: string[] = ['FechaPago', 'Tipo', 'Monto'];
+  displayedColumns: string[] = ['FechaPago', 'FechaVto','Tipo', 'Monto'];
   dataSource: MatTableDataSource<Pagos>;
   data: Pagos[] = [];
   totalRecords: number = 0;
@@ -79,7 +79,26 @@ export class HistorialPagosComponent {
     this.comprobanteVisible = true;
   }
 
-
+  eliminarPago(pago: Pagos): void {
+    if (!pago || typeof pago.IdPago !== 'number') {
+      console.error('No se puede anular un pago sin un Id válido.');
+      return;
+    }
+  
+    if (confirm(`¿Estás seguro de que deseas anular el pago?`)) {
+      // Filtramos los pagos eliminando el que tiene el mismo ID
+      const updatedData = this.dataSource.data.filter((item: Pagos) => item.IdPago !== pago.IdPago);
+  
+      // Actualizamos el dataSource con los nuevos datos filtrados
+      this.dataSource.data = updatedData;
+  
+      // Reseteamos la selección de pago
+      this.pagoSeleccionado = null;
+      console.log('Pago eliminado con éxito.');
+    }
+  }
+  
+  
   generarComprobante(): void {
     if (this.comprobante) {
       const doc = new jsPDF();

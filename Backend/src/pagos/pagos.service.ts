@@ -106,6 +106,25 @@ export class PagoService {
     });
   }
   
+  async eliminarPago(idPago: number): Promise<string> {
+    // Verificar si el pago existe por el ID
+    const pago = await this.pagoRepo.findOne({
+      where: { IdPago: idPago }, // Buscar el pago por su ID
+    });
+  
+    if (!pago) {
+      throw new Error('Pago no encontrado');
+    }
+  
+    // Eliminar el pago
+    await this.pagoRepo.remove(pago);
+  
+    // Actualiza el estado del socio después de eliminar el pago
+    await this.actualizarEstadoSocio(pago.UserId);
+  
+    return `El pago con ID ${idPago} ha sido eliminado correctamente.`;
+  }
+  
   @Cron('0 0 * * *') // Se ejecutará todos los días a medianoche
   async actualizarEstadosUsuarios() {
     const usuarios = await this.userRepository.find();

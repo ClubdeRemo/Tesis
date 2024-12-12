@@ -178,15 +178,8 @@ export class PagosComponent implements OnInit {
     this.dataSource.filter = filtroValor.trim().toLowerCase();
   }
 
-/*   async obtenerPagos(): Promise<void> {
-    try {
-      const pagos = await this.pagosService.obtenerPagos(); // Llama al servicio para obtener los pagos actualizados
-      this.pagos = pagos;
-      this.dataSource.data = pagos;
-    } catch (error) {
-      console.error('Error al obtener los pagos:', error);
-    }
+  async volver(){
+    this.router.navigate(['/menu/admin'])
   }
-   */
   
 }

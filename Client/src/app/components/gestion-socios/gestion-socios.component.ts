@@ -183,4 +183,7 @@ export class GestionSociosComponent implements OnInit {
     this.currentPage = 0; // Reinicia la página actual
     this.updateDataSource(); // Actualiza los datos según la paginación
   }
+  async volver(){
+    this.router.navigate(['/menu/admin'])
+  }
 }
