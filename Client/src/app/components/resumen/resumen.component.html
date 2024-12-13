@@ -1,6 +1,7 @@
-<mat-card class="custom-card">
-  </mat-card>
-  <button mat-raised-button type="submit" class="volver" (click)="volver()">Volver</button>
+<div class="top-bar">
+  <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+</div>
+<button mat-raised-button type="submit" class="volver" (click)="volver()">Volver</button>
   <mat-card class="custom-card tabla-card">
     <mat-card-content>
       <div class="table-container">
@@ -46,7 +47,6 @@
               {{ element.Monto }}
             </td>
           </ng-container>
-  
           <!-- Encabezado y filas de la tabla -->
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
@@ -54,6 +54,10 @@
               [ngClass]="{'selected-row': pagoSeleccionado === row}"></tr>
         </table>
       </div>
+      <div>
+        <h3>Monto Total de Pagos Hoy: ${{ totalMontoHoy | currency:'AR': 'symbol' }}</h3>
+      </div>
+      
     </mat-card-content>
   </mat-card>
   

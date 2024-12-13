@@ -338,3 +338,51 @@
     }
     
 
+    .button-container {
+        display: flex;
+        justify-content: center; /* Centra los botones horizontalmente */
+        gap: 20px; /* Espaciado uniforme entre los botones */
+        margin-top: 20px; /* Margen superior para separación con otros elementos */
+    }
+    
+    .btn {
+        padding: 10px 25px;
+        background-color: #c55a1e;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+        background-color: #a14a18;
+    }
+    
+    @media (max-width: 768px) {
+        .button-container {
+            flex-direction: column; /* Coloca los botones en una columna en pantallas pequeñas */
+            align-items: center; /* Asegura que estén centrados */
+            gap: 10px; /* Reduce el espaciado en pantallas pequeñas */
+        }
+    
+        .btn {
+            width: 100%; /* Ocupa todo el ancho disponible */
+            text-align: center;
+        }
+    }
+    .btn {
+        position: absolute;
+        left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+        top: 20px; /* Ajusta la distancia desde la parte superior */
+    }
+    .btn {
+        display: block; /* Visible en pantallas grandes */
+    }
+    
+    @media (max-width: 768px) {
+        .btn {
+            display: none; /* Ocultar en pantallas pequeñas */
+        }
+    }

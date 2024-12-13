@@ -37,6 +37,7 @@ export class ResumenComponent {
   data: Pagos[] = [];
   userId!: string;
   pagoSeleccionado: Pagos | null = null;
+  totalMontoHoy: number = 0; // Propiedad para almacenar el total del monto de hoy
 
   constructor(
     private router: Router,
@@ -56,6 +57,9 @@ export class ResumenComponent {
       
       // Asignar los pagos filtrados a la tabla
       this.dataSource.data = this.data;
+
+      // Calcular el monto total de los pagos realizados hoy
+      this.calcularTotalMontoHoy();
     } catch (error) {
       console.error('Error al cargar los pagos:', error);
     }
@@ -72,6 +76,12 @@ export class ResumenComponent {
   seleccionarPago(pago: Pagos): void {
     this.pagoSeleccionado = pago;
   }
+
+  // Calcula el monto total de los pagos realizados hoy
+  calcularTotalMontoHoy(): void {
+    this.totalMontoHoy = this.data.reduce((total, pago) => total + Number(pago.Monto), 0);
+  }
+
   
   async volver(){
     this.router.navigate(['/menu/admin'])

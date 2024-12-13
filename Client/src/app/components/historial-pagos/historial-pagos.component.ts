@@ -34,7 +34,7 @@ import { jsPDF } from 'jspdf';
   styleUrls: ['./historial-pagos.component.css'],
 })
 export class HistorialPagosComponent {
-  displayedColumns: string[] = ['FechaPago', 'FechaVto','Tipo', 'Monto'];
+  displayedColumns: string[] = ['FechaPago', 'FechaVto', 'Tipo', 'Monto'];
   dataSource: MatTableDataSource<Pagos>;
   data: Pagos[] = [];
   totalRecords: number = 0;
@@ -86,59 +86,72 @@ export class HistorialPagosComponent {
     }
   
     if (confirm(`¿Estás seguro de que deseas anular el pago?`)) {
-      // Filtramos los pagos eliminando el que tiene el mismo ID
-      const updatedData = this.dataSource.data.filter((item: Pagos) => item.IdPago !== pago.IdPago);
+      this.pagosService.eliminarPago(pago.IdPago).subscribe({
+        next: (response) => {
+          console.log(response.mensaje);
   
-      // Actualizamos el dataSource con los nuevos datos filtrados
-      this.dataSource.data = updatedData;
+          // Filtrar el pago eliminado de la tabla
+          const updatedData = this.dataSource.data.filter((item: Pagos) => item.IdPago !== pago.IdPago);
+          this.dataSource.data = updatedData;
   
-      // Reseteamos la selección de pago
-      this.pagoSeleccionado = null;
-      console.log('Pago eliminado con éxito.');
+          // Reseteamos la selección de pago
+          this.pagoSeleccionado = null;
+        },
+        error: (err) => {
+          console.error('Error al eliminar el pago:', err);
+        },
+      });
     }
   }
-  
   
   generarComprobante(): void {
     if (this.comprobante) {
       const doc = new jsPDF();
-  
+
       // Añadir el logo del club
       const logoUrl = '/ACR.png'; // Reemplaza con la URL del logo o una cadena base64 de la imagen
       doc.addImage(logoUrl, 'JPEG', 14, 10, 30, 20); // Ajusta el tamaño y la posición según sea necesario
-  
+
       // Título del comprobante
       doc.setFontSize(18);
       doc.setFont("times", "bold");
       doc.text('Comprobante de Pago', 75, 20);
-  
+
+      // Información del club
+      doc.setFontSize(12);
+      doc.setFont("times", "normal");
+      doc.text('Club de Remo de Villa Carlos Paz', 14, 35);
+      doc.text('Dirección: Av. Atlántica, X5152 Villa Carlos Paz, Córdoba', 14, 40);
+      doc.text('Teléfono: 3541275683', 14, 45);
+      doc.text('Correo: contacto@clubremocarlospaz.com', 14, 50);
+
       // Separador
       doc.setLineWidth(0.5);
-      doc.line(14, 30, 195, 30);
-  
+      doc.line(14, 55, 195, 55);
+
       // Formatear y verificar las fechas
-      const fechaPago = this.datePipe.transform(this.comprobante.FechaPago, 'yyyy-MM-dd HH:mm') || 'Fecha no disponible';
+      const fechaPago = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm') || 'Fecha no disponible';  // Usar la hora actual
       const fechaVto = this.datePipe.transform(this.comprobante.FechaVto, 'yyyy-MM-dd HH:mm') || 'Fecha no disponible';
-  
+
       // Detalles del pago
       doc.setFontSize(12);
       doc.setFont("times", "normal");
-  
+
       // Agregar información del pago
-      doc.text(`Socio n°: ${this.comprobante.UserId}`, 14, 40);
-      doc.text(`Fecha de Pago: ${fechaPago}`, 14, 50);
-      doc.text(`Tipo de Pago: ${this.comprobante.Tipo}`, 14, 60);
-      doc.text(`Monto: $${this.comprobante.Monto}`, 14, 70);
-      doc.text(`Fecha de Vencimiento: ${fechaVto}`, 14, 80);
-  
+      doc.text(`Socio n°: ${this.comprobante.UserId}`, 14, 65);
+      doc.text(`Fecha de Pago: ${fechaPago}`, 14, 75);
+      doc.text(`Tipo de Pago: ${this.comprobante.Tipo}`, 14, 85);
+      doc.text(`Monto: $${this.comprobante.Monto}`, 14, 95);
+      doc.text(`Fecha de Vencimiento: ${fechaVto}`, 14, 105);
+
       // Separador final
       doc.setLineWidth(0.5);
-      doc.line(14, 90, 195, 90);
-  
+      doc.line(14, 115, 195, 115);
+
       // Nota adicional (si es necesario)
       doc.setFontSize(10);
-      doc.text('Este comprobante es válido solo para el pago correspondiente.', 14, 100);
-  
+      doc.text('Este comprobante es válido solo para el pago correspondiente.', 14, 125);
+
       // Abrir el PDF en una nueva pestaña
       const pdfUrl = doc.output('bloburl');
       window.open(pdfUrl, '_blank');
@@ -146,6 +159,7 @@ export class HistorialPagosComponent {
       alert('No se ha seleccionado un pago.');
     }
   }
+
   
   enviarEmail(): void {
     if (!this.email) {

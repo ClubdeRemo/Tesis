@@ -60,7 +60,7 @@ Anular Pago
           <td mat-cell *matCellDef="let element" class="custom-cell" 
               (click)="seleccionarPago(element)" 
               [ngClass]="{'selected-row': pagoSeleccionado === element}">
-            {{ element.Monto }}
+            $ {{ element.Monto }}
           </td>
         </ng-container>
 

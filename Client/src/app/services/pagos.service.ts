@@ -35,10 +35,9 @@ export class PagosService {
     }
   }
 
-  eliminarPago(idPago: number): Observable<{ mensaje: string; estado: string }> {
-    return this.http.delete<{ mensaje: string; estado: string }>(`${this.apiUrl}/${idPago}`);
+  eliminarPago(idPago: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${idPago}`);
   }
   
-
-
+  
 }
