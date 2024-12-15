@@ -41,35 +41,34 @@ export class PagoService {
 
   // Función para calcular el estado basado en los pagos
   async calcularEstado(userId: number): Promise<string> {
-    const pagos = await this.obtenerPagosPorUsuario(userId);
-    const fechaActual = new Date();
-    
-    const tienePagosPendientes = pagos.some(pago => pago.FechaVto < new Date()); // Pagos vencidos
-    const tienePagosInactivos = pagos.some(pago => {
-      const fechaVto = new Date(pago.FechaVto); 
-      const diferenciaMeses = (fechaActual.getFullYear() - fechaVto.getFullYear()) * 12 
-                        + fechaActual.getMonth() - fechaVto.getMonth();
-      return diferenciaMeses > 3; // Más de 3 meses vencido
-    });
+  const pagos = await this.obtenerPagosPorUsuario(userId);
 
-    // Revisar si existe un pago reciente que lo actualice a "Al día"
-    const tienePagoReciente = pagos.some(pago => {
-      const fechaPago = new Date(pago.FechaPago);
-      return fechaPago >= new Date(fechaActual.setHours(0, 0, 0, 0)); // Pago realizado hoy
-    });
-
-    if (tienePagoReciente) {
-      return 'Al día'; // Si existe un pago reciente
-    }
-
-    if (tienePagosInactivos) {
-      return 'Inactivo'; // Si tiene pagos vencidos mayores a 3 meses
-    } else if (tienePagosPendientes) {
-      return 'Mora'; // Si tiene pagos pendientes de vencer
-    } else {
-      return 'Al día'; // Todos los pagos están al día
-    }
+  if (pagos.length === 0) {
+      return 'Nuevo'; // Si no tiene pagos registrados
   }
+
+  const fechaActual = new Date();
+  const ultimoPago = pagos.reduce((pagoReciente, pago) =>
+      new Date(pago.FechaPago) > new Date(pagoReciente.FechaPago) ? pago : pagoReciente
+  );
+
+  const fechaVto = new Date(ultimoPago.FechaVto);
+  const diferenciaMeses = (fechaActual.getFullYear() - fechaVto.getFullYear()) * 12 +
+      (fechaActual.getMonth() - fechaVto.getMonth());
+
+  // Considerar el mismo mes y comparar días
+  if (diferenciaMeses === 0) {
+      if (fechaActual.getDate() > fechaVto.getDate()) {
+          return 'Mora'; // Está en mora si el día actual es mayor al de vencimiento
+      } else {
+          return 'Al día'; // Está al día si el día actual es igual o menor
+      }
+  } else if (diferenciaMeses <= 3) {
+      return 'Mora'; // Mora si está dentro de 3 meses de diferencia
+  } else {
+      return 'Inactivo'; // Inactivo si pasa de 3 meses
+  }
+}
 
   // Función para obtener todos los pagos de un usuario
   async obtenerPagosPorUsuario(userId: number): Promise<Pagos[]> {

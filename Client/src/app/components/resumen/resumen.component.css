@@ -1,11 +1,13 @@
 .custom-card {
-  margin: 24px auto;
-  padding: 24px;
-  max-width: 1200px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin: 24px auto;
+    padding: 24px;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .tabla-card {
   margin-top: 30px;
@@ -108,4 +110,44 @@ h3 {
 
 .top-bar-text-index:hover {
   background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.btn {
+  padding: 10px 25px;
+  background-color: #c55a1e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+  margin-top: 60px;
+}
+
+.btn:hover {
+  background-color: #a14a18;
+}
+
+@media (max-width: 768px) {
+  .button-container {
+      flex-direction: column; /* Coloca los botones en una columna en pantallas pequeñas */
+      align-items: center; /* Asegura que estén centrados */
+      gap: 10px; /* Reduce el espaciado en pantallas pequeñas */
+  }
+
+  .btn {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      text-align: center;
+  }
+}
+.btn {
+  z-index: 1050; /* Mayor que el z-index del formulario */
+  margin-left: 20px; 
+}
+
+
+@media (max-width: 768px) {
+  .btn {
+      display: none; /* Ocultar en pantallas pequeñas */
+  }
 }

@@ -1,7 +1,7 @@
 <div class="top-bar">
   <span class="top-bar-text">Asociación Cordobesa de Remo</span>
 </div>
-<button mat-raised-button type="submit" class="volver" (click)="volver()">Volver</button>
+<button  type="submit" class="btn" (click)="volver()">Volver</button>
   <mat-card class="custom-card tabla-card">
     <mat-card-content>
       <div class="table-container">
@@ -44,7 +44,7 @@
             <td mat-cell *matCellDef="let element" class="custom-cell" 
                 (click)="seleccionarPago(element)" 
                 [ngClass]="{'selected-row': pagoSeleccionado === element}">
-              {{ element.Monto }}
+              $ {{ element.Monto }}
             </td>
           </ng-container>
           <!-- Encabezado y filas de la tabla -->
@@ -60,4 +60,3 @@
       
     </mat-card-content>
   </mat-card>
-  

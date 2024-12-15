@@ -295,6 +295,12 @@
     color: #6c757d; /* Gris oscuro */
 }
 
+.estado-nuevo {
+    background-color: #bceef7; /* Celeste claro */
+    color: #0c5460; /* Azul oscuro */
+}
+
+
 
 /* Responsividad: Reducir el tamaño del campo DNI en pantallas pequeñas */
 @media (max-width: 768px) {
