@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, FormControl, FormsModule, Validators, AbstractControl } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../interfaces/User';
 
 @Component({
@@ -22,14 +22,16 @@ export class UsersFormComponent implements OnInit {
   showPassword: boolean = false;
   isModalVisible: boolean = false; // Control de visibilidad del modal
 
+  socio: User | null = null;
+
+
   constructor(
     private router: Router,
     private usersService: UsersService,
-    private formBuilder: FormBuilder
-  ) { }
 
-  ngOnInit(): void {
-    // Inicializa el formulario con sus controles y validaciones
+    private activatedRoute: ActivatedRoute
+  ) { 
+
     this.userform = new FormGroup({
       Nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
       Apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -38,7 +40,12 @@ export class UsersFormComponent implements OnInit {
       FechaDeNacimiento: new FormControl('', [Validators.required, this.fechaNoPosterior()]),
       Dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{8}$')])
     });
-  }
+
+}
+ngOnInit(): void {
+  
+}
+
 
   fechaNoPosterior() {
     return (control: AbstractControl) => {
@@ -55,6 +62,7 @@ export class UsersFormComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
+
   // Función para mostrar la modal
   showModal(): void {
     this.isModalVisible = true;
@@ -69,6 +77,7 @@ export class UsersFormComponent implements OnInit {
   closeModal(): void {
     this.isModalVisible = false;
   }
+
 
   onSubmit(): void {
     if (this.userform.valid) {
@@ -89,4 +98,10 @@ export class UsersFormComponent implements OnInit {
       this.userform.markAllAsTouched();
     }
   }
+
+
+  async volver(){
+    this.router.navigate(['/socios'])
+  }
 }
+

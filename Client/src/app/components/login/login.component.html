@@ -1,20 +1,43 @@
-<div class="top-bar">
-    <span class="top-bar-text">Asociación Cordobesa de Remo</span>
-</div>
+<app-navbar></app-navbar>
+
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
     <p class="notice">Recuerda que para crear una cuenta debes acercarte al club.</p>
-    <h2>Iniciar Sesión</h2>
-    <!-- <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()"> -->
+    <h3>Iniciar Sesión</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+        <div class="form-group">
+            <label for="Id">N°Socio:</label>
+            <input type="text" id="Id" formControlName="Id" placeholder="N°Socio" required>
+        </div>
         <div class="form-group">
             <label for="Nombre">Nombre:</label>
             <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduce tu nombre" required>
         </div>
         <div class="form-group">
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="Contraseña" formControlName="Contraseña" placeholder="********" required>
+            <label for="Contraseña">Contraseña:</label>
+            <div class="password-wrapper">
+                <input [type]="showPassword ? 'text' : 'password'" id="Contraseña" formControlName="Contraseña" placeholder="Introduce tu contraseña">
+                <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+                    <span class="material-icons">
+                        {{ showPassword ? 'visibility_off' : 'visibility' }}
+                    </span>
+                    </button>
+                </div>
         </div>
+
+        <!-- Modal de Olvidé mi contraseña -->
+        <div (click)="openModal()" class="forgot-password">¿Olvidaste tu contraseña?</div>
+
         <button type="submit" class="btn">Iniciar Sesión</button>
-        <a href="recuperar-contraseña.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
-    <!-- </form> -->
+    </form>
 </div>
+
+<!-- Modal de error -->
+<div *ngIf="isModalVisible" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <p>{{ modalMessage }}</p>
+  </div>
+</div>
+
+

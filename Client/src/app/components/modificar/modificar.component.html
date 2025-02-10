@@ -1,0 +1,113 @@
+<div class="top-bar">
+    <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+</div>
+
+<div class="container">
+    <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
+    <h2>Modificar Usuario</h2>
+
+    <!-- Modal de usuario creado con éxito -->
+    <div class="modal" *ngIf="isModalVisible">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <p>¡Usuario modificado con éxito!</p>
+        </div>
+    </div>
+
+    <form [formGroup]="userform" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="Id">N°Socio:</label>
+            <input type="text" id="Id" formControlName="Id" placeholder="N°Socio" >
+            <div *ngIf="userform.get('Id')?.invalid && userform.get('Id')?.touched">
+            </div>
+        </div>
+
+        <!-- Botón para buscar socio -->
+        <button type="button" class="btn btn-primary" (click)="buscarSocioPorId()">Buscar Socio</button>
+
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" formControlName="Nombre" placeholder="Introduzca su nombre" >
+            <div *ngIf="userform.get('Nombre')?.invalid && userform.get('Nombre')?.touched">
+                <small *ngIf="userform.get('Nombre')?.errors?.['required']">El nombre es requerido.</small>
+                <small *ngIf="userform.get('Nombre')?.errors?.['minlength']">El nombre debe tener al menos 3 caracteres.</small>
+            </div>
+        </div>
+
+        <!-- Apellido -->
+        <div class="form-group">
+            <label for="Apellido">Apellido:</label>
+            <input type="text" id="Apellido" formControlName="Apellido" placeholder="Introduzca su apellido" >
+            <div *ngIf="userform.get('Apellido')?.invalid && userform.get('Apellido')?.touched">
+                <small *ngIf="userform.get('Apellido')?.errors?.['required']">El apellido es requerido.</small>
+                <small *ngIf="userform.get('Apellido')?.errors?.['minlength']">El apellido debe tener al menos 3 caracteres.</small>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" formControlName="Email" placeholder="Introduzca su email" >
+            <div *ngIf="userform.get('Email')?.invalid && userform.get('Email')?.touched">
+                <small *ngIf="userform.get('Email')?.errors?.['required']">El email es requerido.</small>
+                <small *ngIf="userform.get('Email')?.errors?.['email']">Debe ser un email válido.</small>
+            </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group password-wrapper">
+            <label for="Contraseña">Contraseña</label>
+            <input [type]="showPassword ? 'text' : 'password'" id="Contraseña" formControlName="Contraseña" placeholder="Introduzca la Contraseña" >
+            <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+                <span class="material-icons">
+                    {{ showPassword ? 'visibility_off' : 'visibility' }}
+                </span>
+                </button>
+            <div *ngIf="userform.get('Contraseña')?.invalid && userform.get('Contraseña')?.touched">
+                <small *ngIf="userform.get('Contraseña')?.errors?.['required']">La contraseña es requerida.</small>
+                <small *ngIf="userform.get('Contraseña')?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</small>
+            </div>
+        </div>
+
+        <!-- Fecha de Nacimiento -->
+        <div class="form-group">
+            <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" placeholder="dd/mm/yyyy" >
+            <div *ngIf="userform.get('FechaDeNacimiento')?.invalid && userform.get('FechaDeNacimiento')?.touched">
+                <small *ngIf="userform.get('FechaDeNacimiento')?.errors?.['required']">La fecha de nacimiento es requerida.</small>
+                <small *ngIf="userform.get('FechaDeNacimiento')?.errors?.['fechaPosterior']">La fecha no puede ser posterior a la actual.</small>
+            </div>
+        </div>
+
+        <!-- DNI -->
+        <div class="form-group">
+            <label for="Dni">DNI:</label>
+            <input type="text" id="Dni" formControlName="Dni" placeholder="Introduzca su DNI" >
+            <div *ngIf="userform.get('Dni')?.invalid && userform.get('Dni')?.touched">
+                <small *ngIf="userform.get('Dni')?.errors?.['required']">El DNI es requerido.</small>
+                <small *ngIf="userform.get('Dni')?.errors?.['pattern']">El DNI debe contener solo números y 8 caracteres.</small>
+            </div>
+        </div>
+
+<!-- Categoria -->
+<div class="form-group">
+    <label for="Categorias">Categoria:</label>
+    <mat-form-field appearance="fill" class="form-control">
+        <mat-label>Seleccione una categoría</mat-label>
+        <mat-select id="Categorias" formControlName="Categorias">
+            <mat-option value="Usuario">Usuario</mat-option>
+            <mat-option value="Admin">Admin</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div *ngIf="userform.get('Categorias')?.invalid && userform.get('Categorias')?.touched">
+        <small *ngIf="userform.get('Categorias')?.errors?.['required']">La categoría es requerida.</small>
+    </div>
+</div>
+
+
+        <button type="submit" class="btn btn-primary" [disabled]="!isEditing">Editar Socio</button>
+        <button type="submit" class="btn btn-primary volver" (click)="volver()">Volver</button>
+    </form>
+</div>
+

@@ -3,8 +3,10 @@ export interface User{
     Nombre: string;
     Apellido: string;
     Email: string;
-    Contraseña: string;
+    Contraseña?: string;
     FechaDeNacimiento: Date;
     Dni: number;
+    EstadoSocio?: string;
+    Categorias: string;
 
 } 

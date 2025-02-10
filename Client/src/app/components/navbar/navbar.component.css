@@ -1,0 +1,76 @@
+/* Estilos para el ícono de la casita */
+.home-icon {
+    flex-grow: 1; /* Asegura que el ícono se quede en el extremo izquierdo */
+    text-align: left; /* Alinea el ícono a la izquierda */
+    margin-left: 20px; /* Espacio entre el borde y el ícono */
+}
+
+.home-icon a {
+    color: #fff; /* Color del ícono */
+    font-size: 24px; /* Tamaño del ícono */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-icon a:hover {
+    color: #ffac7c; /* Cambia de color cuando se pasa el mouse */
+}
+
+.top-bar {
+    width: 100%;
+    background-color: #c55a1e;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar span {
+    margin-right: 30px;
+    transition: color 0.3s ease;
+}
+
+.top-bar span:hover {
+    color: #ffac7c;
+}
+
+.top-bar-text-index {
+    cursor: pointer;  
+}
+
+/* Ajustes generales en la barra */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-icon {
+    cursor: pointer;
+    color: #fff; /* Color del ícono */
+    font-size: 24px; /* Tamaño del ícono */
+    margin-left: 20px; /* Espacio entre el borde y el ícono */
+    transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+    color: #ffac7c; /* Cambia el color cuando se pasa el mouse */
+}
+
+.manual-icon {
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.manual-icon:hover {
+    color: #ffac7c; /* Cambia de color cuando se pasa el mouse */
+}

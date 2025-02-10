@@ -1,0 +1,40 @@
+<div class="payment-container">
+    <!-- Sección de DNI -->
+    <form [formGroup]="dniForm" (ngSubmit)="buscarUsuario()">
+        <div class="dni-section">
+          <label for="dni">DNI:</label>
+          <input matInput formControlName="dni" required>
+          <button mat-raised-button type="submit" class="search-button" title="Buscar Usuario">
+            🔍
+          </button>
+        </div>
+    </form>
+  
+    <!-- Información del Usuario -->
+    <div class="user-info" *ngIf="usuarioEncontrado">
+      <h3>Datos del Usuario</h3>
+      <p><strong>Nombre:</strong> {{ usuarioEncontrado.nombre }}</p>
+      <p><strong>Apellido:</strong> {{ usuarioEncontrado.apellido }}</p>
+    </div>
+  
+    <!-- Sección de Frecuencia de Pago -->
+    <div class="payment-section">
+      <label for="paymentFrequency">Pago:</label>
+      <select id="paymentFrequency" [(ngModel)]="paymentFrequency">
+        <option value="mensual">Mensual</option>
+        <option value="anual">Anual</option>
+      </select>
+    </div>
+  
+    <!-- Sección de Método de Pago -->
+    <div class="payment-method-section">
+      <label for="paymentMethod">Método de Pago:</label>
+      <select id="paymentMethod" [(ngModel)]="paymentMethod">
+        <option value="efectivo">Efectivo</option>
+        <option value="transferencia">Transferencia</option>
+      </select>
+      <span class="current-date">{{ currentDate }}</span>
+    </div>
+  
+  </div>
+  

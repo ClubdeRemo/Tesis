@@ -1,0 +1,53 @@
+<div class="top-bar">
+    <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+</div>
+<div class="container">
+    <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
+    <h2>Usuarios</h2>
+
+    <form [formGroup]="userform">
+        <!-- N°Socio -->
+        <div class="form-group">
+            <label for="Id">N°Socio:</label>
+            <input type="text" id="Id" formControlName="Id">
+        </div>
+
+        <!-- Nombre -->
+        <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" formControlName="Nombre">
+        </div>
+
+        <!-- Apellido -->
+        <div class="form-group">
+            <label for="Apellido">Apellido:</label>
+            <input type="text" id="Apellido" formControlName="Apellido">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input type="email" id="Email" formControlName="Email" >
+        </div>
+
+        <!-- Fecha de Nacimiento -->
+        <div class="form-group">
+            <label for="FechaDeNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="FechaDeNacimiento" formControlName="FechaDeNacimiento" >
+        </div>
+
+        <!-- DNI -->
+        <div class="form-group">
+            <label for="Dni">DNI:</label>
+            <input type="text" id="Dni" formControlName="Dni" >
+        </div>
+
+        <!-- Categoria -->
+        <div class="form-group">
+            <label for="Categorias">Categoria:</label>
+            <input type="text" id="Categorias" formControlName="Categorias" >
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="volver()">Volver</button>
+    </form>
+</div>

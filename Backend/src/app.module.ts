@@ -8,11 +8,13 @@ import { AuthModule } from './auth/auth.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { BotesModule } from './botes/botes.module';
+import { ReportesModule } from './reportes/reportes.module';
+import { PagoModule } from './pagos/pagos.module';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', 'public'),}),
+    // ServeStaticModule.forRoot({
+    // rootPath: join(__dirname, '..', 'public'),}),
     TypeOrmModule.forRoot({
       type: 'mysql', 
       host: 'localhost', 
@@ -26,7 +28,9 @@ import { BotesModule } from './botes/botes.module';
       }),
     UserModule,
     AuthModule,
-    BotesModule
+    BotesModule,
+    ReportesModule,
+    PagoModule
     ],
 
   controllers: [AppController],

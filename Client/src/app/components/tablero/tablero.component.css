@@ -1,124 +1,109 @@
-body {
-    font-family: Arial, sans-serif;
+/* Estilos globales */
+body, html {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-}
-
-/* Ajustes para que el contenedor del logo quede encima del video */
-.video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
     height: 100%;
-    z-index: -1; /* El video queda detrás del contenido */
-    overflow: hidden;
+    color: #333;
+    line-height: 1.6;
+    padding-bottom: 100px; /* Evitar superposición del video con contenido */
+    overflow-x: hidden; /* Oculta el desplazamiento horizontal */
+    overflow-y: hidden; /* Oculta el desplazamiento vertical */
 }
 
-.video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Asegura que el video cubra toda el área */
-}
-
+/* Contenedor del mensaje de bienvenida */
 .welcome-container {
-    position: relative;
-    z-index: 1; /* El logo y texto se colocan por encima del video */
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
     text-align: center;
-    padding: 20px;
-    margin-top: 100px; /* Ajusta este valor para bajar el logo */
+    color: white;
+    max-width: 100%; /* Evita el desbordamiento */
 }
 
 .welcome-container img {
     max-width: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
 
-h2.h2-index {
-    font-size: 36px;
-    color: white; /* Asegúrate de que el texto sea visible sobre el video */
-}
-
-.top-bar {
+/* Sección del video */
+.video-section {
     width: 100%;
-    background-color: #c55a1e;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex; /* Utilizar Flexbox */
-    justify-content: flex-end; /* Alinear los elementos al lado derecho */
-    
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
-.top-bar span {
-    margin-right: 30px; /* Agrega espacio a la derecha de cada <span> */
-}
-
-.top-bar-text {
-    font-size: 16px;
-}
-
-.top-bar-text-index {
-    cursor: pointer;
-}  
-
-.container {
-    max-width: 600px;
-    margin: 80px auto 50px auto; /* Adjusted to accommodate the fixed top bar */
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.header-image {
-    max-width: 40%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input {
+.video-section video {
     width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #c55a1e;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+/* Contenedor del texto adicional */
+/* Contenedor del texto adicional */
+.about-acr {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px 20px;
+    max-width: 90%; /* Cambié el max-width a 90% para asegurarse de que no exceda el tamaño de la pantalla */
+    margin: 50px auto;
     text-align: center;
-    text-decoration: none;
+    z-index: 1;
+    position: relative;
+    white-space: normal; /* Permite que el texto se ajuste dentro del contenedor */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del tamaño total del contenedor */
 }
 
-.btn:hover {
-    background-color: #c55a1e;
+/* Hacer que el texto sea responsivo */
+.about-acr h3 {
+    font-size: 28px;
+    color: #c55a1e;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Responsividad para texto */
+.about-acr p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Asegura que el contenedor se ajuste en pantallas pequeñas */
+@media (max-width: 768px) {
+    .about-acr {
+        max-width: 100%; /* El contenedor ocupa el 100% en pantallas pequeñas */
+        padding: 20px;
+    }
+
+    .about-acr h3 {
+        font-size: 24px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+
+    .about-acr p {
+        font-size: 16px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Media query adicional para pantallas más pequeñas (móviles) */
+@media (max-width: 480px) {
+    .about-acr {
+        padding: 15px; /* Menor padding para dispositivos más pequeños */
+    }
+
+    .about-acr h3 {
+        font-size: 20px; /* Tamaño de fuente más pequeño para pantallas muy pequeñas */
+        margin-bottom: 0.8rem; /* Reducir el margen inferior */
+    }
+
+    .about-acr p {
+        font-size: 14px; /* Reducir el tamaño del texto aún más */
+    }
 }

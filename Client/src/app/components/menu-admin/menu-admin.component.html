@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido Capitán</title>
-</head>
-<body>
-    <div class="top-bar">
-        <span class="top-bar-text">Asociación Cordobesa de Remo</span>
-    </div>
-    <div class="container">
-        <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
-        <h2>Bienvenido Capitán</h2>
-        <div class="buttons">
-            <a [routerLink]="['/socios']" routerLinkActive="active" class="btn socios-btn">Socios</a>
-            <a href="/gestion-botes.html" class="btn botes-btn">Botes</a>
-            <a href="#" class="btn reservar-btn">Reservar</a>
-            <a href="#" class="btn reservar-btn">Mensaje</a>
-        </div>
-    </div>
-</body>
-</html>
 
+<div class="top-bar">
+    <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+</div>
+<div class="container">
+    <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
+    <h2>Bienvenido Capitán</h2>
+    <div class="buttons">
+        <a [routerLink]="['/socios']" routerLinkActive="active" class="btn socios-btn">Socios</a>
+        <a [routerLink]="['/pagos']" routerLinkActive="active" class="btn socios-btn">Pagos</a>
+        <a [routerLink]="['/reportes']" routerLinkActive="active" class="btn socios-btn">Reportes</a>
+        <a [routerLink]="['/resumen']" routerLinkActive="active" class="btn socios-btn">Resumen</a>
+    </div>
+</div>
 

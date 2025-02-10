@@ -1,2 +1,28 @@
-<p>navbar works!</p>
-<!-- <nav class=" navbar navar-expand" -->
+<div class="top-bar">
+    <div class="icon-group">
+        <mat-icon class="home-icon" (click)="onHome()" title="Ir a la página de inicio">home</mat-icon>
+        <mat-icon class="manual-icon" (click)="goToManual()" title="Abrir el manual">menu_book</mat-icon>
+    </div>
+
+    <span class="home-icon">
+        <a href="/" class="top-bar-text-index" title="Volver al inicio">
+            <i class="fa fa-home"></i> <!-- Ícono de Font Awesome -->
+        </a>
+    </span>
+
+    <span>
+        <nav>
+            <a class="top-bar-text-index" (click)="onLogin1()" title="Iniciar sesión como usuario">Ingresar</a> 
+        </nav>
+    </span>
+    <span>
+        <nav>
+            <a class="top-bar-text-index" (click)="onLogin3()" title="Mensajes del club">Avisos</a> 
+        </nav>
+    </span>
+    <span>  
+        <nav>
+            <a class="top-bar-text-index" (click)="onLogin2()" title="Sobre nosotros">Historia</a>
+        </nav>
+    </span>  
+</div>
