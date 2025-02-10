@@ -20,7 +20,7 @@ import { PagoModule } from './pagos/pagos.module';
       host: 'localhost', 
       port: 3306, 
       username: 'root', 
-      password: 'admin', 
+      password: 'root', 
       database: 'club_de_remo', 
       entities: [__dirname + '/**/*.entity{.ts,.js}'], 
       charset: 'utf8mb4',
