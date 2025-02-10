@@ -86,7 +86,9 @@ h3 {
 }
 
 .forgot-password {
+
     padding: 20px;
+
     display: block;
     margin-top: 10px;
     font-size: 14px;
@@ -96,6 +98,7 @@ h3 {
 
 .forgot-password:hover {
     text-decoration: underline;
+
 }
 
 .modal {
@@ -215,4 +218,5 @@ h3 {
 .forgot-password:hover {
     color: #0056b3; /* Cambia a un tono más oscuro al pasar el ratón */
     text-decoration: underline; /* Añade subrayado */
+
 }

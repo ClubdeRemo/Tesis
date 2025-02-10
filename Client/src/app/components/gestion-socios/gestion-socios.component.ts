@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+
 @Component({
   selector: 'app-gestion-socios',
   standalone: true,
@@ -59,13 +60,16 @@ export class GestionSociosComponent implements OnInit {
     this.currentDate = today.toLocaleDateString();
   }
   
+
   async ngOnInit(): Promise<void> {
     try {
       // Llama al servicio para obtener los datos desde la base de datos
       const data: User[] = await this.usersService.obtenerDatos();
+
       this.totalRecords = data.length; // Establecemos el total de registros
       this.data = data;  // Guardamos los datos completos
       this.updateDataSource(); // Inicializamos la tabla con los datos de la primera página
+
     } catch (error) {
       console.error('Error al cargar los datos:', error);
     }
@@ -187,3 +191,4 @@ export class GestionSociosComponent implements OnInit {
     this.router.navigate(['/menu/admin'])
   }
 }
+

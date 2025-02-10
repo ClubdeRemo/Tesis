@@ -1,5 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+
+//importar todos los componentes
 import { TableroComponent } from './components/tablero/tablero.component';
 import { UsersFormComponent } from './components/users-form/users-form.component';
 import { LoginComponent } from './components/login/login.component';
@@ -44,8 +46,9 @@ export const routes: Routes = [
     {path: 'clima', component: WeatherComponent },
     {path: '**', redirectTo: '/tablero' }, // Ruta de fallback DEBE IR ULTIMA PARA QUE INCLUYA TODAS LAS RUTAS
 
+
 ];
-@NgModule({
+@NgModule({   //define un modulo de angular, solo se aplica una vez
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })

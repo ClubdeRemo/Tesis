@@ -1,5 +1,6 @@
 <mat-card class="custom-card">
   <div class="card-header">
+
     
     <div class="top-bar">
       <span class="top-bar-text">Asociación Cordobesa de Remo</span>
@@ -74,10 +75,12 @@
             </button>
           </td>
         </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="custom-row"></tr>
       </table>
     </div>
+
 
     <!-- Paginador -->
     <div class="paginador-container">
@@ -86,3 +89,4 @@
     </div>
   </mat-card-content>
 </mat-card>
+
