@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -19,7 +20,7 @@ import { PagoModule } from './pagos/pagos.module';
       host: 'localhost', 
       port: 3306, 
       username: 'root', 
-      password: 'root', 
+      password: 'admin', 
       database: 'club_de_remo', 
       entities: [__dirname + '/**/*.entity{.ts,.js}'], 
       charset: 'utf8mb4',

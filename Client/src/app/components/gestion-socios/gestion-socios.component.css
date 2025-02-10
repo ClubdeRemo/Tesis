@@ -1,3 +1,4 @@
+
 /* Estilos para la tarjeta */
 .custom-card {
     border-radius: 10px;
@@ -31,10 +32,12 @@
 .custom-header {
     background-color: #c55b1ec0 !important;
     color: rgb(0, 0, 0);
+
     text-transform: uppercase;
     font-weight: bold;
     padding: 10px;
     text-align: left;
+
 }
 
 /* Estilo de las celdas de la tabla */

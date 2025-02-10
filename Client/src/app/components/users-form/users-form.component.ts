@@ -21,13 +21,17 @@ export class UsersFormComponent implements OnInit {
   userform: FormGroup | any;
   showPassword: boolean = false;
   isModalVisible: boolean = false; // Control de visibilidad del modal
+
   socio: User | null = null;
+
 
   constructor(
     private router: Router,
     private usersService: UsersService,
+
     private activatedRoute: ActivatedRoute
   ) { 
+
     this.userform = new FormGroup({
       Nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
       Apellido: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -36,10 +40,12 @@ export class UsersFormComponent implements OnInit {
       FechaDeNacimiento: new FormControl('', [Validators.required, this.fechaNoPosterior()]),
       Dni: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{8}$')])
     });
+
 }
 ngOnInit(): void {
   
 }
+
 
   fechaNoPosterior() {
     return (control: AbstractControl) => {
@@ -56,6 +62,7 @@ ngOnInit(): void {
     this.showPassword = !this.showPassword;
   }
 
+
   // Función para mostrar la modal
   showModal(): void {
     this.isModalVisible = true;
@@ -70,6 +77,7 @@ ngOnInit(): void {
   closeModal(): void {
     this.isModalVisible = false;
   }
+
 
   onSubmit(): void {
     if (this.userform.valid) {
@@ -91,7 +99,9 @@ ngOnInit(): void {
     }
   }
 
+
   async volver(){
     this.router.navigate(['/socios'])
   }
 }
+
