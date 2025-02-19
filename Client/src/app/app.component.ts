@@ -11,7 +11,8 @@ import localeEs from '@angular/common/locales/es';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
+  title = 'client';
+  
   constructor() {
     // Registrar el idioma español
     registerLocaleData(localeEs, 'es');
