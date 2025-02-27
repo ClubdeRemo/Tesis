@@ -11,6 +11,6 @@ import { LOCALE_ID } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
-    provideAnimations(),importProvidersFrom(MatNativeDateModule),  {provide: LOCALE_ID, useValue: 'es'},
-    provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withFetch()), provideAnimationsAsync('noop')]
+    provideAnimations(),importProvidersFrom(MatNativeDateModule),  {provide: LOCALE_ID, useValue: 'es'}, 
+    provideAnimationsAsync(), provideHttpClient(withFetch()), provideAnimationsAsync('noop')]
 };
