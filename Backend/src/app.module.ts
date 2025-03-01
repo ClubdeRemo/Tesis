@@ -13,14 +13,17 @@ import { PagoModule } from './pagos/pagos.module';
 
 @Module({
   imports: [
-    // ServeStaticModule.forRoot({
-    // rootPath: join(__dirname, '..', 'public'),}),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'Client', 'src'),
+      serveRoot: '/static',
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql', 
+      url: process.env.DATABASE_URL,
       host: 'localhost', 
       port: 3306, 
       username: 'root', 
-      password: 'admin', 
+      password: 'root', 
       database: 'club_de_remo', 
       entities: [__dirname + '/**/*.entity{.ts,.js}'], 
       charset: 'utf8mb4',

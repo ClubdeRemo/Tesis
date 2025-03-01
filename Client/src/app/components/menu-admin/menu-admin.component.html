@@ -1,6 +1,8 @@
 
 <div class="top-bar">
     <span class="top-bar-text">Asociación Cordobesa de Remo</span>
+    <mat-icon class="home-icon" (click)="onHome()" title="Ir a la página de inicio">home</mat-icon>
+    
 </div>
 <div class="container">
     <img src="ACR.png" alt="Imagen de encabezado" class="header-image">
@@ -10,6 +12,7 @@
         <a [routerLink]="['/pagos']" routerLinkActive="active" class="btn socios-btn">Pagos</a>
         <a [routerLink]="['/reportes']" routerLinkActive="active" class="btn socios-btn">Reportes</a>
         <a [routerLink]="['/resumen']" routerLinkActive="active" class="btn socios-btn">Resumen</a>
+
     </div>
 </div>
 

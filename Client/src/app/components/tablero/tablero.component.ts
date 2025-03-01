@@ -1,36 +1,36 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
   imports: [FooterComponent, NavbarComponent],
   templateUrl: './tablero.component.html',
-  styleUrl: './tablero.component.css'
+  styleUrls: ['./tablero.component.css']
 })
-export class TableroComponent implements OnInit {
+export class TableroComponent implements AfterViewInit {
 
   @ViewChild(NavbarComponent) navbar!: NavbarComponent;
-  @ViewChild('video') videoElement!: ElementRef<HTMLVideoElement>;
-
-  ngOnInit(): void {
-  }
+  @ViewChild('video', { static: false }) videoElement!: ElementRef<HTMLVideoElement>;
 
   ngAfterViewInit(): void {
-    // Elimina la invocación automática de 'siguiente()'
-    // Si necesitas hacer algo con el Navbar, hazlo condicionalmente en eventos de usuario
-    if (this.navbar) {
-      console.log('NavbarComponent cargado correctamente');
-      // La invocación de `siguiente` será bajo ciertas condiciones o eventos de usuario
-    } else {
-      console.warn('NavbarComponent no está disponible');
+    if (this.videoElement?.nativeElement) {
+      const video = this.videoElement.nativeElement;
+      // Refuerza las propiedades para asegurarte de que el video esté silenciado, en bucle y se reproduzca en línea.
+      video.muted = true;
+      video.loop = true;
+      video.setAttribute('playsinline', '');
+      
+      // Espera a que los metadatos estén cargados para intentar reproducir el video.
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(error => {
+          console.warn('⚠️ Reproducción automática bloqueada. Se requiere interacción del usuario.', error);
+        });
+      });
     }
   }
 
-  
-  // Aquí podrías tener un método que invoque el siguiente cuando sea necesario, por ejemplo:
   triggerNavbarNext(): void {
     if (this.navbar) {
       this.navbar.siguiente();

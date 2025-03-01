@@ -53,6 +53,9 @@ export class PagoService {
   );
 
   const fechaVto = new Date(ultimoPago.FechaVto);
+  if (fechaVto >= fechaActual) {
+    return 'Al día';
+}
   const diferenciaMeses = (fechaActual.getFullYear() - fechaVto.getFullYear()) * 12 +
       (fechaActual.getMonth() - fechaVto.getMonth());
 
