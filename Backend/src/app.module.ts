@@ -13,8 +13,10 @@ import { PagoModule } from './pagos/pagos.module';
 
 @Module({
   imports: [
-    // ServeStaticModule.forRoot({
-    // rootPath: join(__dirname, '..', 'public'),}),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'Client', 'src'),
+      serveRoot: '/static',
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql', 
       url: process.env.DATABASE_URL,
@@ -25,7 +27,7 @@ import { PagoModule } from './pagos/pagos.module';
       database: 'club_de_remo', 
       entities: [__dirname + '/**/*.entity{.ts,.js}'], 
       charset: 'utf8mb4',
-      synchronize: true, // Sincroniza las entidades con la base de datos (solo para desarrollo) // CAUSA PROBLEMAS CON LAS ENTIDADES
+      //synchronize: true, // Sincroniza las entidades con la base de datos (solo para desarrollo) // CAUSA PROBLEMAS CON LAS ENTIDADES
       }),
     UserModule,
     AuthModule,
