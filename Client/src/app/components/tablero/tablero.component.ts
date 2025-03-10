@@ -1,25 +1,39 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-tablero',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, NavbarComponent],
   templateUrl: './tablero.component.html',
-  styleUrl: './tablero.component.css'
+  styleUrls: ['./tablero.component.css']
 })
-export class TableroComponent implements OnInit {
-  constructor(private router: Router) { }
-  ngOnInit(): void {
-  }
+export class TableroComponent implements AfterViewInit {
 
-  @ViewChild('video') videoElement!: ElementRef<HTMLVideoElement>; //HTMLVideoElement: Es el tipo nativo del DOM que Angular utiliza para manipular un elemento <video>. Este tipo incluye propiedades como muted, play(), pause(), etc.
+  @ViewChild(NavbarComponent) navbar!: NavbarComponent;
+  @ViewChild('video', { static: false }) videoElement!: ElementRef<HTMLVideoElement>;
 
   ngAfterViewInit(): void {
-    if (this.videoElement) {
-      this.videoElement.nativeElement.muted = true;
+    if (this.videoElement?.nativeElement) {
+      const video = this.videoElement.nativeElement;
+      // Refuerza las propiedades para asegurarte de que el video esté silenciado, en bucle y se reproduzca en línea.
+      video.muted = true;
+      video.loop = true;
+      video.setAttribute('playsinline', '');
+      
+      // Espera a que los metadatos estén cargados para intentar reproducir el video.
+      video.addEventListener('loadedmetadata', () => {
+        video.play().catch(error => {
+          console.warn('⚠️ Reproducción automática bloqueada. Se requiere interacción del usuario.', error);
+        });
+      });
     }
   }
-  siguiente(){this.router.navigate(['login']);}
+
+  triggerNavbarNext(): void {
+    if (this.navbar) {
+      this.navbar.siguiente();
+    }
+  }
 }

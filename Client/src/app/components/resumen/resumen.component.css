@@ -1,0 +1,153 @@
+.custom-card {
+    position: relative;
+    margin: 24px auto;
+    padding: 24px;
+    max-width: 1200px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.tabla-card {
+  margin-top: 30px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-header {
+  color: #4c5773;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+  padding: 12px;
+}
+
+.custom-cell {
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.custom-row:hover {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
+.selected-row {
+  background-color: #bbdefb !important;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  color: #4c5773;
+  text-align: center;
+}
+
+.monto-total-container {
+  margin-top: 30px;
+  text-align: center;
+  padding: 16px;
+  border: 1px solid #4c5773;
+  border-radius: 8px;
+  background-color: #e3f2fd;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.volver {
+  margin: 70px auto 24px; /* Aumenta el margen superior para separar del top-bar */
+  display: block;
+  background-color: #4c5773;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 24px;
+}
+
+
+
+
+.top-bar {
+  width: 100%;
+  background-color: #4c5773;
+  color: #fff;
+  text-align: left; 
+  padding: 10px 20px; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.top-bar-text {
+  font-size: 16px;
+  padding-right: 60px;
+}
+
+.top-bar-index {
+  background-color: #c55a1e; /* Color de fondo de la barra */
+  color: #fff; /* Color del texto */
+  display: flex; /* Usa flexbox para alinear los elementos */
+  padding-right: 30px; /* Padding interno */
+}
+
+.top-bar-text-index {
+  font-size: 16px; /* Tamaño de fuente */
+  padding: 10px 100px 10px 30px; /* Espacio interno para hacer clic más fácilmente */
+  cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+}
+
+.top-bar-text-index:hover {
+  background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.btn {
+  padding: 10px 25px;
+  background-color: #c55a1e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+  margin-top: 60px;
+}
+
+.btn:hover {
+  background-color: #a14a18;
+}
+
+@media (max-width: 768px) {
+  .button-container {
+      flex-direction: column; /* Coloca los botones en una columna en pantallas pequeñas */
+      align-items: center; /* Asegura que estén centrados */
+      gap: 10px; /* Reduce el espaciado en pantallas pequeñas */
+  }
+
+  .btn {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      text-align: center;
+  }
+}
+.btn {
+  z-index: 1050; /* Mayor que el z-index del formulario */
+  margin-left: 20px; 
+}
+
+
+@media (max-width: 768px) {
+  .btn {
+      display: none; /* Ocultar en pantallas pequeñas */
+  }
+}

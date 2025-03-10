@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Seleccionar Pago</h2>
+<mat-dialog-content [formGroup]="pagoForm">
+  <!-- Contenedor para los tres campos -->
+  <div class="form-row">
+    <!-- Calendario para seleccionar fecha -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Fecha de Pago</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="fechaPago"
+        placeholder="Seleccionar fecha">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="pagoForm.get('fechaPago')?.hasError('required')">La fecha es obligatoria</mat-error>
+    </mat-form-field>
+
+    <!-- Selector de método de pago -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Método de Pago</mat-label>
+      <mat-select formControlName="metodo">
+        <mat-option *ngFor="let metodo of metodos" [value]="metodo">{{ metodo }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="pagoForm.get('metodo')?.hasError('required')">El método de pago es obligatorio</mat-error>
+    </mat-form-field>
+
+    <!-- Campo para el monto -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Monto</mat-label>
+      <input matInput formControlName="monto" type="number" placeholder="Monto">
+      <mat-error *ngIf="pagoForm.get('monto')?.hasError('required')">El monto es obligatorio</mat-error>
+      <mat-error *ngIf="pagoForm.get('monto')?.hasError('pattern')">Debe ingresar un monto válido</mat-error>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancelar()">Cancelar</button>
+  <button mat-button color="primary" (click)="onConfirmar()">Confirmar</button>
+</mat-dialog-actions>

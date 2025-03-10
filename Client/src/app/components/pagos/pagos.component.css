@@ -1,0 +1,427 @@
+.top-bar {
+    width: 100%;
+    background-color: #4c5773;
+    color: #fff;
+    text-align: left; 
+    padding: 10px 20px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar-text {
+    font-size: 16px;
+    padding-right: 60px;
+}
+
+.table-container {
+    padding-top: 50px;
+}
+
+.estado-al-dia {
+    background-color: #d4edda; /* Verde claro */
+    color: #155724; /* Verde oscuro */
+}
+
+.estado-mora {
+    background-color: #f8d7da; /* Rojo claro */
+    color: #721c24; /* Rojo oscuro */
+}
+
+.estado-inactivo {
+    background-color: #e2e3e5; /* Gris claro */
+    color: #6c757d; /* Gris oscuro */
+}
+
+.custom-header {
+    background-color: #c55b1ec0 !important;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 
+        'FILL' 0, 
+        'wght' 400, 
+        'GRAD' 0, 
+        'opsz' 24;
+}
+
+/* Contenedor del buscador y botón */
+.search-and-add {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Espaciado entre el buscador y el botón */
+    flex-wrap: wrap;
+}
+
+/* Formulario de búsqueda */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaciado entre el campo y el botón de buscar */
+    margin-top: 30px;
+}
+
+.search-form .mat-form-field {
+    margin: 0;
+    min-width: 250px; /* Asegura un ancho mínimo para el campo */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    /* Ocultar las columnas de "Nombre" y "Apellido" en pantallas pequeñas */
+    .custom-table .mat-column-Nombre,
+    .custom-table .mat-column-Apellido {
+        display: none;
+    }
+
+    /* Hacer que las acciones sean más visibles y accesibles */
+    .mat-cell button {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .mat-icon {
+        font-size: 20px;
+    }
+
+    /* Asegurar que las celdas de acciones se apilen correctamente en pantallas pequeñas */
+    .mat-cell {
+        display: flex;
+        justify-content: space-between; /* Espacia los botones */
+        flex-wrap: wrap; /* Permite que los botones se ajusten si no caben en una línea */
+        gap: 8px; /* Espacio entre los botones */
+    }
+
+    /* Mejorar la visibilidad del paginador en pantallas pequeñas */
+    .custom-paginator {
+        font-size: 14px;
+    }
+
+    /* Ajustar el tamaño de la tarjeta y de la tabla para pantallas pequeñas */
+    .custom-card {
+        margin: 10px;
+    }
+
+    /* Ajustar el tamaño del título de la tarjeta en pantallas pequeñas */
+    .custom-title {
+        font-size: 20px;
+    }
+
+    /* Asegurar que los botones de búsqueda y agregar se apilen correctamente */
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+    }
+
+    .search-and-add {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form {
+        width: 100%;
+    }
+
+    .search-form .mat-form-field {
+        width: 100%;
+    }
+
+    /* Botones centrados en pantallas pequeñas */
+    .add-button-container {
+        display: flex;
+        justify-content: center; /* Centra el botón de crear usuario */
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    /* Reducción del tamaño de los botones */
+    .add-button {
+        font-size: 12px;
+        padding: 8px 16px; /* Reduce el padding */
+    }
+
+    /* Reducir el tamaño de los botones de búsqueda y refrescar */
+    .buscar-button, .refresh-button {
+        font-size: 12px; /* Ajusta el tamaño de los botones */
+        padding: 8px 12px; /* Reduce el padding */
+    }
+
+    /* Mejora la visibilidad de los botones */
+    .buscar-button, .refresh-button {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .buscar-button:hover, .refresh-button:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* Estilo del paginador para mejorar visibilidad */
+.paginador-container {
+    margin-top: 20px;
+    text-align: right;
+    color: #fff;
+}
+
+.mat-mdc-button:not(:disabled) {
+    color: #000;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Desde Uiverse.io por portseif */
+.custom-button {
+    background-color: #ffffff;
+    border: 1px solid #e36c3c;
+    border-radius: 0.5rem;
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+.custom-button:hover {
+    background-color: #f9fafb;
+}
+
+.custom-button:focus {
+    outline: 2px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+}
+
+.custom-button:focus-visible {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+/* Modificar solo el color del texto sin tocar el fondo */
+.buscar-button {
+    color: #868484 !important;
+}
+
+/* Cambiar el color del texto para el botón de refrescar */
+.refresh-button {
+    color: #FF5722 !important;
+}
+
+/* Opcional: Establecer el color de texto cuando se hace hover */
+.buscar-button:hover {
+    color: #000 !important;
+}
+
+.refresh-button:hover {
+    color: #D84315 !important;
+}
+
+.search-form button {
+    position: relative;
+    top: -8px;
+}
+
+/* Responsividad: Reducir el tamaño del campo DNI en pantallas pequeñas */
+/* Responsividad: Reducir el tamaño del campo DNI en pantallas pequeñas */
+@media (max-width: 768px) {
+    /* Ajustar el tamaño del campo DNI */
+    .full-width {
+        min-width: 150px;  /* Reducir el tamaño mínimo */
+        width: 100%;  /* Asegurar que ocupe todo el espacio disponible */
+    }
+
+    .full-width input {
+        font-size: 14px;  /* Reducir el tamaño de la fuente */
+        width: 100%;  /* Asegurar que ocupe todo el ancho disponible */
+    }
+
+    /* Ajustar la posición del campo de DNI en pantallas pequeñas */
+    .dni-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Alinear los elementos al inicio */
+        width: 100%; /* Ocupa el 100% del ancho */
+        margin-top: 100px; /* Espaciado superior para separación */
+    }
+
+    .dni-container label {
+        margin-bottom: 5px; /* Espaciado entre el label y el campo */
+        font-size: 14px; /* Reducir el tamaño del texto */
+    }
+    
+
+    
+}
+
+.top-bar {
+    width: 100%;
+    background-color: #4c5773;
+    color: #fff;
+    text-align: left; 
+    padding: 10px 20px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 60px; /* Espacio adicional debajo de la barra */
+}
+
+.busqueda {
+margin-top: 70px;
+}
+
+/* Contenedor de la card */
+.busqueda {
+    position: relative;
+}
+
+
+.btn {
+    padding: 10px 25px;
+    background-color: #c55a1e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #a14a18;
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column; /* Coloca los botones en una columna en pantallas pequeñas */
+        align-items: center; /* Asegura que estén centrados */
+        gap: 10px; /* Reduce el espaciado en pantallas pequeñas */
+    }
+
+    .btn {
+        width: 100%; /* Ocupa todo el ancho disponible */
+        text-align: center;
+    }
+}
+.btn {
+    position: absolute;
+    left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+}
+.btn {
+    display: block; /* Visible en pantallas grandes */
+}
+
+@media (max-width: 768px) {
+    .btn {
+        display: none; /* Ocultar en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ocultar la columna "Número de Socio" en pantallas pequeñas */
+    .custom-table .mat-column-Id {
+        display: none;
+    }
+
+    /* Ocultar las columnas de "Nombre" y "Apellido" en pantallas pequeñas */
+    .custom-table .mat-column-Socio {
+        display: none;
+    }
+
+    /* Otras reglas de estilo para pantallas pequeñas */
+    .mat-cell button {
+        font-size: 16px;
+        padding: 8px;
+    }
+
+    .mat-icon {
+        font-size: 20px;
+    }
+
+    .mat-cell {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .custom-paginator {
+        font-size: 14px;
+    }
+
+    .custom-card {
+        margin: 10px;
+    }
+
+    .custom-title {
+        font-size: 20px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+    }
+
+    .search-and-add {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form {
+        width: 100%;
+    }
+
+    .search-form .mat-form-field {
+        width: 100%;
+    }
+
+    .add-button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .add-button {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .buscar-button, .refresh-button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .buscar-button, .refresh-button {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .buscar-button:hover, .refresh-button:hover {
+        transform: scale(1.05);
+    }
+}
+
+
+.estado-nuevo {
+    background-color: #bceef7; /* Celeste claro */
+    color: #0c5460; /* Azul oscuro */
+}

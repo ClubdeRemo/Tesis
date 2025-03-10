@@ -1,0 +1,406 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar {
+    width: 100%;
+    background-color: #4c5773;
+    color: #fff;
+    text-align: left; 
+    padding: 10px 20px; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar-text {
+    font-size: 16px;
+    padding-right: 60px;
+}
+
+.top-bar-index {
+    background-color: #c55a1e; /* Color de fondo de la barra */
+    color: #fff; /* Color del texto */
+    display: flex; /* Usa flexbox para alinear los elementos */
+    padding-right: 30px; /* Padding interno */
+}
+
+.top-bar-text-index {
+    font-size: 16px; /* Tamaño de fuente */
+    padding: 10px 100px 10px 30px; /* Espacio interno para hacer clic más fácilmente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre los elementos */
+}
+
+.top-bar-text-index:hover {
+    background-color: #555; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.top-bar {
+    width: 100%;
+    background-color: #4c5773;
+    color: #fff;
+    display: flex; /* Flexbox para organizar elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Alinea los extremos */
+    padding: 10px 10px; /* Reducido para menos espacio a los lados */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar-text {
+    font-size: 16px;
+}
+
+.home-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    margin-right: 40px; /* Ajusta la distancia al borde derecho */
+    transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+    color: #ddd; /* Cambia de color al pasar el cursor */
+}
+
+.container {
+    max-width: 600px;
+    margin: 80px auto 50px auto; 
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.header-image {
+    max-width: 40%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.fondo-gris {
+    background-color: #ccc; /* Color de fondo gris */
+}
+
+/* Estilos para la imagen de encabezado */
+.header-image-index {
+    display: block; /* Hace que la imagen sea un bloque para poder centrarla */
+    max-width: 15%; /* Ajusta la anchura máxima de la imagen al 100% del contenedor */
+    height: auto; /* Permite que la altura se ajuste automáticamente para mantener la proporción */
+    margin: 20px auto; /* Centra la imagen horizontalmente con un margen superior e inferior de 20px */
+}
+
+h2 {
+    margin-top: 10px; /* Reduced space above the title */
+    margin-bottom: 30px;
+}
+
+.img-portada {
+    display: block; /* Hace que la imagen sea un bloque */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Ajusta automáticamente la altura para mantener la proporción */
+}
+
+.h2-index {
+    margin-top: 10px; /* Reduced space above the title */
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #c55a1e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #b5490b;
+}
+
+.notice {
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para dispositivos móviles y tablets */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .header-image {
+        display: none; /* Oculta la imagen en pantallas más pequeñas */
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Estilos específicos para los botones de Socios, Botes y Reservar dentro de .buttons */
+.buttons .socios-btn,
+.buttons .botes-btn,
+.buttons .reservar-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 1px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #c55a1e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.buttons .socios-btn:hover,
+.buttons .botes-btn:hover,
+.buttons .reservar-btn:hover {
+    background-color: #b5490b;
+}
+
+.estilos-tabla {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    table-layout: fixed; /* Añadido para fijar el ancho de las columnas */
+}
+
+.estilos-tabla th, .estilos-tabla td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    width: 33.33%; /* Asegura que cada columna tenga el mismo ancho */
+}
+
+
+
+.estilos-tabla th:first-child,
+.estilos-tabla td:first-child {
+    width: 13%; /* Ajusta el ancho de la primera columna como desees */
+}
+.estilos-tabla th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.estilos-tabla tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.estilos-tabla tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .top-bar-text {
+        font-size: 1.2em;
+    }
+
+    .estilos-tabla {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .estilos-tabla th, .estilos-tabla td {
+        padding: 6px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .estilos-tabla {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .estilos-tabla th, .estilos-tabla td {
+        padding: 4px;
+        font-size: 0.8em;
+    }
+}
+
+/* Estilo para el botón */
+#btnAgregar {
+    font-size: 1em;
+    padding: 10px 15px;
+    background-color: #c55a1e;
+    color: white;
+    margin: 50px 0 0 78px; /* Asegura que el margen izquierdo se aplique solo en pantallas grandes */
+    border: none;
+    cursor: pointer;
+    border-radius: 30%;
+}
+
+#btnAgregar:hover {
+    background-color: #b5490b;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    #btnAgregar {
+        font-size: 0.9em;
+        padding: 8px 12px;
+        margin: 60px 10px 15px 10px; /* Asegura que el botón tenga margen alrededor y quede a la izquierda */
+        display: inline-block; /* Permite que el botón no ocupe una línea completa */
+        width: auto; /* Ajusta el ancho del botón */
+    }
+}
+
+/* Estilo para el contenedor del video */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Ajustar según tu diseño */
+    overflow: hidden;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta el tamaño del video para cubrir el contenedor */
+}
+
+/* Estilo para el contenedor del título y logo */
+.welcome-container {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1; /* Asegura que esté encima del video */
+    color: #fff; /* Color del texto */
+}
+
+.header-image-index {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+    z-index: 1; /* Asegura que esté encima del video */
+}
+
+.h2-index {
+    text-align: center;
+    z-index: 1; /* Asegura que esté encima del video */
+    color: #fff; /* Color del texto */
+}
+
+@media (max-width: 768px) {
+    .top-bar-index {
+        padding: 10px 0; /* Ajusta el padding en dispositivos medianos */
+        justify-content: space-between; /* Ajusta la distribución del espacio */
+    }
+
+    .top-bar-text-index {
+        font-size: 14px;
+        padding: 10px 15px; /* Ajusta el padding para dispositivos medianos */
+    }
+}
+
+
+
+
+
+.button-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#btnAgregar {
+    margin-right: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 52px;
+}
+
+#searchInput {
+    padding: 5px;
+    font-size: 16px;
+}
+
+#btnBuscar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}

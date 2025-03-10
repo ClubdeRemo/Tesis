@@ -1,0 +1,32 @@
+<div class="manual-container">
+    <app-navbar></app-navbar> <!-- Barra de navegación -->
+  
+    <!-- Selección de rol -->
+    <div class="role-selection">
+      <button (click)="selectRole('user')">Usuario</button>
+      <button (click)="selectRole('admin')">Administrador</button>
+    </div>
+  
+    <!-- Lista basada en el rol -->
+    <div *ngIf="role" class="manual-list">
+      <h1 *ngIf="role === 'user'">Manual de Usuario</h1>
+      <h1 *ngIf="role === 'admin'">Manual de Administrador</h1>
+  
+      <ul>
+        <li
+          *ngFor="let item of role === 'user' ? itemsUser : itemsAdmin"
+          (click)="openDialog(item)"
+        >
+          <span>{{ item.title }}</span>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Modal (DialogComponent) -->
+    <app-dialog
+      *ngIf="selectedItem"
+      [title]="selectedItem.title"
+      [content]="selectedItem.content"
+      (close)="closeDialog()"
+    ></app-dialog>
+  </div>

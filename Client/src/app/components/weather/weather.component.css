@@ -1,0 +1,62 @@
+.weather-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 25px; /* Reducir el padding para más espacio */
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 250px; /* Aumentar altura para mayor espacio */
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .weather-container:hover {
+    transform: scale(1.05);
+  }
+  
+  h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px; /* Reducir el margen */
+    font-weight: bold;
+  }
+  
+  h3 {
+    font-size: 18px;
+    color: #444;
+    margin: 5px 0; /* Reducir margen */
+  }
+  
+  p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0; /* Reducir margen */
+  }
+  
+  .icon {
+    width: 50px;
+    height: 50px;
+    margin: 5px 0; /* Reducir el margen */
+  }
+  
+  .loader {
+    font-size: 18px;
+    color: #777;
+    animation: loading 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes loading {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

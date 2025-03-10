@@ -1,0 +1,15 @@
+<div class="weather-container">
+    <h2>Clima en {{ city }}</h2>
+  
+    <div *ngIf="weather">
+      <img *ngIf="weatherIconUrl" [src]="weatherIconUrl" alt="Clima" class="icon" /> <!-- Mostrar el ícono dinámicamente -->
+      <h3>Temperatura: {{ weather.main.temp }}°C</h3>
+      <p>Descripción: {{ weather.weather[0].description }}</p>
+      <p>Humedad: {{ weather.main.humidity }}%</p>
+      <p>Viento: {{ weather.wind.speed }} m/s</p>
+    </div>
+  
+    <div *ngIf="!weather">
+      <p class="loader">Cargando información...</p> <!-- Indicador de carga -->
+    </div>
+  </div>

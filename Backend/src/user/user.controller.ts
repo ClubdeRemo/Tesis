@@ -22,20 +22,26 @@ export class UserController {
     return this.userService.findOne(+Id);             // el + en el id lo convierte de string a numero
   }
 
+  @Get('dni/:dni')
+  async findOneDni(@Param('dni') dni: string) {
+    return this.userService.findOneByDni(+dni); 
+  }
+  
+
   @Patch(':Id')
   async update(@Param('Id') Id: ParseIntPipe, @Body() updateUserDto: UpdateUserDto) {      //los pipes son utilizados para transformar y validar los datos que entran a tu aplicación.
     return this.userService.update(+Id, updateUserDto);                              //ParseIntPipe, se utiliza para convertir un parámetro de cadena en un número entero. 
   }
 
-  @Put(':Id')
+  @Put('modificar/:Id')
   async updateUser(
-    @Param('Id') Id: number,                                  
+    @Param('Id') Id: number,    
     @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.userService.update(Id, updateUserDto);
   }
 
-  @Delete(':Id')
+  @Delete('Id/:Id')
   async remove(@Param('Id') Id: string) {                       
     return this.userService.remove(+Id);
   }

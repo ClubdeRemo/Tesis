@@ -1,22 +1,43 @@
+<app-navbar></app-navbar>
+
 <div class="welcome-container">
     <img src="ACR.png" alt="Imagen de encabezado">
     <h2 class="h2-index">¡Bienvenidos!</h2>
 </div>        
 <div id="map"></div>        
-<div class="top-bar">
-    <!-- <a [routerLink]="users/form"><span class="top-bar-text-index">Ingresar</span></a> -->
-    <span class="top-bar-text-index" (click)="siguiente()">Ingresar</span>
-    <span class="top-bar-text-index">Reservar</span>
-    <span class="top-bar-text-index">Reportes</span>
-    <span class="top-bar-text-index">Historia</span>    
-</div>        
-<div class="video-container">
-    <video autoplay loop muted playsinline>
-        <source src="Video-remando.mp4" type="video/mp4">
+
+<!-- Sección de video -->
+<section class="video-section">
+    <video #video autoplay muted playsinline loop>
+      <source src="/Video-remando.mp4" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
     </video>
-</div>    
+  </section>
+  
+
+<!-- Contenido adicional debajo del video -->
+<section class="about-acr">
+    <h3>Somos la Asociación Cordobesa de Remo de Villa Carlos Paz</h3>
+    <div class="alineacion">
+        Brindamos servicio de reserva de botes, así como enseñanza en esta comunidad que cada vez se agranda más.<br>
+        Promovemos el deporte y la sana competencia. ¡Queremos que seas parte de nuestro proyecto!<br>
+        Asóciate con nosotros acercándote al muelle, donde uno de nuestros capitanes tomará tus datos<br>
+        para que seas parte de esta gran familia.
+    </div>
+</section>
+
+<div class="floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <a href="https://api.whatsapp.com/send?phone=5493541279389" target="_blank" style="display: block; width: 60px; height: 60px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 25 25" style="width: 100%; height: 100%; border-radius: 50%; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);">
+            <circle cx="12" cy="12" r="11.5" fill="#25D366" stroke="#ffffff" stroke-width="1.5"></circle>
+            <path fill="#ffffff" d="M17.523 14.093c-.264-.132-1.553-.768-1.795-.857-.24-.088-.414-.132-.588.132-.175.263-.676.857-.83 1.033-.15.175-.307.197-.57.065-.264-.132-1.11-.409-2.117-1.306-.782-.697-1.309-1.558-1.465-1.822-.154-.263-.017-.404.115-.535.118-.118.263-.307.395-.46.132-.15.175-.263.263-.438.088-.175.044-.33-.022-.462-.065-.132-.587-1.406-.805-1.926-.21-.502-.426-.43-.588-.43h-.505c-.175 0-.438.066-.67.33-.23.263-.876.857-.876 2.087 0 1.23.897 2.42 1.022 2.583.132.175 1.75 2.683 4.243 3.763.593.257 1.057.41 1.418.525.595.19 1.138.164 1.568.1.478-.073 1.553-.63 1.775-1.246.22-.614.22-1.14.154-1.246-.066-.105-.242-.175-.505-.307z"/>
+        </svg>
+    </a>
+</div>
 
 <app-footer></app-footer>
+
+
 
     <!-- Errores y soluciones:
     error de rehidratación Index es el unico que debe contener header y body

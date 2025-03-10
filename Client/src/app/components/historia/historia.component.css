@@ -1,0 +1,45 @@
+.historia {
+    color: #333333;
+    text-align: center;
+    margin: 100px auto; /* Centra horizontalmente y aplica margen superior */
+    max-width: 80%;
+    padding: 40px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+}
+
+
+.historia h5 {
+    font-size: 1.2rem; /* Tamaño de fuente ajustado para un mejor equilibrio */
+    font-weight: normal; /* Peso de fuente para mayor claridad */
+    color: #555; /* Color de texto más suave que el del contorno */
+}
+
+@media (max-width: 768px) {
+    .historia {
+        max-width: 95%; /* Aumenta el ancho en pantallas pequeñas */
+        padding: 20px; /* Menor padding para pantallas más pequeñas */
+    }
+
+    .historia h5 {
+        font-size: 1rem; /* Ajuste de tamaño de texto para móviles */
+    }
+}
+
+
+.historia-imagen {
+    margin-top: 50px; /* Espacio entre el párrafo y la imagen */
+    text-align: center; /* Centra la imagen */
+}
+
+.imagen-historia {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% */
+    max-width: 500px; /* Define un ancho máximo para la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
+}

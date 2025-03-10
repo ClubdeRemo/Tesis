@@ -1,0 +1,9 @@
+/* Estilos opcionales para el modal */
+mat-form-field {
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
