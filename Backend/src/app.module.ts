@@ -10,8 +10,8 @@ import { join } from 'path';
 import { BotesModule } from './botes/botes.module';
 import { ReportesModule } from './reportes/reportes.module';
 import { PagoModule } from './pagos/pagos.module';
+import { ConfigModule } from '@nestjs/config';
 import { AppDataSource } from './ormconfig';
-import { ConfigModule } from'@nestjs/config';
 
 @Module({
   imports: [
@@ -20,18 +20,23 @@ import { ConfigModule } from'@nestjs/config';
       serveRoot: '/static',
     }),
     ConfigModule.forRoot({
-      isGlobal: true, // Hace que todas las variables estén disponibles en toda la app
+      isGlobal: true,
     }),
-    TypeOrmModule.forRoot(AppDataSource.options),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      url: process.env.DATABASE_URL,
+      charset: 'utf8mb4',
+      synchronize: false,
+      logging: true,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    }),
     UserModule,
     AuthModule,
     BotesModule,
     ReportesModule,
-    PagoModule
-    ],
-
+    PagoModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {}

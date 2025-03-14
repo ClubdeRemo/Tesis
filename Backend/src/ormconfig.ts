@@ -20,3 +20,8 @@ export const AppDataSource = new DataSource({
     synchronize: false, 
     logging: true,
 });
+
+// Inicializar conexión manualmente si es necesario
+AppDataSource.initialize()
+    .then(() => console.log("📦 Base de datos conectada"))
+    .catch(err => console.error("❌ Error al conectar DB:", err));
