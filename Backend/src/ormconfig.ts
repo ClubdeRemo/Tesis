@@ -11,13 +11,13 @@ export const AppDataSource = new DataSource({
     type: 'mysql',
     url: isProduction ? process.env.DATABASE_URL : undefined, 
     host: isProduction ? undefined : 'localhost',
-    port: isProduction ? undefined : 3306,
+    port: isProduction ? undefined : 30532,
     username: isProduction ? undefined : 'root',
     password: isProduction ? undefined : 'root',
     database: isProduction ? undefined : 'club_de_remo',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     charset: 'utf8mb4',
-    synchronize: false, 
+    synchronize: true, 
     logging: true,
 });
 

@@ -26,7 +26,7 @@ import { AppDataSource } from './ormconfig';
       type: 'mysql',
       url: process.env.DATABASE_URL,
       charset: 'utf8mb4',
-      synchronize: false,
+      synchronize: true,
       logging: true,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
     }),
