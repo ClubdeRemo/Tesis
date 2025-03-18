@@ -12,6 +12,18 @@ import { ReportesModule } from './reportes/reportes.module';
 import { PagoModule } from './pagos/pagos.module';
 import { ConfigModule } from '@nestjs/config';
 import { AppDataSource } from './ormconfig';
+import * as dotenv from 'dotenv';
+
+// Cargar variables de entorno manualmente
+dotenv.config({ path: '.env/.env.development.local' });
+
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
+
+ConfigModule.forRoot({
+  envFilePath: ['.env.development.local', '.env/.env.development.local'],
+  isGlobal: true,
+});
+
 
 @Module({
   imports: [
@@ -19,17 +31,9 @@ import { AppDataSource } from './ormconfig';
       rootPath: join(__dirname, '..', 'Client', 'src'),
       serveRoot: '/static',
     }),
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      url: process.env.DATABASE_URL,
-      charset: 'utf8mb4',
-      synchronize: true,
-      logging: true,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    }),
+
+    
+    TypeOrmModule.forRoot(AppDataSource.options),
     UserModule,
     AuthModule,
     BotesModule,
@@ -39,4 +43,5 @@ import { AppDataSource } from './ormconfig';
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule {}

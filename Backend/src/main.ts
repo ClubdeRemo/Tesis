@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { config } from 'dotenv';
-config();
+config({ path: '.env/.env.development.local' });
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +16,7 @@ async function bootstrap() {
   };
   app.enableCors(corsOptions);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
+
 }
 bootstrap();

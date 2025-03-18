@@ -9,7 +9,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 export const AppDataSource = new DataSource({
     type: 'mysql',
-    url: isProduction ? process.env.DATABASE_URL : undefined, 
+    url: process.env.DATABASE_URL || 'mysql://root:root@localhost:30532/club_de_remo', 
     host: isProduction ? undefined : 'localhost',
     port: isProduction ? undefined : 30532,
     username: isProduction ? undefined : 'root',
