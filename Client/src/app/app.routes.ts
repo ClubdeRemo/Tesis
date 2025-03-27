@@ -49,7 +49,7 @@ export const routes: Routes = [
 
 ];
 @NgModule({   //define un modulo de angular, solo se aplica una vez
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 export class AppRoutes { }
