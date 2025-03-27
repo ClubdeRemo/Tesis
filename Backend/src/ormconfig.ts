@@ -8,7 +8,6 @@ export const AppDataSource = new DataSource({
     url: process.env.DATABASE_URL, // Railway proporciona una URL completa
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     charset: 'utf8mb4',
-    synchronize: true, 
     logging: true,
 });
 

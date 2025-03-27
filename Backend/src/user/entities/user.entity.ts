@@ -1,7 +1,7 @@
 import { Pagos } from "src/pagos/entities/pago.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('User') // Nombre de la tabla en la base de datos
+@Entity('user') // Nombre de la tabla en la base de datos
 export class User {
 
     @PrimaryGeneratedColumn('increment')

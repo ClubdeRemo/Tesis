@@ -14,8 +14,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AppDataSource } from './ormconfig';
 import * as dotenv from 'dotenv';
 
-// Cargar variables de entorno manualmente
-dotenv.config({ path: '.env/.env.development.local' });
 
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 

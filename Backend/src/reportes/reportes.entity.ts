@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('Mensajes') // Nombre de la tabla en la base de datos
+@Entity('mensajes') // Nombre de la tabla en la base de datos
 export class Mensajes {
 
     @PrimaryGeneratedColumn('increment')
