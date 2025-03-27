@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-import { environment } from '../../enviroments/environment';
+import { environment } from '../../enviroments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
  // Método para iniciar sesión y almacenar el token
- signIn(credentials: { Id: string; Nombre: string; Contraseña: string }): Observable<{ token: string, user: { id: string, nombre: string, rol: string } }> {
+  signIn(credentials: { Id: string; Nombre: string; Contraseña: string }): Observable<{ token: string, user: { id: string, nombre: string, rol: string } }> {
   return this.http.post<{ token: string, user: { id: string, nombre: string, rol: string } }>(this.apiUrl, credentials).pipe(catchError(this.handleError));
 }
 

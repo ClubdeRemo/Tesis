@@ -10,7 +10,7 @@ async function bootstrap() {
   
 
   const corsOptions: CorsOptions = {
-    origin: 'http://localhost:4200', // Ajusta esta URL al frontend que quieras permitir
+    origin: 'http://tesis-club-gz3ksabkt-lucas-esteban-matias-projects.vercel.app', // Ajusta esta URL al frontend que quieras permitir
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',
   };
