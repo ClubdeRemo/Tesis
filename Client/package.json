@@ -7,7 +7,7 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:client": "node dist/client/server/server.mjs",
+    "serve:ssr:client": "node dist/Client/server/server.mjs",
     "lint": "ng lint",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"src/**/*.css\" \"src/**/*.scss\"",
     "type-check": "tsc --noEmit"
