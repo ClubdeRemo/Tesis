@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Pagos } from '../interfaces/Pagos';
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PagosService {
-  private apiUrl = 'http://localhost:3000/historial/pagos';
+  private apiUrl = environment.apiUrl + '/historial/pagos';
   
 
   constructor(private http: HttpClient) {}

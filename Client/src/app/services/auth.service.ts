@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
-
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000/auth/signin';
+  private apiUrl = environment.apiUrl + '/auth/signin';
 
   constructor(private http: HttpClient) {}
 

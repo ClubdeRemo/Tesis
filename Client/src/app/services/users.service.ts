@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/User';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private apiUrl = 'http://localhost:3000/user';
+  private apiUrl = environment.apiUrl + '/user';
 
 
   constructor(private http: HttpClient) {}
