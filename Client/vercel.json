@@ -3,11 +3,17 @@
   "public": true,
   "builds": [
     {
-      "src": "Client/package.json",
-      "use": "@vercel/static-build"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/Client/browser/**"
+      }
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/index.html", "status": 200 }
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
