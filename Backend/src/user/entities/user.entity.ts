@@ -19,7 +19,7 @@ export class User {
     @Column({ type: 'varchar', nullable: false })
     Contraseña: string;
 
-    @Column({type: 'datetime', nullable: false})
+    @Column({type: 'timestamp', nullable: false})
     FechaDeNacimiento: Date;
 
     @Column({ type: 'float', nullable: false, unique: true })
