@@ -11,6 +11,9 @@ export const AppDataSource = new DataSource({
     username: 'club_remo_db_user',
     password: 'l6mdamWYqP4heH5fFQyEADNKGp6mlNRF',
     database: 'club_remo_db',
+    ssl: {
+    rejectUnauthorized: false, // <- Necesario para Render
+    },
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     logging: true,
 });
