@@ -12,7 +12,7 @@ async function bootstrap() {
   const corsOptions: CorsOptions = {
     origin: [
       'http://localhost:4200', // Para desarrollo local
-      'https://tesis-club.vercel.app', // Producción en Vercel
+      'https://tesis-club-emywtyrpi-lucas-esteban-matias-projects.vercel.app', // Producción en Vercel
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',

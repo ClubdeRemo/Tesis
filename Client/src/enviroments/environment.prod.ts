@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: process.env['NG_APP_API_URL']
+  apiUrl: 'https://club-remo-backend.onrender.com'
 };
 
 /* export const environment = {
