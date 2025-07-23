@@ -21,8 +21,8 @@ export class AppController {
     res.sendFile(join(__dirname, '..', 'public', 'users-form.html'));
   }
 
-  @Get('*')
+/*   @Get('*')
   renderAngular(@Res() res: Response) {
     res.sendFile(join(__dirname, '..', 'Client', 'dist', 'Client', 'browser', 'index.html'));
-  }
+  } */
 }
