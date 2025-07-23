@@ -13,10 +13,10 @@ export class Pagos {
   @JoinColumn({ name: 'UserId' }) // Este es el campo que se usa para la relación
   user: User; // Relación de tipo 'User'
 
-  @Column({ type: 'datetime' })
+  @Column({ type: 'timestamp' })
   FechaPago: Date;
   
-  @Column({ type: 'datetime' })
+  @Column({ type: 'timestamp' })
   FechaVto: Date;
 
   @Column()
