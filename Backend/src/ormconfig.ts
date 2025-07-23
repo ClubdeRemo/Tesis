@@ -14,9 +14,9 @@ export const AppDataSource = new DataSource({
     ssl: {
     rejectUnauthorized: false, // <- Necesario para Render
     },
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    entities: [__dirname + '/**//*.entity{.ts,.js}'],
     logging: true,
-});
+}); // PARA POSTGRE SQL RENDER 
 
 /* export const AppDataSource = new DataSource({
     type: 'mysql',
@@ -24,7 +24,7 @@ export const AppDataSource = new DataSource({
     entities: [__dirname + '/**//*.entity{.ts,.js}'],
     charset: 'utf8mb4',
     logging: true,
-}); */// PARA MYSQL RAILWAY
+}); */// PARA MYSQL Railway
 
 AppDataSource.initialize()
     .then(() => console.log("📦 Base de datos conectada"))
