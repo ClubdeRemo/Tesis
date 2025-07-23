@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 //import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
+//import { join } from 'path';
 import { BotesModule } from './botes/botes.module';
 import { ReportesModule } from './reportes/reportes.module';
 import { PagoModule } from './pagos/pagos.module';
@@ -26,7 +26,7 @@ ConfigModule.forRoot({
 @Module({
   imports: [
 /*     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'Client', 'src'),
+      rootPath: join(__dirname, '..', 'Client', 'dist', 'Client', 'browser'), // ✅ el build correcto de Angular
       serveRoot: '/static',
     }), */
 
@@ -41,5 +41,6 @@ ConfigModule.forRoot({
   controllers: [AppController],
   providers: [AppService],
 })
+
 
 export class AppModule {}

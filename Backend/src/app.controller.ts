@@ -10,15 +10,19 @@ export class AppController {
     throw new Error('Method not implemented.');
   }
   constructor(private readonly appService: AppService) {}
-
+/* 
   @Get()
   getRoot(@Res() res: Response) {
     res.sendFile(join(__dirname, '..', 'public', 'index.html'));
-  }
+  } */
   
   @Get('Public/users-form.html')
   getCrearSocio(@Res() res: Response) {
     res.sendFile(join(__dirname, '..', 'public', 'users-form.html'));
+  }
 
+  @Get('*')
+  renderAngular(@Res() res: Response) {
+    res.sendFile(join(__dirname, '..', 'Client', 'dist', 'Client', 'browser', 'index.html'));
   }
 }
