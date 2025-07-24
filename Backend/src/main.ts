@@ -16,7 +16,7 @@ async function bootstrap() {
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',
-    credentials: true, // Permite enviar cookies o headers de autenticación
+    credentials: false, // Permite enviar cookies o headers de autenticación
 
   };
   app.enableCors(corsOptions);
