@@ -16,7 +16,7 @@ export class User {
     @Column({ type: 'varchar', nullable: false, unique: true })
     Email: string;
 
-    @Column({ type: 'varchar', nullable: false })
+    @Column({ type: 'varchar', nullable: false, name: 'Contraseña' })
     Contraseña: string;
 
     @Column({type: 'timestamp', nullable: false})
