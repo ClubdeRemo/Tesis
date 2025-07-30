@@ -12,11 +12,11 @@ async function bootstrap() {
   const corsOptions: CorsOptions = {
     origin: [
       'http://localhost:4200', // Para desarrollo local
-      'https://tesis-club-emywtyrpi-lucas-esteban-matias-projects.vercel.app', // Producción en Vercel
+      'http://tesis-club.vercel.app', // Producción en Vercel
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',
-    credentials: false, // Permite enviar cookies o headers de autenticación
+    credentials: false, // Si fuese false permite enviar cookies o headers de autenticación
 
   };
   app.enableCors(corsOptions);
