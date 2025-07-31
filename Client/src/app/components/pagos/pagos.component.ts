@@ -69,7 +69,7 @@ export class PagosComponent implements OnInit {
       // Obtén los datos de los usuarios
       const data: User[] = await this.usersService.obtenerDatos();
       this.totalRecords = data.length;
-      this.data = data;
+      this.data = data.sort((a, b) => b.Id! - a.Id!);
   
       // Inicializa el dataSource con los datos de la primera página
       this.updateDataSource();

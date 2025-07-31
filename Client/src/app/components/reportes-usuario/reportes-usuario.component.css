@@ -70,7 +70,31 @@
 }
 
 
-/* Tabla de reportes */
+/* Centrado de texto y control de largo de columnas */
+.mensaje-column {
+    max-width: 400px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.fecha-column {
+    max-width: 100px;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.acciones {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+/* Para mejorar la responsividad de la tabla */
+.table-container {
+    overflow-x: auto;
+}
+
 .custom-table {
     width: 100%;
     border-spacing: 0 8px; /* Espaciado entre las filas */

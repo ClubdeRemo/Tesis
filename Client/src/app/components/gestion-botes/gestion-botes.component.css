@@ -1,0 +1,265 @@
+.boat-management-container {
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botón de agregar */
+.add-button {
+  width: 317px;
+  height: 146px;
+  position: absolute;
+  top: 128px;
+  left: 35px;
+  background: rgba(197, 91, 30, 0.75);
+  border-radius: 50px;
+  border: none;
+  box-shadow: 
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background: rgba(197, 91, 30, 0.85);
+}
+
+.add-button:active {
+  transform: translateY(2px);
+}
+
+.add-icon {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -1.06px;
+}
+
+/* Logo */
+.logo-container {
+  position: absolute;
+  width: 172px;
+  height: 186px;
+  top: 128px;
+  left: 1195px;
+}
+
+.logo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #f0f0f0;
+  border: 2px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.logo-placeholder::after {
+  content: 'Logo';
+  color: #999;
+  font-size: 14px;
+}
+
+/* Header */
+.header-container {
+  position: absolute;
+  width: 1440px;
+  height: 77px;
+  top: 0;
+  left: 0;
+}
+
+.header-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-placeholder h1 {
+  color: white;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Tabla */
+.table-container {
+  position: absolute;
+  top: 352px;
+  left: 0;
+  width: 1440px;
+}
+
+.boats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table-header {
+  width: 480px;
+  border: none;
+  background: transparent;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.header-content span {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 500;
+  color: black;
+  font-size: 36px;
+  letter-spacing: -0.40px;
+}
+
+.table-row {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.table-row:hover {
+  background-color: #f9f9f9;
+}
+
+.table-cell {
+  width: 480px;
+  border: none;
+  padding: 0;
+}
+
+.cell-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.cell-content span {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-weight: 500;
+  color: black;
+  font-size: 36px;
+  letter-spacing: -0.40px;
+}
+
+/* Botones de acción */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100px;
+}
+
+.action-button {
+  width: 52px;
+  height: 52px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.action-button:active {
+  transform: scale(0.95);
+}
+
+.edit-button svg {
+  color: #4a90e2;
+}
+
+.delete-button svg {
+  color: #e74c3c;
+}
+
+.edit-button:hover {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+.delete-button:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 1440px) {
+  .boat-management-container {
+    overflow-x: auto;
+  }
+  
+  .add-button {
+    left: 20px;
+  }
+  
+  .logo-container {
+    right: 20px;
+    left: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-button {
+    width: 200px;
+    height: 100px;
+    top: 100px;
+  }
+  
+  .add-icon {
+    font-size: 60px;
+  }
+  
+  .header-content span,
+  .cell-content span {
+    font-size: 24px;
+  }
+  
+  .table-header,
+  .table-cell {
+    width: auto;
+    min-width: 150px;
+  }
+  
+  .header-content,
+  .cell-content {
+    height: 60px;
+  }
+  
+  .action-buttons {
+    height: 60px;
+  }
+  
+  .action-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .action-button svg {
+    width: 32px;
+    height: 32px;
+  }
+}

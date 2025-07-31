@@ -111,12 +111,6 @@
     cursor: pointer;
 }
 
-/* Estilo para la celda de estado 'Al día' */
-.estado-al-dia {
-    background-color: #d4edda;
-    color: #155724;
-}
-
 /* Responsividad */
 @media (max-width: 768px) {
     /* Ocultar las columnas de "Nombre" y "Apellido" en pantallas pequeñas */
@@ -284,8 +278,9 @@
 }
 
 .estado-al-dia {
-    background-color: #d4edda; /* Verde claro */
+    background-color: #c2e2c9; /* Verde claro */
     color: #155724; /* Verde oscuro */
+    
 }
 
 .estado-mora {
@@ -301,6 +296,7 @@
 .estado-nuevo {
     background-color: #bceef7; /* Celeste claro */
     color: #0c5460; /* Azul oscuro */
+    
 }
 
 

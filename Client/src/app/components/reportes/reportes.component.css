@@ -109,6 +109,27 @@
     .btn {
         font-size: 0.9rem;
     }
+
+    .table-container {
+    overflow-x: auto;
+    }
+    
+    .custom-table {
+    table-layout: fixed;
+    width: 100%;
+    }
+
+    .fecha-column {
+    max-width: 100px;
+    word-break: break-word;
+    white-space: normal;
+    }
+
+    .acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    }
 }
 
 

@@ -14,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -59,7 +60,18 @@ export class GestionSociosComponent implements OnInit {
     const today = new Date();
     this.currentDate = today.toLocaleDateString();
   }
-  
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+ngAfterViewInit() {
+  this.dataSource.sort = this.sort;
+
+  // Ordenar por defecto por ID descendente
+  this.sort.active = 'Id';
+  this.sort.direction = 'desc';
+  this.sort.sortChange.emit();
+}
+
 
   async ngOnInit(): Promise<void> {
     try {
@@ -67,7 +79,7 @@ export class GestionSociosComponent implements OnInit {
       const data: User[] = await this.usersService.obtenerDatos();
 
       this.totalRecords = data.length; // Establecemos el total de registros
-      this.data = data;  // Guardamos los datos completos
+      this.data = data.sort((a, b) => b.Id! - a.Id!); // 🟢 orden descendente por ID  // Guardamos los datos completos
       this.updateDataSource(); // Inicializamos la tabla con los datos de la primera página
 
     } catch (error) {
@@ -104,7 +116,8 @@ export class GestionSociosComponent implements OnInit {
           alert("Socio eliminado correctamente.");
           // Actualizar los datos en la tabla
           const datosActualizados = await this.usersService.obtenerDatos(); 
-          this.dataSource.data = datosActualizados; 
+          this.data = datosActualizados.sort((a, b) => b.Id! - a.Id!); // 🟢 mantener el orden
+          this.updateDataSource(); 
         } else {
           alert("Hubo un error al intentar eliminar al socio.");
         }
