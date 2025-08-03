@@ -64,12 +64,16 @@ export class GestionSociosComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 ngAfterViewInit() {
-  this.dataSource.sort = this.sort;
-
-  // Ordenar por defecto por ID descendente
-  this.sort.active = 'Id';
-  this.sort.direction = 'desc';
-  this.sort.sortChange.emit();
+  setTimeout(() => {
+    if (this.sort) {
+      this.dataSource.sort = this.sort;
+      this.sort.active = 'Id';
+      this.sort.direction = 'desc';
+      this.sort.sortChange.emit();
+    } else {
+      console.warn('MatSort sigue sin estar disponible');
+    }
+  });
 }
 
 
