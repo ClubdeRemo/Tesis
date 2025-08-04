@@ -36,7 +36,7 @@ export const routes: Routes = [
     {path: 'reportes/usuario', component: ReportesUsuarioComponent },  
     {path: 'menu/admin',component: MenuAdminComponent},
     {path: 'registrar/pago',component: RegistrarPagoComponent},
-    {path: 'modificar',component: ModificarComponent},
+    // {path: 'modificar',component: ModificarComponent},
     {path: 'modificar/:id', component: ModificarComponent },
     {path: 'pagos', component: PagosComponent },
     {path: 'usuario/completo/:id', component: UsuarioCompletoComponent },

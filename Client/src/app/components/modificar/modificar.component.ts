@@ -189,10 +189,8 @@ buscarSocioPorId(): void {
   }
   
   async volver(){
-    this.router.navigate(['/socios'], {
-      queryParams: null,
-      replaceUrl: true
-    });
+    this.router.navigateByUrl('/socios', { replaceUrl: true });
+
   }
   
 }
