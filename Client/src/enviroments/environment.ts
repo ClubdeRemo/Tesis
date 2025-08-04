@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://club-remo-backend.onrender.com'
+  apiUrl: 'http://localhost:3000'
 };
 
 /* export const environment = {

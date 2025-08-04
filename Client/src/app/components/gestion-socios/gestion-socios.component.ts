@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSort } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @Component({
@@ -29,7 +30,8 @@ import { MatSort } from '@angular/material/sort';
     MatButtonModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
   ],
   providers: [UsersService],
   templateUrl: './gestion-socios.component.html',
